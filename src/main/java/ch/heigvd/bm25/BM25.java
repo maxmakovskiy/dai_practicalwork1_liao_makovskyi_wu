@@ -89,6 +89,8 @@ public class BM25 {
         ArrayList<String> vocabulary
     ) {
         // Compute avg doc len and number of docs
+        double avgDocLen = computeAvgDocLength(corpusTokens);
+        int numOfDocs = corpusTokens.size();
 
         // Step 1: Calculate the number of documents containing each token
 
@@ -97,6 +99,15 @@ public class BM25 {
         // Step 3 Calculate the BM25 scores for each token in each document
     }
 
+    private double computeAvgDocLength(ArrayList<ArrayList<String>> corpusTokens) {
+        double result = 0.0;
+
+        for (ArrayList<String> docTokens : corpusTokens) {
+            result += docTokens.size();
+        }
+
+        return result / corpusTokens.size();
+    }
 
 
 }
