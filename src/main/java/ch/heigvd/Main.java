@@ -4,6 +4,7 @@ import picocli.CommandLine;
 import java.io.File;
 
 import ch.heigvd.commands.Build;
+import ch.heigvd.commands.Search;
 
 
 @CommandLine.Command(
@@ -11,7 +12,8 @@ import ch.heigvd.commands.Build;
         version = "1.0.0",
         showDefaultValues = true,
         subcommands = {
-                Build.class
+                Build.class,
+                Search.class,
         },
         scope = CommandLine.ScopeType.INHERIT,
         mixinStandardHelpOptions = true)
