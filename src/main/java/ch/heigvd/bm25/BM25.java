@@ -93,12 +93,17 @@ public class BM25 {
         int numOfDocs = corpusTokens.size();
 
         // Step 1: Calculate the number of documents containing each token
+        HashMap<String, Integer> docFreqs = calculateDocumentFrequencies(
+                corpusTokens,
+                vocabulary
+        );
 
         // Step 2: Calculate the idf for each token using the document frequencies
 
         // Step 3 Calculate the BM25 scores for each token in each document
     }
 
+    // Calculates average length of document inside corpus
     private double computeAvgDocLength(ArrayList<ArrayList<String>> corpusTokens) {
         double result = 0.0;
 
@@ -108,6 +113,35 @@ public class BM25 {
 
         return result / corpusTokens.size();
     }
+
+    // For each token in the vocabulary calculates number of document containing it
+    private HashMap<String, Integer> calculateDocumentFrequencies(
+        ArrayList<ArrayList<String>> corpusTokens,
+        ArrayList<String> vocabulary
+    ) {
+        HashMap<String, Integer> docFrequencies = new HashMap<>();
+        HashSet<String> vocabSet = new HashSet<>(vocabulary);
+
+        for (String token : vocabSet) {
+            // ref: https://stackoverflow.com/questions/4157972/how-to-update-a-value-given-a-key-in-a-hashmap
+            docFrequencies.put(token, 0);
+        }
+
+        for (ArrayList<String> docTokens : corpusTokens) {
+            // get intersection of unique tokens and the tokens in the document
+            HashSet<String> sharedTokens = new HashSet<>(docTokens);
+            sharedTokens.retainAll(vocabSet);
+
+            // then we count number of docs for tokens in the intersection
+            for (String token : sharedTokens) {
+                docFrequencies.put(token, docFrequencies.get(token) + 1);
+            }
+
+        }
+
+        return docFrequencies;
+    }
+
 
 
 }
