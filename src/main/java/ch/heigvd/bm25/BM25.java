@@ -54,7 +54,13 @@ public class BM25 {
     // to rank relevant documents with respect to query
     // Idiomatic use: BM25.buildIndex(BM25.tokenize(documents))
     public void buildIndex(ArrayList<ArrayList<String>> corpusTokens) {
+        // build vocabulary
+        ArrayList<String> vocab = buildVocabulary(corpusTokens);
 
+        // create new index
+
+        // compute matrix of scores so-called Index
+        computeScoresMatrix(corpusTokens, vocab);
     }
 
     // Ranks relevant documents with respect to query
@@ -62,5 +68,35 @@ public class BM25 {
     public ArrayList<RankingResult> retrieveTopK(ArrayList<String> queryTokens, int k) {
         return new ArrayList<>();
     }
+
+    // Collects all the uniques words from the corpus
+    private ArrayList<String> buildVocabulary(ArrayList<ArrayList<String>> corpusTokens) {
+        ArrayList<String> allTokens = new ArrayList<>();
+
+        for (ArrayList<String> doc : corpusTokens) {
+            allTokens.addAll(doc);
+        }
+
+        // ref: https://stackoverflow.com/a/2235687
+        HashSet<String> uniqueTokens = new HashSet<>(allTokens);
+
+        return new ArrayList<>(uniqueTokens);
+    }
+
+
+    private void computeScoresMatrix(
+        ArrayList<ArrayList<String>> corpusTokens,
+        ArrayList<String> vocabulary
+    ) {
+        // Compute avg doc len and number of docs
+
+        // Step 1: Calculate the number of documents containing each token
+
+        // Step 2: Calculate the idf for each token using the document frequencies
+
+        // Step 3 Calculate the BM25 scores for each token in each document
+    }
+
+
 
 }
