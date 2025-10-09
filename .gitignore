@@ -27,6 +27,7 @@
 
 ## Maven
 target/
+dependency-reduced-pom.xml
 
 ## Windows
 # Windows thumbnail cache files
@@ -38,5 +39,6 @@ Thumbs.db
 
 # Custom
 remote-target.xml
+
 
 
