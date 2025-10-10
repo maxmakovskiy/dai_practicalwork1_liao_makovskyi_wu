@@ -6,6 +6,8 @@ import ch.heigvd.bm25.utils.Stopword;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import opennlp.tools.stemmer.PorterStemmer;
+
 
 /*
 * This class represents search engine built on top of BM25 algorithm
@@ -26,13 +28,15 @@ public class BM25 {
         Pattern p = Pattern.compile("(?u)\\b\\w\\w+\\b");
         Matcher m = p.matcher(text.toLowerCase());
 
+        PorterStemmer stemmer = new PorterStemmer();
+
         ArrayList<String> tokens = new ArrayList<>();
         while (m.find()) {
             String token = m.group();
 
             if (!Stopword.eng.contains(token)) {
 //                  apply stemmer somewhere here
-                tokens.add(token);
+                tokens.add(stemmer.stem(token));
             }
         }
 
