@@ -15,7 +15,7 @@ public class BM25 {
     private final double B = 0.75;
 
     /**
-     * Tokenizes a line of text while igonring inessential words (ex: a/the/is/etc)
+     * Tokenizes a line of text while ignoring inessential words (ex: a/the/is/etc)
      * @param text line of text to tokenize
      * @return ArrayList of tokens
      * */
@@ -227,6 +227,7 @@ public class BM25 {
      * @param k1 parameter responsible for normalizing influence of term frequency component
      * @param b document-length normalisation parameter,
      *         in other words how much document length influences final score
+     * @see  #calculateTermFrequencies
      * */
     private double termFreqScore (
         double termFreq,
