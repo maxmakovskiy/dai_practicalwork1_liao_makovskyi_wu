@@ -129,6 +129,7 @@ public class BM25 {
 
 
         // Step 3 Calculate the BM25 scores for each token in each document
+        computeScores(corpusTokens, idf, vocabulary, numOfDocs, avgDocLen);
     }
 
     /**
@@ -217,5 +218,105 @@ public class BM25 {
         return idf;
     }
 
+    /**
+     * Computes term frequency component of the BM25 score using Robertson variant of formula
+     * <a href="https://cs.uwaterloo.ca/~jimmylin/publications/Kamphuis_etal_ECIR2020_preprint.pdf">taken from here</a>
+     * @param termFreq
+     * @param docLen length of a document
+     * @param averageDocLength average document length inside the corpus
+     * @param k1 parameter responsible for normalizing influence of term frequency component
+     * @param b document-length normalisation parameter,
+     *         in other words how much document length influences final score
+     * */
+    private double termFreqScore (
+        double termFreq,
+        int docLen,
+        double averageDocLength,
+        double k1,
+        double b
+    ) {
+        return termFreq / ( k1 * ( 1.0 - b + b * (double)docLen / averageDocLength ) + termFreq );
+    }
+
+    /**
+     * Fills index with scores while using precomputed statistics
+     * @param corpusTokens collection of documents that were tokenized
+     * @param idf dictionary that stores inverse document frequency score for each token in vocabulary
+     * @param vocabulary collection of unique words over all documents inside the corpus
+     * @param numOfDocs number of documents in the corpus
+     * @param averageDocLength average document length inside the corpus
+     * @see Index
+     * */
+    private void computeScores(
+            ArrayList<ArrayList<String>> corpusTokens,
+            HashMap<String, Double> idf,
+            ArrayList<String> vocabulary,
+            int numOfDocs,
+            double averageDocLength
+    ) {
+        int vocabSize = vocabulary.size();
+
+        // Calculate the BM25 score for each token in the document
+        for (int docIdx = 0; docIdx < numOfDocs; docIdx++) {
+            ArrayList<String> document = corpusTokens.get(docIdx);
+            int docLen = document.size();
+
+            //
+            ArrayList<Integer> termFreqs = calculateTermFrequencies(document, vocabulary);
+
+            for (int tokenIdx = 0; tokenIdx < vocabSize; tokenIdx++) {
+                if (!document.contains(vocabulary.get(tokenIdx))) {
+                    continue;
+                }
+
+                // ref : https://en.wikipedia.org/wiki/Okapi_BM25
+                // calculate term frequency score for each token inside document
+                double score = termFreqScore(
+                        termFreqs.get(tokenIdx), docLen, averageDocLength, this.K1, this.B
+                );
+
+                double tokenIdf = idf.get(vocabulary.get(tokenIdx));
+
+                if (score > 0.0) {
+//                    this.index.matrix.set(docIdx, tokenIdx, score * tokenIdf);
+                    // TODO:
+                    // There no index yet
+                }
+
+            }
+        }
+    }
+
+    /**
+     * Calculates how much time each token from vocabulary appears in given document
+     * @param document collection of tokens corresponding to the document
+     * @param vocabulary collection of unique words over all documents inside the corpus
+     * @return ArrayList of numbers of documents per token from vocabulary. <br>
+     * It has built in the way that
+     * {@code result.get(vocabulary.indexOf(token))} gives us
+     * number of documents containing token
+     * */
+    private ArrayList<Integer> calculateTermFrequencies(
+        ArrayList<String> document,
+        ArrayList<String> vocabulary
+    ) {
+        HashMap<String, Integer> vocabMap = new HashMap<>();
+
+        for (String token : vocabulary) {
+            vocabMap.put(token, 0);
+        }
+
+        ArrayList<Integer> res = new ArrayList<>(document.size());
+
+        for (String token : document) {
+            vocabMap.put(token, vocabMap.get(token) + 1);
+        }
+
+        for (String token : vocabulary) {
+            res.add(vocabMap.get(token));
+        }
+
+        return res;
+    }
 
 }
