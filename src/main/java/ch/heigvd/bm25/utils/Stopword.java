@@ -2,8 +2,10 @@ package ch.heigvd.bm25.utils;
 
 import java.util.Set;
 
-// Stopwords have been borrowed from :
-// https://github.com/xhluca/bm25s/blob/main/bm25s/stopwords.py
+/**
+ * Provides reference to inessential words that have little of meaning
+ * This list has been borrowed <a href="https://github.com/xhluca/bm25s/blob/main/bm25s/stopwords.py">from</a>
+ * */
 public class Stopword {
     // ref : https://stackoverflow.com/a/1128899
     public final static Set<String> eng = Set.of(

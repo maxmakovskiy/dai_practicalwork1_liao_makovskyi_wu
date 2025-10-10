@@ -8,13 +8,17 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /*
-* This class represents search engine of BM25 algorithm
+* This class represents search engine built on top of BM25 algorithm
 * */
 public class BM25 {
     private final double K1 = 1.2;
     private final double B = 0.75;
 
-    // Tokenize a line of text while throwing away inessential words
+    /**
+     * Tokenizes a line of text while igonring inessential words (ex: a/the/is/etc)
+     * @param text line of text to tokenize
+     * @return ArrayList of tokens
+     * */
     public ArrayList<String> tokenize(String text) {
         // ref : https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html#sum
         // ChatGPT's hint:
@@ -35,9 +39,11 @@ public class BM25 {
         return tokens;
     }
 
-    // Tokenize collection of documents
-    // The same thing as BM25.tokenize(String)
-    // This method just applies is over ArrayList
+    /**
+     * Tokenizes collection of documents
+     * @param corpus collection of documents to tokenize
+     * @return ArrayList of tokenized documents where each document is ArrayList itself
+     * */
     public ArrayList<ArrayList<String>> tokenize(ArrayList<String> corpus) {
         ArrayList<ArrayList<String>> res = new ArrayList<>();
 
@@ -49,10 +55,11 @@ public class BM25 {
         return res;
     }
 
-    // Takes all tokens of given corpus
-    // and builds index that latter will be used
-    // to rank relevant documents with respect to query
-    // Idiomatic use: BM25.buildIndex(BM25.tokenize(documents))
+    /**
+     * Takes all tokens of given corpus and builds index that latter will be used
+     * to rank relevant documents with respect to query
+     * @param corpusTokens collection of documents that were tokenized
+     * */
     public void buildIndex(ArrayList<ArrayList<String>> corpusTokens) {
         // build vocabulary
         ArrayList<String> vocab = buildVocabulary(corpusTokens);
@@ -63,13 +70,24 @@ public class BM25 {
         computeScoresMatrix(corpusTokens, vocab);
     }
 
-    // Ranks relevant documents with respect to query
-    // Idiomatic use: results = BM25.retrieveTopK(BM25.tokenize(query))
+    /**
+     * Ranks relevant documents with respect to query
+     * @param queryTokens user's query that has been already tokenized
+     * @param k number of first most relevant documents
+     * @return ArrayList of RankingResult that have been found with use of Index
+     * with respect to user's query
+     * @see RankingResult
+     * @see Index
+     * */
     public ArrayList<RankingResult> retrieveTopK(ArrayList<String> queryTokens, int k) {
         return new ArrayList<>();
     }
 
-    // Collects all the uniques words from the corpus
+    /**
+     * Collects all the uniques words from the corpus
+     * @param corpusTokens collection of documents that were tokenized
+     * @return ArrayList of unique words over all corpus so-called vocabulary
+     * */
     private ArrayList<String> buildVocabulary(ArrayList<ArrayList<String>> corpusTokens) {
         ArrayList<String> allTokens = new ArrayList<>();
 
@@ -83,7 +101,13 @@ public class BM25 {
         return new ArrayList<>(uniqueTokens);
     }
 
-
+    /**
+     * Calculates score for each token inside each document and
+     * latter builds matrix of scores NxM where N is number of documents
+     * and M is number of tokens in the vocabulary
+     * @param corpusTokens collection of documents that were tokenized
+     * @param vocabulary collection of unique words over all documents inside the corpus
+     * */
     private void computeScoresMatrix(
         ArrayList<ArrayList<String>> corpusTokens,
         ArrayList<String> vocabulary
@@ -107,7 +131,11 @@ public class BM25 {
         // Step 3 Calculate the BM25 scores for each token in each document
     }
 
-    // Calculates average length of document inside corpus
+    /**
+     * Calculates average length of document inside corpus
+     * @param corpusTokens collection of documents that were tokenized
+     * @return average document length inside the corpus
+     * */
     private double computeAvgDocLength(ArrayList<ArrayList<String>> corpusTokens) {
         double result = 0.0;
 
@@ -118,7 +146,12 @@ public class BM25 {
         return result / corpusTokens.size();
     }
 
-    // For each token in the vocabulary calculates number of document containing it
+    /**
+     * For each token in the vocabulary calculates number of document containing it
+     * @param corpusTokens collection of documents that were tokenized
+     * @param vocabulary collection of unique words over all documents inside the corpus
+     * @return dictionary of (token, number of documents containing it) pairs
+     * */
     private HashMap<String, Integer> calculateDocumentFrequencies(
         ArrayList<ArrayList<String>> corpusTokens,
         ArrayList<String> vocabulary

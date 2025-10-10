@@ -1,5 +1,10 @@
 package ch.heigvd.bm25.utils;
 
+/**
+ * Represents entity in the ranking results.
+ * Basically provides convenient way to represent
+ * (document index, its score) pair
+ * */
 public class RankingResult {
 
     private int docIdx;
