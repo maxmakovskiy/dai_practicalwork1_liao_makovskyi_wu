@@ -99,6 +99,10 @@ public class BM25 {
         );
 
         // Step 2: Calculate the idf for each token using the document frequencies
+        HashMap<String, Double> idf = calculateInverseDocumentFrequencies(
+                docFreqs, numOfDocs
+        );
+
 
         // Step 3 Calculate the BM25 scores for each token in each document
     }
@@ -142,6 +146,43 @@ public class BM25 {
         return docFrequencies;
     }
 
+    /**
+     * Calculates inverse document frequency score for individual token
+     * @param dfForToken document frequency for token of interest
+     * @param numOfDocs number of documents in the corpus
+     * @return idf score
+     * */
+    private double idfScore(int dfForToken, int numOfDocs) {
+        return Math.log(
+                ((numOfDocs - dfForToken + 0.5)  / (dfForToken + 0.5)) + 1.0
+        );
+    }
+
+
+    /**
+     * Calculates inverse document frequencies for each document in vocabulary
+     * @param docFreqs dictionary of (token, number of times it appears of in each document) pairs
+     * @param numOfDocs number of documents in the corpus
+     * @return dictionary of (token, inverse document frequency) pairs
+     * */
+    private HashMap<String, Double> calculateInverseDocumentFrequencies(
+        HashMap<String, Integer> docFreqs,
+        int numOfDocs
+    ) {
+        HashMap<String, Double> idf = new HashMap<>();
+
+        // ref: https://stackoverflow.com/questions/1066589/iterate-through-a-hashmap
+        for (HashMap.Entry<String, Integer> entry : docFreqs.entrySet()) {
+            String token = entry.getKey();
+            Integer dfForToken = entry.getValue();
+
+            if (dfForToken != 0) {
+                idf.put(token, idfScore(dfForToken, numOfDocs));
+            }
+        }
+
+        return idf;
+    }
 
 
 }
