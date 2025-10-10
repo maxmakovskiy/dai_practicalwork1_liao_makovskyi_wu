@@ -31,7 +31,7 @@ The task of ranking documents/books/notes/etc with the respect to certain query 
 Let's suppose that user has a collection of documents, and he wants to search for some information.      
 For example (not my example, [see](https://stackoverflow.com/a/78680638)), let's say each document has just one line:
 ````
-    "a cat is an animal and likes to play"  
+    "a cat is a feline and likes to eat bird"
     "a dog is the human's best friend and likes to play"
     "a bird is a beautiful animal that can fly"
 ````
@@ -39,7 +39,7 @@ We take those documents, cut them into words, throw away meaningless words,
 stem them, and eventually we get our corpus.
 ````
 [
-    ["cat", "anim", "like", "plai"],
+    ["cat", "feline", "like", "eat", "bird"],
     ["dog", "human", "best", "friend", "like", "plai"],
     ["bird", "beauti", anim", "can", "fly"]
 ]
