@@ -19,6 +19,7 @@ p { text-align: center; }
 </style>
 
 <br/>
+
 ![Problem description image](problem_descr_img.png)
 
 ---
