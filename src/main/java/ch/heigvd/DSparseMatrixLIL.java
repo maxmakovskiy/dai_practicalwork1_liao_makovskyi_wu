@@ -11,7 +11,21 @@ public class DSparseMatrixLIL {
 
 
     // empty matrix c-tor
-    public DSparseMatrixLIL(int nRows, int nCols);
+    public DSparseMatrixLIL(int nRows, int nCols){
+
+        this.nRows = nRows;
+        this.nCols = nCols;
+
+        this.indices = new ArrayList<>(nRows);
+        this.scores = new ArrayList<>(nRows);
+
+        // ref : https://www.w3schools.com/java/ref_arraylist_add.asp
+        for (int i = 0; i < nRows; i++){
+            indices.add(new ArrayList<>());
+            scores.add(new ArrayList<>());
+        }
+
+    }
 
 
     // Construct matrix from one long string or array of strings
