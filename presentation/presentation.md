@@ -12,15 +12,34 @@ backgroundColor: #fff
 
 ---
 
-# What problem we are trying to solve ? 
-![Problem description image](problem_descr_img.png)
+# What problem we are trying to solve ?
 
+<style scoped>
+p { text-align: center; }
+</style>
+
+<br/>
+![Problem description image](problem_descr_img.png)
 
 ---
 
 # Our solution to the problem
+
+<style scoped>
+p { text-align: center; }
+</style>
+
+<br/>
+
 ![Problem description image with solution](problem_descr_img_solution.png)
 
+---
+
+# What is BM25 ?
+
+From wikipedia:
+
+> BM25 is a bag-of-words retrieval function that ranks a set of documents based on the query terms appearing in each document, regardless of their proximity within the document.
 
 ---
 
@@ -91,8 +110,11 @@ vocabulary = [
 # How it works ? (4)
 
 6. For every token in every document compute BM25 scores
+<br>
 
-## $log(\frac{N - df_t + 0.5}{df_t + 0.5} + 1) \cdot \frac{tf_{td}}{ k_1 \cdot (1 - b + b \cdot ( \frac{ L_d }{ L_{avg} } )) + tf_{td} } $
+$$ 
+log(\frac{N - df_t + 0.5}{df_t + 0.5} + 1) \cdot \frac{tf_{td}}{ k_1 \cdot (1 - b + b \cdot ( \frac{ L_d }{ L_{avg} } )) + tf_{td} } 
+$$
 
 ---
 
@@ -100,18 +122,35 @@ vocabulary = [
 
 6. Build document-term matrix with resulting BM25 scores
 
-
+<!-- 
 | docIdx | like | best | plai | can  | fly  | beauti | cat  | bird | friend | eat  | anim | dog  | human | felin |
 |--------|------|------|------|------|------|--------|------|------|--------|------|------|------|-------|-------|
 | 0      | 0.22 | 0    | 0    | 0    | 0    | 0      | 0.48 | 0.23 | 0      | 0.48 | 0    | 0    | 0     | 0.48  |
 | 1      | 0.19 | 0.4  | 0.4  | 0    | 0    | 0      | 0    | 0    | 0.4    | 0    | 0    | 0.4  | 0.4   | 0     |
 | 2      | 0    | 0    | 0    | 0.48 | 0.48 | 0.48   | 0    | 0.23 | 0      | 0    | 0.48 | 0    | 0     | 0     |
+ -->
+
+| docIdx | like | best | plai | can  | fly  | beauti | cat  | bird |
+|--------|------|------|------|------|------|--------|------|------|
+| 0      | 0.22 | 0    | 0    | 0    | 0    | 0      | 0.48 | 0.23 |
+| 1      | 0.19 | 0.4  | 0.4  | 0    | 0    | 0      | 0    | 0    |
+| 2      | 0    | 0    | 0    | 0.48 | 0.48 | 0.48   | 0    | 0.23 |
+
+
+| docIdx | friend | eat  | anim | dog  | human | felin |
+|--------|--------|------|------|------|-------|-------|
+| 0      | 0      | 0.48 | 0    | 0    | 0     | 0.48  |
+| 1      | 0.4    | 0    | 0    | 0.4  | 0.4   | 0     |
+| 2      | 0      | 0    | 0.48 | 0    | 0     | 0     |
+
+
 
 
 ---
 
+<br>
 
-# Thank you for attention
+# Thank you for your attention !
 
 
 
