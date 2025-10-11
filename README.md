@@ -17,6 +17,7 @@ Variant of BM25 used in this project is original one and was invented by [Stephe
 
 ## Formula
 
+<br/>
 
 $$
 log(\frac{N - df_t + 0.5}{df_t + 0.5} + 1) \cdot \frac{tf_{td}}{ k_1 \cdot (1 - b + b \cdot ( \frac{ L_d }{ L_{avg} } )) + tf_{td} } 
@@ -134,6 +135,7 @@ $ java -jar target/bm25.jar search \
 
 ````
 ch.heigvd/
+├── presentation/               // Presentation related stuff
 ├── bm25/                       // BM25 search engine
 │   ├── utils/                  // different utils used along the way
 │   │   ├── RankingResult.java  // (document index, score) pair in ranking results
@@ -144,6 +146,13 @@ ch.heigvd/
 │   ├── Search.java             // searching with index
 ├── Main.java                   // entry point
 ````
+
+---
+
+## Dependencies
+
+- [Picocli v4.7.7](https://picocli.info/) for parsing command line arguments
+- [Apache OpenNLP Tools v2.5.5](https://opennlp.apache.org/) for removing morphological affixes from words, leaving only the word stem
 
 ---
 
