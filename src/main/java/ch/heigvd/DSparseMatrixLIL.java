@@ -1,5 +1,6 @@
 package ch.heigvd;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class DSparseMatrixLIL {
@@ -32,7 +33,30 @@ public class DSparseMatrixLIL {
     // public DSparseMatrixLIL(ArrayList<String> matrixRows)
     // public DSparseMatrixLIL(String matrix)
 
-    // public double get(int rowIdx, int colIdx)
+    // Retrieve value at (rowIdx, colIdx). Return 0.0 when there is no value stored
+    public double get(int rowIdx, int colIdx) {
+
+        if (rowIdx < 0 || rowIdx >= nRows || colIdx < 0 || colIdx >= nCols){
+
+            // ref : https://stackoverflow.com/questions/7312767/manually-adding-indexoutofbounds-exception
+            throw new IndexOutOfBoundsException(
+                "Cannot find indices for rowIdx: " + rowIdx + " and colIdx: " + colIdx
+            );
+        }
+
+        // ref: https://www.geeksforgeeks.org/java/list-get-method-in-java-with-examples/
+        ArrayList<Integer> rowIndicesList = indices.get(rowIdx);
+        ArrayList<Double> rowScoresList = scores.get(rowIdx);
+
+        for (int i = 0; i < rowIndicesList.size(); i++){
+            if(rowIndicesList.get(i) == colIdx){
+                return rowScoresList.get(i);
+            }
+        }
+
+        return 0.0;
+
+    }
     // public void set(int rowIdx, int colIdx, double value)
 
     // public String toString()
