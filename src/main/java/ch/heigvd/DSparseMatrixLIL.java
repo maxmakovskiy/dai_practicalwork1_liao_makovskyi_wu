@@ -1,7 +1,7 @@
 package ch.heigvd;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
+
 
 public class DSparseMatrixLIL {
 
@@ -29,10 +29,6 @@ public class DSparseMatrixLIL {
     }
 
 
-    // Construct matrix from one long string or array of strings
-    // public DSparseMatrixLIL(ArrayList<String> matrixRows)
-    // public DSparseMatrixLIL(String matrix)
-
     // Retrieve value at (rowIdx, colIdx). Return 0.0 when there is no value stored
     public double get(int rowIdx, int colIdx) {
 
@@ -57,8 +53,40 @@ public class DSparseMatrixLIL {
         return 0.0;
 
     }
-    // public void set(int rowIdx, int colIdx, double value)
+
+
+    public void set(int rowIdx, int colIdx, double value) {
+
+        if (rowIdx < 0 || rowIdx >= nRows || colIdx < 0 || colIdx >= nCols){
+            throw new IndexOutOfBoundsException(
+                    "Cannot set value at rowIdx: " + rowIdx + " and colIdx: " + colIdx
+            );
+        }
+
+        ArrayList<Integer> rowIndicesList = indices.get(rowIdx);
+        ArrayList<Double> rowScoresList = scores.get(rowIdx);
+
+        for ( int i = 0; i < rowIndicesList.size(); i++){
+
+            if (rowIndicesList.get(i) == colIdx){
+                rowScoresList.set(i, value);
+                return;
+            }
+
+        }
+
+        // if it does not exist, add new value in the list
+        rowIndicesList.add(colIdx);
+        rowScoresList.add(value);
+
+    }
+
+    // Construct matrix from one long string or array of strings
+    // public DSparseMatrixLIL(ArrayList<String> matrixRows)
+    // public DSparseMatrixLIL(String matrix)
 
     // public String toString()
 
 }
+
+

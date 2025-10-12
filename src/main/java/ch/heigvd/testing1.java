@@ -1,0 +1,1 @@
+package ch.heigvd;import java.util.ArrayList;public class testing1 {    public static void main(String[] args) {        try {            DSparseMatrixLIL m = new DSparseMatrixLIL(3,4);            System.out.println("Pass : DSparseMatrixLIL(int nRows, int nCols)");        } catch (Exception e) {            System.out.println("Error : " + e);        }    }}
