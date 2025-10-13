@@ -46,10 +46,9 @@ public class DSparseMatrixLIL {
         ArrayList<Integer> rowIndicesList = indices.get(rowIdx);
         ArrayList<Double> rowScoresList = scores.get(rowIdx);
 
-        for (int i = 0; i < rowIndicesList.size(); i++){
-            if(rowIndicesList.get(i) == colIdx){
-                return rowScoresList.get(i);
-            }
+        int cIndex = rowIndicesList.indexOf(colIdx);
+        if (cIndex != -1){
+            return rowScoresList.get(cIndex);
         }
 
         return 0.0;
@@ -68,13 +67,10 @@ public class DSparseMatrixLIL {
         ArrayList<Integer> rowIndicesList = indices.get(rowIdx);
         ArrayList<Double> rowScoresList = scores.get(rowIdx);
 
-        for ( int i = 0; i < rowIndicesList.size(); i++){
-
-            if (rowIndicesList.get(i) == colIdx){
-                rowScoresList.set(i, value);
-                return;
-            }
-
+        int cIndex = rowIndicesList.indexOf(colIdx);
+        if (cIndex != -1){
+            rowScoresList.set(cIndex, value);
+            return;
         }
 
         // if it does not exist, add new value in the list
