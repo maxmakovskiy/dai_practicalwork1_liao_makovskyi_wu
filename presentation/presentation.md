@@ -61,7 +61,7 @@ $ java -jar target/bm25.jar search \
 
 ---
 
-# How it works ? (1)
+# How it works ? (build 1)
 
 1. Read the content of files
 
@@ -73,7 +73,7 @@ $ java -jar target/bm25.jar search \
 
 ---
 
-# How it works ? (2)
+# How it works ? (build 2)
 
 2. split them
 3. avoid meaningless words (is/a/to/etc)
@@ -89,7 +89,7 @@ $ java -jar target/bm25.jar search \
 
 ---
 
-# How it works ? (3)
+# How it works ? (build 3)
 
 5. build vocabulary
 
@@ -108,7 +108,7 @@ vocabulary = [
 
 ---
 
-# How it works ? (4)
+# How it works ? (build 4)
 
 6. For every token in every document compute BM25 scores
 <br>
@@ -119,7 +119,7 @@ $$
 
 ---
 
-# How it works ? (5)
+# How it works ? (build 5)
 
 6. Build document-term matrix with resulting BM25 scores
 
@@ -144,10 +144,24 @@ $$
 | 1      | 0.4    | 0    | 0    | 0.4  | 0.4   | 0     |
 | 2      | 0      | 0    | 0.48 | 0    | 0     | 0     |
 
+---
 
+# How it works ? (search) 
+
+1. Tokenize query
+
+```
+// From :
+"Who is the human best friend dog or cat ?"
+
+// To
+["bird purr like cat?"]
+
+```
 
 
 ---
+
 
 <br>
 
