@@ -167,8 +167,10 @@ $$
 
 # Is there room for improvements ?
 
-- token ids
-- sparse matrix with column compressed storage
+[profiler image with problem places]
+
+- token ids + sparse matrix with compressed sparse column (CSC) storage
+- unit testing
 
 ---
 
