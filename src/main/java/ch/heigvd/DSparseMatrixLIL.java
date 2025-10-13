@@ -219,7 +219,7 @@ public class DSparseMatrixLIL {
 
                  sb.append(indicesLine.get(k));
                  if (k != indicesLine.size()-1){
-                     sb.append(",");
+                     sb.append(", ");
                  }
              }
              sb.append("\n");
@@ -236,7 +236,7 @@ public class DSparseMatrixLIL {
 
                  sb.append(scoresLine.get(k));
                  if (k != scoresLine.size()-1){
-                     sb.append(",");
+                     sb.append(", ");
                  }
              }
              sb.append("\n");
