@@ -56,7 +56,7 @@ $ java -jar target/bm25.jar build \
 #### Step2 : Search using it
 ```bash
 $ java -jar target/bm25.jar search \
-    index.txt does the bird purr like a cat?
+    index.txt Which animal is the human best friend?
 ```
 
 ---
@@ -123,42 +123,52 @@ $$
 
 6. Build document-term matrix with resulting BM25 scores
 
-<!-- 
-| docIdx | like | best | plai | can  | fly  | beauti | cat  | bird | friend | eat  | anim | dog  | human | felin |
-|--------|------|------|------|------|------|--------|------|------|--------|------|------|------|-------|-------|
-| 0      | 0.22 | 0    | 0    | 0    | 0    | 0      | 0.48 | 0.23 | 0      | 0.48 | 0    | 0    | 0     | 0.48  |
-| 1      | 0.19 | 0.4  | 0.4  | 0    | 0    | 0      | 0    | 0    | 0.4    | 0    | 0    | 0.4  | 0.4   | 0     |
-| 2      | 0    | 0    | 0    | 0.48 | 0.48 | 0.48   | 0    | 0.23 | 0      | 0    | 0.48 | 0    | 0     | 0     |
- -->
-
 | docIdx | like | best | plai | can  | fly  | beauti | cat  | bird |
 |--------|------|------|------|------|------|--------|------|------|
-| 0      | 0.22 | 0    | 0    | 0    | 0    | 0      | 0.48 | 0.23 |
-| 1      | 0.19 | 0.4  | 0.4  | 0    | 0    | 0      | 0    | 0    |
-| 2      | 0    | 0    | 0    | 0.48 | 0.48 | 0.48   | 0    | 0.23 |
+| 0      | 0.22 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00   | 0.46 | 0.22 |
+| 1      | 0.20 | 0.42 | 0.42 | 0.00 | 0.00 | 0.00   | 0.00 | 0.00 |
+| 2      | 0.00 | 0.00 | 0.00 | 0.46 | 0.46 | 0.46   | 0.00 | 0.22 |
 
 
 | docIdx | friend | eat  | anim | dog  | human | felin |
 |--------|--------|------|------|------|-------|-------|
-| 0      | 0      | 0.48 | 0    | 0    | 0     | 0.48  |
-| 1      | 0.4    | 0    | 0    | 0.4  | 0.4   | 0     |
-| 2      | 0      | 0    | 0.48 | 0    | 0     | 0     |
+| 0      | 0.00   | 0.46 | 0.00 | 0.00 | 0.00  | 0.46  |
+| 1      | 0.42   | 0.00 | 0.00 | 0.42 | 0.42  | 0.00  |
+| 2      | 0.00   | 0.00 | 0.46 | 0.00 | 0.00  | 0.00  |
 
 ---
 
-# How it works ? (search) 
+# How it works ? (search 1) 
 
 1. Tokenize query
 
 ```
 // From :
-"Who is the human best friend dog or cat ?"
+"Which animal is the human best friend?"
 
 // To
-["bird purr like cat?"]
-
+[ "anim", "human", "best", "friend" ]
 ```
 
+---
+
+# How it works ? (search 2) 
+
+2. Iterater over document-term matrix and accumulate corresponding tokens.
+
+| docIdx | best | friend | anim | human | Result |
+|--------|------|--------|------|-------|--------|
+| 0      | 0.00 | 0.00   | 0.00 | 0.00  | 0.00   |
+| 1      | 0.42 | 0.42   | 0.00 | 0.42  | 1.26   |
+| 2      | 0.00 | 0.00   | 0.46 | 0.00  | 0.46   |
+
+---
+
+
+# Is there room for improvements ?
+
+- token ids
+- sparse matrix with column compressed storage
 
 ---
 
