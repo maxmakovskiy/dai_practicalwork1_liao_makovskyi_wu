@@ -31,22 +31,35 @@ public class Index {
     }
 
 
-    public static void main(String[] args) throws IOException {
-        Reader reader = new FileReader("TextBufferReadAndWriteFileExample.java", StandardCharsets.UTF_8);
-        BufferedReader br = new BufferedReader(reader);
-
-        Writer writer = new FileWriter("TextBufferReadAndWriteFileExample.txt", StandardCharsets.UTF_8);
+    public static void exportIndex(Index index) throws IOException {
+        Writer writer = new FileWriter("Index.txt", StandardCharsets.UTF_8);
         BufferedWriter bw = new BufferedWriter(writer);
 
-        // -1 indicates the end of the file
+        // write in the file the stringyfied object Index
         int c;
-        while ((c = br.read()) != -1) {
-            bw.write(c);
-        }
+        bw.write(index.toString());
 
         // Flush the buffer to write the remaining bytes
         bw.flush();
         bw.close();
+    }
+
+    public static Index importIndex(Index index) throws IOException {
+
+        Reader reader = new FileReader("Index.txt", StandardCharsets.UTF_8);
+        BufferedReader br = new BufferedReader(reader);
+
+        // Read the file .txt and build the object Index
+        int c;
+        while ((c = br.read()) != -1) {
+
+            // Complete with parameters
+            Index indexImproted = new Index();
+        }
+
+        // Flush the buffer to write the remaining bytes
         br.close();
+
+        return index;
     }
 }
