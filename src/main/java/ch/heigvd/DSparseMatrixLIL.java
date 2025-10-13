@@ -2,7 +2,8 @@ package ch.heigvd;
 
 // https://docs.oracle.com/javase/8/docs/technotes/guides/collections/overview.html
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Arrays; // Arrays.aslist(arr)
+import java.lang.String; // StringBuilder
 
 // ref: https://matteding.github.io/2019/04/25/sparse-matrices/
 public class DSparseMatrixLIL {
@@ -198,8 +199,52 @@ public class DSparseMatrixLIL {
      }
 
 
+     // ref : https://stackoverflow.com/questions/7775394/java-concatenate-to-build-string-or-format
+     public String toString() {
+        StringBuilder sb = new StringBuilder();
 
-    // public String toString()
+         //  "nRows : 3"
+         sb.append("nRows : ").append(nRows).append("\n");
+         //  "nCols : 14"
+         sb.append("nCols : ").append(nCols).append("\n");
+
+         sb.append("Indices\n");
+         for (int i = 0 ; i < nRows; i++){
+
+             //  "0 : 0, 6, 7, 9, 13",
+             sb.append(i).append(" : ");
+
+             ArrayList<Integer> indicesLine = indices.get(i);
+             for(int k = 0; k < indicesLine.size(); k++){
+
+                 sb.append(indicesLine.get(k));
+                 if (k != indicesLine.size()-1){
+                     sb.append(",");
+                 }
+             }
+             sb.append("\n");
+         }
+
+         sb = sb.append("Data\n");
+         for (int i = 0 ; i < nRows; i++){
+
+             //  "0 : 0.22927006304670033, 0.47845329415206167, 0.22927006304670033, 0.47845329415206167, 0.47845329415206167 "
+             sb.append(i).append(" : ");
+
+             ArrayList<Double> scoresLine = scores.get(i);
+             for(int k = 0; k < scoresLine.size(); k++){
+
+                 sb.append(scoresLine.get(k));
+                 if (k != scoresLine.size()-1){
+                     sb.append(",");
+                 }
+             }
+             sb.append("\n");
+         }
+
+         String rst = sb.toString();
+        return rst;
+     }
 }
 
 
