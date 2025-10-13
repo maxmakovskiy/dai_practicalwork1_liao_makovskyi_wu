@@ -177,8 +177,8 @@ public class DSparseMatrixLIL {
                      String[] scoresStrList = scoresStr.split(",");
 
                      for (String scoreStr : scoresStrList) {
-                         int scoreInt = Integer.parseInt(scoreStr.trim());
-                         indices.get(i).add(scoreInt);
+                         double scoreDouble = Double.parseDouble(scoreStr.trim());
+                         scores.get(i).add(scoreDouble);
                      }
 
                  }
