@@ -2,6 +2,7 @@ package ch.heigvd;
 
 // https://docs.oracle.com/javase/8/docs/technotes/guides/collections/overview.html
 import java.util.ArrayList;
+import java.util.Arrays;
 
 // ref: https://matteding.github.io/2019/04/25/sparse-matrices/
 public class DSparseMatrixLIL {
@@ -184,10 +185,21 @@ public class DSparseMatrixLIL {
          }
 
      }
-    // public DSparseMatrixLIL(String matrix)
+
+
+     public DSparseMatrixLIL(String matrix) {
+        /*
+        String[] lines = matrix.split("\n");                                    // 1. "Line1\nLine2\nLine3\n" -> ["line1","line2", "line3"]
+        ArrayList<String> matrixRows = new ArrayList<>(Arrays.asList(lines));   // 2. Array transforms to List
+        this(matrixRows);                                                       // 3. call func :  DSparseMatrixLIL(ArrayList<String> matrixRows)
+        */
+         this(new ArrayList<>(Arrays.asList(matrix.split("\n"))));
+
+     }
+
+
 
     // public String toString()
-
 }
 
 
