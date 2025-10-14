@@ -18,6 +18,7 @@ public class Index {
         this.numOfDocs = numOfDocs;
         this.vocabulary = vocab;
         this.documentNames = documentNames;
+        this.matrix = new DSparseMatrixLIL(numOfDocs, vocabSize);
     }
 
     public static Index importIndex(String stringIndex) {
