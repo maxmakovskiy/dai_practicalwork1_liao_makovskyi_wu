@@ -1,4 +1,4 @@
-package ch.heigvd;
+package ch.heigvd.bm25.utils;
 
 // https://docs.oracle.com/javase/8/docs/technotes/guides/collections/overview.html
 import java.util.ArrayList;
