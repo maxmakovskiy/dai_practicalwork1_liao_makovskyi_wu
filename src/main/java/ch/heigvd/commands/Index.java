@@ -15,7 +15,12 @@ public class Index {
     private int numOfDocs;
     private int vocabSize;
 
-    public Index(int vocabSize, int numOfDocs, ArrayList<String> vocab, ArrayList<String> documentNames){}
+    public Index(int vocabSize, int numOfDocs, ArrayList<String> vocab, ArrayList<String> documentNames){
+        this.vocabSize = vocabSize;
+        this.numOfDocs = numOfDocs;
+        this.vocabulary = vocab;
+        this.documentNames = documentNames;
+    }
 
     public static Index importIndex(String stringIndex) {
         int numOfDocs, vocabSize;
