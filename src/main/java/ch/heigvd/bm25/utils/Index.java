@@ -82,6 +82,9 @@ public class Index {
     public String toString(){
         StringBuilder result = new StringBuilder();
 
+        result.append("docNames\n");
+        result.append(String.join(" ", documentNames));
+
         result.append("numOfDocs\n");
         result.append(this.numOfDocs + "\n");
         result.append("vocabSize\n");
