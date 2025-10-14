@@ -1,20 +1,66 @@
 package ch.heigvd.commands;
 
 import ch.heigvd.DSparseMatrixLIL;
+import ch.heigvd.exceptions.IndexException;
+
 import java.io.*;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Index {
     public DSparseMatrixLIL matrix;
 
     private ArrayList<String> vocabulary;
+    private ArrayList<String> documentNames;
     private int numOfDocs;
     private int vocabSize;
 
-    public Index(int vocabSize, int numOfDocs, ArrayList<String> vocab){}
-    public Index(int vocabSize, int numOfDocs, ArrayList<String> vocab, ArrayList<String> matrixRows){}
+    public Index(int vocabSize, int numOfDocs, ArrayList<String> vocab, ArrayList<String> documentNames){}
 
+    public static Index importIndex(String stringIndex) {
+        int numOfDocs, vocabSize;
+
+        // create an Index with a string
+        // separate each line in the table
+        ArrayList<String> tableStringIndex = new ArrayList<>(
+                List.of(stringIndex.split("\n")));
+
+        if (!tableStringIndex.get(0).equals("docNames")) {
+            throw new IndexException("ill formated string : no docNames field");
+        }
+        String[] docNames = tableStringIndex.get(1).split(" ");
+
+        if (!tableStringIndex.get(2).equals("numOfDocs")) {
+            throw new IndexException("ill formated string : no numOfDocs field");
+        }
+        numOfDocs = Integer.parseInt(tableStringIndex.get(3));
+
+        if (!tableStringIndex.get(4).equals("vocabSize")) {
+            throw new IndexException("ill formated string : no vocabSize field");
+        }
+        vocabSize = Integer.parseInt(tableStringIndex.get(5));
+
+        if (!tableStringIndex.get(6).equals("vocabulary")) {
+            throw new IndexException("ill formated string : no vocab field");
+        }
+        String[] vocab = tableStringIndex.get(7).split(" ");
+
+        if (!tableStringIndex.get(8).equals("matrixScores")) {
+            throw new IndexException("ill formated string : no matrixScores field");
+        }
+
+        Index index = new Index(
+                vocabSize,
+                numOfDocs,
+                new ArrayList<>(List.of(vocab)),
+                new ArrayList<>(List.of(docNames))
+        );
+
+        index.matrix = new DSparseMatrixLIL(
+                new ArrayList<>(tableStringIndex.subList(9, tableStringIndex.size())));
+
+        return index;
+    }
 
     public int getNumOfDocs(){
         return numOfDocs;
@@ -22,8 +68,11 @@ public class Index {
     public int getVocabSize(){
         return vocabSize;
     }
-    public ArrayList<String> getVocabulary(){
+    public ArrayList<String> getVocabulary() {
         return vocabulary;
+    }
+    public String getDocumentName(int docIdx) {
+        return this.documentNames.get(docIdx);
     }
 
     // reuses matrix.toString()
@@ -44,43 +93,6 @@ public class Index {
         result += "matrixScores\n";
 
         return result;
-    }
-
-    /**
-     * call toString() to make a string with a
-     */
-    public String exportIndex(Index index) {
-        return this.toString();
-    }
-
-    public static Index importIndex(String stringIndex) {
-        int vocabSize, numOfDocs;
-        ArrayList<String> vocab = new ArrayList<>();
-
-        // create an Index with a string
-        // separate each line in the table
-        String[] tableStringIndex = stringIndex.split("\n");
-
-        vocabSize = Integer.parseInt(tableStringIndex[1]);
-        numOfDocs = Integer.parseInt(tableStringIndex[3]);
-
-        String[] tableVocab = new String[vocabSize];
-        tableVocab = tableStringIndex[4].split(" ");
-
-        // empty the previous vocabulary for the new one
-        if(vocab == null || vocab.size() != 0) {
-            vocab.clear();
-        }
-
-        for(String word : tableVocab){
-            // then add the news words imported
-            vocab.add(word);
-        }
-
-        // create the string
-        Index indexCreated = new Index(vocabSize, numOfDocs, vocab);
-
-        return indexCreated;
     }
 
     public static void main(String[] args) throws IOException {
