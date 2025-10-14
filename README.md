@@ -15,6 +15,30 @@ Variant of BM25 used in this project is original one and was invented by [Stephe
 
 ---
 
+
+## Requirements
+- JRE 21+ for running jar archive
+
+---
+
+
+## Usage
+
+1. To build index file from collection of documents:
+````
+$ java -jar target/bm25.jar build \
+    -I=index.txt src/main/resources/documents
+````
+
+2. To search with yours index file
+````
+$ java -jar target/bm25.jar search \
+    index.txt Which animal is the human best friend? 
+````
+
+---
+
+
 ## Formula
 
 <br/>
@@ -38,6 +62,7 @@ Although IDF component used in this project is slightly modified and makes a par
 More detailed overview could be found in this paper [Kamphuis et al](https://cs.uwaterloo.ca/~jimmylin/publications/Kamphuis_etal_ECIR2020_preprint.pdf).
 
 ---
+
 
 ## How it works?
 The task of ranking documents/books/notes/etc with the respect to certain query is very natural for humans, we do it all the time.       
@@ -83,13 +108,13 @@ like best plai can fly beauti cat bird friend eat anim dog human felin
 We put score in the cell only if document does contain certain token.     
 It is some sort of [document-term matrix](https://en.wikipedia.org/wiki/Document-term_matrix), but instead of the frequency of terms we store BM25 score.
 
+
 | docIdx | like | best | plai | can  | fly  | beauti | cat  | bird | friend | eat  | anim | dog  | human | felin |
 |--------|------|------|------|------|------|--------|------|------|--------|------|------|------|-------|-------|
-| 0      | 0.22 | 0    | 0    | 0    | 0    | 0      | 0.48 | 0.23 | 0      | 0.48 | 0    | 0    | 0     | 0.48  |
-| 1      | 0.19 | 0.4  | 0.4  | 0    | 0    | 0      | 0    | 0    | 0.4    | 0    | 0    | 0.4  | 0.4   | 0     |
-| 2      | 0    | 0    | 0    | 0.48 | 0.48 | 0.48   | 0    | 0.23 | 0      | 0    | 0.48 | 0    | 0     | 0     |
+| 0      | 0.22 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00   | 0.46 | 0.22 | 0.00   | 0.46 | 0.00 | 0.00 | 0.00  | 0.46  |
+| 1      | 0.20 | 0.42 | 0.42 | 0.00 | 0.00 | 0.00   | 0.00 | 0.00 | 0.42   | 0.00 | 0.00 | 0.42 | 0.42  | 0.00  |
+| 2      | 0.00 | 0.00 | 0.00 | 0.46 | 0.46 | 0.46   | 0.00 | 0.22 | 0.00   | 0.00 | 0.46 | 0.00 | 0.00  | 0.00  |
 
-_Scores provided for demo purposes only. They are not accurate.`_
 
 6. Later this matrix would be saved in the file along with other useful information.
 So, we could restore it and use it for search.      
@@ -100,36 +125,15 @@ On this point building stage is compeleted.
 After we are sorting documents with assigned scores, and that is it !
 
 ```
-Query : "does the bird purr like a cat?"
+Query : "Which animal is the human best friend?"
 
-file : file1.txt => score = 0.9369934202454624
-file : file3.txt => score = 0.22927006304670033
-file : file2.txt => score = 0.18800145169829427
-
+file : file2.txt => score = 1.26
+file : file3.txt => score = 0.46
+file : file1.txt => score = 0.00
 ```
 
 ---
 
-## Requirements
-- JRE 21+ for running jar
-
----
-
-## Usage
-
-1. To build index file from collection of documents:
-````
-$ java -jar target/bm25.jar build \
-    -I=index.txt src/main/resources/documents
-````
-
-2. To search with yours index file
-````
-$ java -jar target/bm25.jar search \
-    index.txt does the bird purr like a cat?
-````
-
----
 
 ## Repository Structure
 
@@ -146,8 +150,8 @@ ch.heigvd/
 │   ├── Search.java             // searching with index
 ├── Main.java                   // entry point
 ````
-
 ---
+
 
 ## Dependencies
 
@@ -155,6 +159,7 @@ ch.heigvd/
 - [Apache OpenNLP Tools v2.5.5](https://opennlp.apache.org/) for removing morphological affixes from words, leaving only the word stem
 
 ---
+
 
 ## Acknowledgement
 This project heavily relies on the ideas presented in [bm25s](https://github.com/xhluca/bm25s).     
