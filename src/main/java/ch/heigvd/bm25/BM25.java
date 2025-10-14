@@ -19,6 +19,29 @@ public class BM25 {
     private Index index;
 
     /**
+     * An empty constructor for BM25
+     * */
+    public BM25() {
+        this.index = null;
+    }
+
+    /**
+     * Constructor that could restore state of BM25 from index
+     * @see Index
+     * */
+    public BM25(Index index) {
+        this.index = index;
+    }
+
+    /**
+     * Returns index
+     * @see Index
+     * */
+    public Index getIndex() {
+        return this.index;
+    }
+
+    /**
      * Tokenizes a line of text while ignoring inessential words (ex: a/the/is/etc)
      * @param text line of text to tokenize
      * @return ArrayList of tokens
