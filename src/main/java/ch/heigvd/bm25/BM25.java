@@ -2,6 +2,7 @@ package ch.heigvd.bm25;
 
 import ch.heigvd.bm25.utils.RankingResult;
 import ch.heigvd.bm25.utils.Stopword;
+import ch.heigvd.bm25.utils.Index;
 
 import java.util.*;
 import java.util.regex.Matcher;
@@ -15,6 +16,7 @@ import opennlp.tools.stemmer.PorterStemmer;
 public class BM25 {
     private final double K1 = 1.2;
     private final double B = 0.75;
+    private Index index;
 
     /**
      * Tokenizes a line of text while ignoring inessential words (ex: a/the/is/etc)
@@ -64,11 +66,13 @@ public class BM25 {
      * to rank relevant documents with respect to query
      * @param corpusTokens collection of documents that were tokenized
      * */
-    public void buildIndex(ArrayList<ArrayList<String>> corpusTokens) {
+    public void buildIndex(ArrayList<ArrayList<String>> corpusTokens, ArrayList<String> documentNames) {
         // build vocabulary
         ArrayList<String> vocab = buildVocabulary(corpusTokens);
 
         // create new index
+        this.index = new Index(vocab.size(), corpusTokens.size(),
+            vocab, documentNames);
 
         // compute matrix of scores so-called Index
         computeScoresMatrix(corpusTokens, vocab);
@@ -84,7 +88,31 @@ public class BM25 {
      * @see Index
      * */
     public ArrayList<RankingResult> retrieveTopK(ArrayList<String> queryTokens, int k) {
-        return new ArrayList<>();
+        ArrayList<RankingResult> res = new ArrayList<>();
+
+        for (int docIdx = 0; docIdx < this.index.getNumOfDocs(); docIdx++) {
+            double docScore = 0.0;
+
+            for (int tokenIdx = 0; tokenIdx < this.index.getVocabSize(); tokenIdx++) {
+                if (queryTokens.contains(this.index.getVocabulary().get(tokenIdx))) {
+                    docScore += this.index.matrix.get(docIdx, tokenIdx);
+                }
+            }
+
+            if (docScore > 0.0) {
+                res.add(new RankingResult(docIdx, docScore));
+            }
+        }
+
+        // ref : https://stackoverflow.com/a/2784576
+        // ref : https://stackoverflow.com/a/55722904
+        res.sort(Comparator.comparing(RankingResult::getScore));
+        Collections.reverse(res);
+
+        k = Math.min(k, res.size());
+
+        // ref : https://stackoverflow.com/a/16644841
+        return new ArrayList<>(res.subList(0, k));
     }
 
     /**
@@ -130,7 +158,6 @@ public class BM25 {
         HashMap<String, Double> idf = calculateInverseDocumentFrequencies(
                 docFreqs, numOfDocs
         );
-
 
         // Step 3 Calculate the BM25 scores for each token in each document
         computeScores(corpusTokens, idf, vocabulary, numOfDocs, avgDocLen);
@@ -283,9 +310,7 @@ public class BM25 {
                 double tokenIdf = idf.get(vocabulary.get(tokenIdx));
 
                 if (score > 0.0) {
-//                    this.index.matrix.set(docIdx, tokenIdx, score * tokenIdf);
-                    // TODO:
-                    // There no index yet
+                    this.index.matrix.set(docIdx, tokenIdx, score * tokenIdf);
                 }
 
             }
