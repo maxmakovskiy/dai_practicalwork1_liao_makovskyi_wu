@@ -82,24 +82,18 @@ public class Index {
 
     // reuses matrix.toString()
     public String toString(){
-        String result = new String();
+        StringBuilder result = new StringBuilder();
 
-        result += "numOfDocs\n";
-        result += getNumOfDocs() + "\n";
-        result += "vocabSize\n";
-        result += getVocabSize() + "\n";
-        result += "vocabulary\n";
+        result.append("numOfDocs\n");
+        result.append(this.numOfDocs + "\n");
+        result.append("vocabSize\n");
+        result.append(this.vocabSize + "\n");
+        result.append("vocabulary\n");
 
-        for(String word : getVocabulary()){
-            result += word + " ";
-        }
+        result.append(String.join(" ", vocabulary));
+        result.append("\nmatrixScores\n");
+        result.append(matrix.toString());
 
-        result += "\n";
-        result += "matrixScores\n";
-
-        return result;
-    }
-
-    public static void main(String[] args) throws IOException {
+        return result.toString();
     }
 }
