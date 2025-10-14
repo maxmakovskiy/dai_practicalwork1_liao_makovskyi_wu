@@ -1,9 +1,7 @@
-package ch.heigvd.commands;
+package ch.heigvd.bm25.utils;
 
-import ch.heigvd.DSparseMatrixLIL;
-import ch.heigvd.exceptions.IndexException;
+import ch.heigvd.bm25.exceptions.IndexException;
 
-import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
