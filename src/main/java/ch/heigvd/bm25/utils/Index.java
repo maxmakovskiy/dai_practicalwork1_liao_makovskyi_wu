@@ -85,7 +85,7 @@ public class Index {
         result.append("docNames\n");
         result.append(String.join(" ", documentNames));
 
-        result.append("numOfDocs\n");
+        result.append("\nnumOfDocs\n");
         result.append(this.numOfDocs + "\n");
         result.append("vocabSize\n");
         result.append(this.vocabSize + "\n");
