@@ -3,10 +3,12 @@ package ch.heigvd.commands;
 import ch.heigvd.bm25.BM25;
 import ch.heigvd.bm25.utils.Index;
 
+import ch.heigvd.bm25.utils.RankingResult;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 
 @Command(
         name = "search",
@@ -32,9 +34,9 @@ public class Search implements Runnable {
 
     @Override
     public void run() {
-//        We collect content of src/main/resources/index.txt to string
-//    String queryFull = String.join(" ", query);
-    // Now parse index.txt
+        String queryFull = String.join(" ", query);
+
+        // We collect content of src/main/resources/index.txt to string
         StringBuilder indexBuilder = new StringBuilder();
         try (
                 FileReader reader = new FileReader(indexFile, StandardCharsets.UTF_8);
@@ -51,17 +53,27 @@ public class Search implements Runnable {
         }
 
         // Build index from string
-        Index index = Index.importIndex(indexBuilder.toString());
-//        Then we create new instance of BM25
+        Index index = null;
+        try {
+            index = Index.importIndex(indexBuilder.toString());
+        } catch(RuntimeException e) {
+            System.err.println(e);
+            System.exit(1);
+        }
+
+        // Then we create new instance of BM25
         BM25 bm25 = new BM25(index);
 
-
-//        And call bm25.retrieveTopK(bm25.tokenize(queryFull), 3)
-
-
-//        In the end we could print user query and what is more importantly show the results of bm25.retrieveTopK
+        // In the end we print user query and what is more importantly show the results of bm25.retrieveTopK
+        ArrayList<RankingResult> results = bm25.retrieveTopK(bm25.tokenize(queryFull), 3);
 
         System.out.println("Query : \"" + queryFull + "\"\n");
+
+        for (RankingResult result : results) {
+            int docIdx = result.getDocIndex();
+            double score = result.getScore();
+            System.out.println("file : " + bm25.getIndex().getDocumentName(docIdx) + " => score = " + score);
+        }
 
     }
 
