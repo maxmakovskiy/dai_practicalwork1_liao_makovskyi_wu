@@ -83,13 +83,6 @@ public class Build implements Runnable {
             BufferedWriter buf = new BufferedWriter(writer);
         ) {
 
-            buf.write("docNames");
-            buf.write('\n');
-
-            for (String name : docNames) {
-                buf.write(name + " ");
-            }
-            buf.write('\n');
 
             // get current index and covert it to string
             String indexStr = bm25.getIndex().toString();
