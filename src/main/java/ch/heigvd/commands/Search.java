@@ -2,13 +2,15 @@ package ch.heigvd.commands;
 
 import ch.heigvd.bm25.BM25;
 import ch.heigvd.bm25.utils.Index;
-
 import ch.heigvd.bm25.utils.RankingResult;
+
 import picocli.CommandLine.Command;
+import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+
 
 @Command(
         name = "search",
@@ -31,6 +33,13 @@ public class Search implements Runnable {
     )
     String[] query;
 
+    @Option(
+            names = { "-K", "--topK" },
+            defaultValue = "3",
+            description = "top k-results to show"
+    )
+    int topK;
+
 
     @Override
     public void run() {
@@ -49,7 +58,9 @@ public class Search implements Runnable {
             }
 
         } catch(IOException e) {
-            System.out.println(e);
+            System.err.println(e);
+            System.out.println("Impossible to read index file : " + indexFile.getPath());
+            System.exit(1);
         }
 
         // Build index from string
@@ -58,6 +69,7 @@ public class Search implements Runnable {
             index = Index.importIndex(indexBuilder.toString());
         } catch(RuntimeException e) {
             System.err.println(e);
+            System.out.println("Impossible to restore index from : " + indexFile.getPath());
             System.exit(1);
         }
 
@@ -65,7 +77,8 @@ public class Search implements Runnable {
         BM25 bm25 = new BM25(index);
 
         // In the end we print user query and what is more importantly show the results of bm25.retrieveTopK
-        ArrayList<RankingResult> results = bm25.retrieveTopK(bm25.tokenize(queryFull), 3);
+        ArrayList<RankingResult> results = bm25.retrieveTopK(
+                bm25.tokenize(queryFull), topK);
 
         System.out.println("Query : \"" + queryFull + "\"\n");
 
