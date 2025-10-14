@@ -1,6 +1,7 @@
 package ch.heigvd.commands;
 
 
+import ch.heigvd.bm25.BM25;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
@@ -70,13 +71,12 @@ public class Build implements Runnable {
             }
         }
 
-//        TODO:
-//        1. Creates BM25 object
-//        2. Tokenizes documents with BM25.tokenize
-//        3. Calls BM25.buildIndex on corpus constructed on the previous stage
 
-//        Converts to string BM25.index object with help of index.toString and writes its content to index.txt file
+        BM25 bm25 = new BM25();
+        ArrayList<ArrayList<String>> corpusTokens = bm25.tokenize(docs);
+        bm25.buildIndex(corpusTokens,  docNames);
 
+        
         // ref : https://stackoverflow.com/a/412495
         try (
             FileWriter writer = new FileWriter(new File(targetDir.getParent(), indexFilename));
@@ -92,6 +92,9 @@ public class Build implements Runnable {
             buf.write('\n');
 
             // get current index and covert it to string
+            String indexStr = bm25.getIndex().toString();
+            buf.write(indexStr);
+
 
         } catch(IOException e) {
             System.err.println(e);
