@@ -5,18 +5,11 @@ paginate: true
 backgroundColor: #fff
 ---
 
-<!-- ![bg left:40% 80%](https://marp.app/assets/marp.svg) -->
+# BM25 Search Engine
 
-<div align="center">
-  <img src="../bm25_logo.jpg" alt="Best Matching 25-th iteration" width="300">
+## Fast and lightweight BM25-based search engine implemented in JAVA
 
-  # BM25 Search Engine
-
-  ## Fast and lightweight BM25-based search engine implemented in JAVA
-</div>
-
-
-
+## Authors: Liao Pei-Wen, Makovskyi Maksym, Wu Guo Yu
 
 ---
 
@@ -186,7 +179,7 @@ $$
 ---
 
 
-# Roadmap - Current Limitations & Planned Improvements 
+# Roadmap - Current Limitations & Planned Improvements (1)
 
 - **Unit testing**
 
@@ -198,6 +191,10 @@ $$
 ```
 build -I index.txt documents --recursive
 ```
+
+---
+
+# Roadmap - Current Limitations & Planned Improvements (2)
 
 - **Custom stopwords + turn off stemming**
 
@@ -214,13 +211,16 @@ build -I index.txt documents --recursive
 file2.txt score=1.26 [matched: dog, human, friend] "...dog is the human's best friend..."
 ```
 
+---
+
+# Roadmap - Current Limitations & Planned Improvements (3)
+
 - **Compressed sparse column (CSC) storage**
   
   [Limitation] plain-text LIL with string tokens
 
 
-
-
+---
 
 <br>
 
