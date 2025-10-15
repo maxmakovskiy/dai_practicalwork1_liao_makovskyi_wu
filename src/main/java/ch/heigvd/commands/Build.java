@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 @Command(
         name = "build",
-        description = "- create index file from collection of documents",
+        description = "create index file from collection of documents",
         mixinStandardHelpOptions = true
 )
 public class Build implements Runnable {
