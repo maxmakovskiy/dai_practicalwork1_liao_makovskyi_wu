@@ -114,6 +114,15 @@ public class DSparseMatrixLIL {
 
     }
 
+    /**
+     *
+     * Parses the number of rows from the first header line of a serialized matrix.
+     * <p>Expects {@code matrixRows.get(0)} to look like: {@code "nRows : <int>"}.</p>
+     *
+     * @param matrixRows lines of the serialized matrix; must not be {@code null} or empty
+     * @return the parsed row count
+     * @throws IndexOutOfBoundsException if {@code matrixRows} is null or empty
+     */
     private static int parseNRows(ArrayList<String> matrixRows) {
 
         if (matrixRows == null || matrixRows.isEmpty()){
@@ -125,6 +134,13 @@ public class DSparseMatrixLIL {
         return Integer.parseInt(nRowStrList[1].trim());
     }
 
+    /**
+     * Parses the number of columns from the second header line of a serialized matrix.
+     * <p>Expects {@code matrixRows.get(1)} to look like: {@code "nCols : <int>"}.</p>
+     * @param matrixRows matrixRows lines of the serialized matrix; must contain at least two lines
+     * @return the parsed column count
+     * @throws IndexOutOfBoundsException if matrix contains less than 2 lines.
+     */
     private static int parseNCols(ArrayList<String> matrixRows) {
 
         if (matrixRows.size() < 2 ){
@@ -136,42 +152,38 @@ public class DSparseMatrixLIL {
         return Integer.parseInt(nColStrList[1].trim());
     }
 
-    // Construct matrix from one long string or array of strings
+    /**
+     * Constructs a matrix from the serialized text format produced by {@link #toString()}.
+     *
+     * <p><strong>Expected layout</strong> (line numbers are illustrative):</p>
+     * <pre>{@code
+     * 0:       nRows : <int>
+     * 1:       nCols : <int>
+     * 2:       Indices
+     * 3..N:    <row> : vIdx0, vIdx1, vIdx2..
+     * N+1:     Data
+     * N+2:     <row> : vScore0, vScore1, vScore2...
+     * }</pre>
+     * <p>Values are parsed with
+     * {@link Integer#parseInt(String)} and {@link Double#parseDouble(String)}.</p>
+     *
+     * @param matrixRows lines of the serialized matrix; must include headers,
+     *                   an {@code Indices} section with {@code nRows} lines,
+     *                   and a {@code Data} section with {@code nRows} lines
+     * @throws IndexOutOfBoundsException if the {@matrixRows}is too short or a required line is missing
+     *
+     */
      public DSparseMatrixLIL(ArrayList<String> matrixRows){
 
-        // call DSparseMatrixLIL(int nRows, int nCols)
         this(parseNRows(matrixRows), parseNCols(matrixRows));
 
         if (matrixRows.size() < 3){
             throw new IndexOutOfBoundsException("Invalid matrix rows!");
         }
 
-
-/*
-        int lineIdx = 0;
-
-        // "nRows : 3"
-        String nRowStr = matrixRows.get(lineIdx++);
-        String[] nRowStrList = nRowStr.split(":");
-        this.nRows = Integer.parseInt(nRowStrList[1].trim());
-
-        //  "nCols : 14"
-         String nColStr = matrixRows.get(lineIdx++);
-         String[] nColStrList = nColStr.split(":");
-         this.nCols = Integer.parseInt(nColStrList[1].trim());
-*/
-
-         //DSparseMatrixLIL(nRows, nCols);
-
-        //  "Indices",
-         //    "0 : 0, 6, 7, 9, 13",
-         //    "1 : 0, 1, 2, 8, 11, 12",
-         //    "2 : 3, 4, 5, 7, 10",
-
-
          int lineIdx = 2;
 
-         // Skip  "Indices",
+         // Skip  "Indices"
          lineIdx++;
 
          for (int i =0; i < nRows; i++) {
@@ -211,14 +223,32 @@ public class DSparseMatrixLIL {
                          double scoreDouble = Double.parseDouble(scoreStr.trim());
                          scores.get(i).add(scoreDouble);
                      }
-
                  }
              }
          }
-
      }
 
-
+    /**
+     * Constructs a matrix from a serialized string produced by {@link #toString()}.
+     *
+     *  <p>The string is split into lines and delegated to {@link #DSparseMatrixLIL(java.util.ArrayList)}.</p>
+     *
+     *  <p><strong>Expected input layout</strong> (
+     *  <pre>{@code
+     *  "Line1\nLine2\nLine3\nLine4\nLine5\nLine6\nLine7\nLine8\nLine9\n"
+     *  }
+     *
+     *  <p><strong>Expected output in array list</strong>
+     *  <pre>{@code
+     *  ["line1","line2", "line3", "line4", "line5", "line6", "line7", "line8", "line9"]
+     *  }
+     *
+     * @param matrix the text (lines separated by newlines)
+     * @throws NullPointerException if {@code matrix} is {@code null}
+     * @throws IndexOutOfBoundsException if the {@matrixRows}is too short or a required line is missing
+     *
+     * @see #DSparseMatrixLIL(java.util.ArrayList)
+     */
      public DSparseMatrixLIL(String matrix) {
         /*
         String[] lines = matrix.split("\n");                                    // 1. "Line1\nLine2\nLine3\n" -> ["line1","line2", "line3"]
@@ -229,8 +259,29 @@ public class DSparseMatrixLIL {
 
      }
 
+    /**
+     * Serializes this sparse matrix to a human-readable text format.
+     *
+     * <p>The output can be parsed back by {@link #DSparseMatrixLIL(String)} and
+     * {@link #DSparseMatrixLIL(java.util.ArrayList)}. Layout:</p>
+     *
+     * <p><strong>Expected output layout</strong> (line numbers are illustrative):</p>
+     * <pre>{@code
+     * 0:       nRows : <int>
+     * 1:       nCols : <int>
+     * 2:       Indices
+     * 3..N:    <row> : vIdx0, vIdx1, vIdx2..
+     * N+1:     Data
+     * N+2:     <row> : vScore0, vScore1, vScore2...
+     * }</pre>
+     *
+     * @return the textual representation of this matrix
+     *
+     * @see <a href="https://stackoverflow.com/questions/7775394/java-concatenate-to-build-string-or-format">
+     *        Java concatenate to build string</a>
+     */
 
-     // ref : https://stackoverflow.com/questions/7775394/java-concatenate-to-build-string-or-format
+     // ref :
      public String toString() {
         StringBuilder sb = new StringBuilder();
 
