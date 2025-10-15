@@ -315,11 +315,15 @@ ch.heigvd/
 
 ## Roadmap
 
-1. Set-up unit-testing framework.
-2. Unit-test core: `DSparseMatrixLIL`, `Index` and `BM25`.
-3. Migrate from custom index file format to JSON.
-4. Treat tokens as numbers.
-5. Change sparse matrix storage format from Linked List to Compressed Sparse Column.
+1. Unit tests — set up unit tests for `DSparseMatrixLIL`, `Index` and `BM25`. and run them in CI.
+2. Recursive indexing — add `--recursive` to include subfolders.
+3. Text options — support `--stopwords <file>` and `--stem-off`.
+4. Results UX — show matched terms + a short snippet per hit.
+5. Index format — migrate from custom text to JSON (store params/metadata).
+6. Performance — treat tokens as IDs (ints) and switch storage LIL → CSC.
+
+
+   
 
 
 ---
