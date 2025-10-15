@@ -1,0 +1,200 @@
+Serial ATA
+
+
+
+Serial ATA (SATA or Serial Advanced Technology Attachment) is a standard that has been defined to connect storage devices or optical drives to a computer. The most common standard that was used beforehand was called ATA or IDE; it has been renamed PATA. The main difference between the two lies in the cables: SATA cables have seven wires, PATA cables have 40 or 80. Another difference is that with SATA, there is one cable for each device, while with PATA, all devices are connected to the same cable.
+
+
+
+As of 2022, almost all desktop computers have a SATA interface. PATA is very rare nowadays, but some old computers still use it. Computers that still use PATA are mostly used for industrial applications and embedded systems. Some computers (mostly laptops) do not have a SATA interface. They have an M.2 NVME interface to connect NVME SSDs which are based on the PCIE standard. Some laptops also have an embedded flash memory. SATA will most likely disappear from laptops (and some computers) in the future and be replaced with M.2 NVME SSDs.
+
+
+
+Electric signals transmitted on a parallel bus made of several wires will influence each other, if the transfer speed is increased. This phenomenon is known as crosstalk. Another problem with PATA is that the termination of the bus is not specified. Serial ATA uses low-voltage differential signaling, which avoids most of these problems.
+
+
+
+Serial ATA uses 8B/10B encoding. This means that 10 bits are used to transfer 8 bits. The first standard of SATA used 1.5 GBit/second transfer speed (or 1.2 GBit/second usable data rate). This is only slightly faster than the last PATA standard (ATA/133). Later standards doubled this rate, at almost every revision. These values are transfer speeds, because of signalling, the usable speed is 25% lower.
+
+
+
+Other benefits are that SATA cables are much easier to handle than PATA cables. Some SATA drives can also be connected and disconnected while the computer is running. This is called hot swapping. Finally, some drives support a technology called "Native Command Queueing". This means that the drive can rearrange the order of what it's told to do so that it gets done faster.
+
+
+
+From the first version, SATA has been fast enough for hard drives. The data needs to be read from a number of locations on the drive. Between the locations, the electronic device used for reading and writing has to be repositioned. Even with current drives, this does not happen fast enough so that the 1.2 Gbit/s poses a problem.
+
+
+
+As of 2016, there are five different revisions of the SATA standard.
+
+SATA Express is a version of the SATA standard that uses the same protocol as PCI Express. Current solid state drives (SSDs) are able to saturate SATA III, specified at 6 Gbit/s. For this reason SATA Express has been introduced.
+
+
+
+Diffferent versions of the Serial ATA standard are compatible with each other. This means that older devices can be operated on a newer controller, but they will only support the features and speed of the standard for which they were built. Similarly, devices built for a newer standard can be operated on an older controller. In this case, the controller is the limiting factor, and some of the newer functions may not be supported. An SAS (Serial Attached SCSI) controller is compatible with SATA drives, but a SATA controller is not compatible with SAS drives.
+
+
+
+At the level of the operating system, SATA and PATA devices can be made to look the same. At the physical level, they are incompatible however.
+
+
+
+To be usable, the devices using SATA need to be connected to the motherboard. This is probably the most visible difference between SATA and PATA. SATA drives have two different connectors, One connection is for transmitting the data and the other connection is for transmitting power. In some cases, both have been combined into one cable, to connect external drives. The normal case though is that two different connectors are used. Some connectors can be locked in place.
+
+
+
+PATA specified that power is transmitted using a 4 pin Molex connector. With SATA, this connector. The 4 pin Molex connector has also been used to power floppy drives. SATA changed this connector. With SATA, the power connector and the data connector look similar, but the power connector is wider than the data connector. The standard power connector has 15 pins. It is used for standard 3.5 inch and 2.5 inch drives.
+
+
+
+Smaller form factors can also use a smaller power connector, It has six pins and a coding notch. For smaller drives, there is a connector with 8 pins. A coding notch makes sure that the power connector cannot be connected to the plug which transfers the data.
+
+
+
+As with the power connector, there are different versions of the data connector, for different applications. The standard connector has 7 pins, and is used for 3.5" and 2.5" drives. The most common other form factors are mSATA, and M.2 (or NGFF).
+
+eSATA is a version of SATA which is used to connect external drives. Its plugs are more robust, and its cables are more rugged. In this market, SATA competes with other standards, such as USB or Firewire. Many external drives are standard SATA drives in an external case. To be able to communicate over USB or Firewire, an extra electronic board is needed. This board translates between SATA and the external interface. When eSATA is used, no translation is necessary. Using USB or Firewire may have other benefits though.
+
+
+
+There also is a version of eSATA called eSATAp. It combines the pins of the USB, those of SATA, and those of the power connector. This makes it possible to directly connect SATA or USB drives externally, with only one cable. In addition to the data, power is also transmitted over this cable, so no extra power connection is necessary.
+
+
+
+Legnica
+
+
+
+Legnica () is a city in Poland. The river Katzbach runs through Legnica. There live over 100,000 people. The city is in west part of Poland (near Germany and Czech border). Legnica is near a bigger city, Wrocław.
+
+
+
+Legnica is in the middle of Silesia. The area used to be part of Prussia, and Legnica was the capital of one of the three Silesian government areas (Regierungsbezirk).
+
+
+
+Silesia, a Prussian Province, was divided in 3 administrative regions (Regierungsbezirk): Liegnitz, Breslau and Oppeln.
+
+
+
+The Regierungsbezirk Liegnitz comprised the following districts:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Cruzeiro Esporte Clube
+
+
+
+Cruzeiro Esporte Clube, usually called Cruzeiro EC or Cruzeiro, is a Brazilian football team from the city Belo Horizonte, Brazil. The team was founded on January 2, 1921. They are usually called the "raposa", which means fox in Brazil. They are also called the "celeste" which means celestial because their logo and name refer to a constellation. Currently the team disputes the second division of the Brazilian championship.
+
+
+
+
+
+
+
+
+
+Flag of Estonia
+
+
+
+The flag of Estonia has three colours and is made of three equal horizontal bands coloured blue (top), black, and white (bottom). Blue mirrors the sky, black the colour of the soil and national coat, and white the peoples' happiness and light. In Estonian language it is called the "sinimustvalge" (literally "blue-black-white"), after the colours of the bands. The flag was designed in the 1880s and adopted when Estonia became independent in 1918.
+
+
+
+Coat of arms of Estonia
+
+
+
+The coat of arms of Estonia is a golden shield which includes three slim, blue "leopard"s (or lions passant guardant) in the middle, with oak branches along the side of the shield.
+
+
+
+The coat of arms of Estonia has existed long before they were official recognized after the War of Independence between 1918 and 1920, when the Republic of Estonia was internationally recognized.
+
+
+
+The symbol has been in use since the 13th century, where the big coat of arms was used for the capital city, Tallinn. The origin of the slim blue lions can be traced back to the King of Denmark at the time, Valdemar the Second. As Denmark was the ruling power of Northern Estonia at the time, it imposed the coat of arms upon the state.
+
+
+
+Ichthyology
+
+
+
+Ichthyology is the scientific study of fish.
+
+The term Ichthyology which is derieved from following two "Greek" word 'Ichthyus' means fish and 'logos' means knowledge.
+
+It includes hagfish and lampreys (jawless fish), cartilagenous fish (such as sharks, skates and rays) (Chondrichthyes) and bony fishes (Osteichthyes). 
+
+
+
+A person who studies fish is called an "ichthyologist".
+
+
+
+Indre, Loire-Atlantique
+
+
+
+Indre is a city in France at the Atlantic Ocean. It is the south eastern end of the Brittany.
+
+
+
+Indre has about 3,643 inhabitants.
+
+
+
+Indre
+
+
+
+Indre can mean different things:
+
+
+
+Apatosaurus
+
+
+
+APATOSAURUS is a sauropod dinosaur which lived in the Upper Jurassic period. It is in the same family as "Diplodocus". "Brontosaurus" was once thought a later name for "Apatosaurus", but is now proved to be a separate genus.
+
+
+
+"Apatosaurus" grew as big as 21 meters long, 4.5 meters tall at the hip, and weighed up to 23 metric tons. It ate plants. Its bones have been found in Wyoming, Colorado, Oklahoma, and Utah.
+
+
+
+When it was first found, scientists thought that "Apatosaurus" lived partly under water, as if it could not hold its own weight on dry land. Now they think it lived on dry land, probably in herds.
+
+
+
+The cervical vertebrae were less elongated and more solid than those of "Diplodocus". The bones of the leg were much stockier (despite being longer), implying a more robust animal. The tail was held above the ground during normal locomotion. Like most sauropods, "Apatosaurus" had only a single large claw on each forelimb, with the first three toes on the hind limb possessing claws.
+
+
+
+There are at least two species of "Apatosaurus":
+
+
+
+It was believed throughout the 19th and early 20th centuries that sauropods like "Apatosaurus" were too massive to support their own weight on dry land. It was theorized that they lived partly submerged in water, perhaps in swamps. Recent findings do not support this. Sauropods are now thought to have been fully terrestrial animals. A study of diplodocid snouts showed that the square snout, large proportion of pits, and fine, subparallel scratches of the teeth of "Apatosaurus" suggests it was a ground-height, nonselective browser. It may have eaten ferns, cycads, seed ferns, horsetails, and algae.
+
+
+
+Important issues like heat control, metabolic rate and respiration are still unclear. Some scientists state that the heart would have had trouble sustaining sufficient blood pressure to oxygenate the brain. Others suggest that the near-horizontal posture of the head and neck would have eliminated the problem of supplying blood to the brain because it would not have been elevated.
+

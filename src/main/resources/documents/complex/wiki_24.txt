@@ -1,0 +1,143 @@
+Radiation
+
+
+
+In physics, radiation is the emission or transmission of energy in the form of waves or particles through space or through a material medium.
+
+
+
+This includes:
+
+
+
+Radiation may also refer to the energy, waves, or particles being radiated. Originally, radiation waves do not contain particles as they are transferred to Earth by the Sun for example.
+
+
+
+Many people are already familiar with electromagnetic radiation (EMR), including light. The electromagnetic spectrum shows the types of radiation according to their wavelength and frequency. Some kinds are:
+
+
+
+Ionizing radiation is radiation that carries enough energy to free electrons from atoms or molecules.
+
+
+
+Only certain types of radiation are harmful to humans. For example, ultraviolet radiation can give people sunburns. X-rays and gamma rays can make a person sick, or even die, depending on the dose they get. Some types of particle radiation can also make people sick and lead to burns. If radiation does not carry high enough levels of energy, though, then these changes will not happen when something is hit by the radiation. This is referred to as non-ionizing radiation, which is not as dangerous.
+
+
+
+One can distinguish between various types of radiation by looking at the source of the radiation, its wavelength (if the radiation is electromagnetic), the amount of energy being carried, any particles involved, etc. Radioactive material is a material which emits radiation. Uranium and plutonium are examples of radioactive materials. The atoms they are made of tend to fall apart and give off different kinds of radiation, like gamma rays and lots of particle radiation.
+
+
+
+Ionizing radiation can kill living things. It can cause genetic mutations, as shown by H.J. Muller. It can destroy cells in the body which divide, and thus indirectly kill a person.
+
+
+
+
+
+
+
+Non-ionizing radiation
+
+
+
+Non-ionizing radiation (or, esp. in British English, non-ionising radiation) means any type of electromagnetic radiation that does not carry enough energy to ionize atoms or molecules - that is, completely remove an electron from an atom or molecule. 
+
+
+
+The composition of this radiation can vary depending on what may be ionized. Visible light, near ultraviolet, infrared, microwave and radio waves are all examples of non-ionizing radiation, though visible and near ultraviolet can also ionize some molecules. The light from the Sun that reaches the earth is largely composed of non-ionizing radiation, with the notable exception of some ultraviolet rays. However, most ionizing radiation is filtered out by the atmosphere.
+
+
+
+
+
+Electromagnetic spectrum
+
+
+
+The electromagnetic spectrum is the range of all possible electromagnetic radiation. Electromagnetic radiation can be divided into octaves — as sound waves are — adding up to eighty-one octaves. Physicists have studied electromagnetic radiation with wavelengths from thousands of kilometres down to fractions of the size of an atom. It is commonly said that waves beyond these limits are uncommon, although this is not known to be true. The short wavelength limit is likely to be the Planck length, and the long-wavelength limit is the size of the universe itself, though in principle the spectrum is infinite. 
+
+
+
+Radiation of shorter wavelength than about 30 μm is commonly detected by its ability to exceed the ionization energy of atoms. Radiation of longer than 3mm is commonly detected by its ability to induce electrical currents. Radiation between these limits was little used until the 21st century because of the difficulty of detecting it. 
+
+
+
+Nearly all objects in the universe emit, reflect or transmit some light. (Black holes do not.) The distribution of this light along the electromagnetic spectrum (called the "spectrum" of the object) is determined by what the object is made of. Several types of spectra can be distinguished depending upon the nature of the radiation coming from an object.
+
+
+
+Spectroscopy is the branch of physics that observes matter by its emitted or reflected spectra.
+
+
+
+
+
+Spectrum (disambiguation)
+
+
+
+A spectrum is a condition or value that is not limited to a specific set of values but can vary infinitely within a continuum.
+
+
+
+Spectrum may refer more specifically to:
+
+
+
+
+
+
+
+
+
+
+
+Continuum
+
+
+
+A Continuum is a continuous series where all parts are very similar to their nearest neighbour, but the ends or extremes of it are different from each other. 
+
+
+
+This describes something that changes gradually (little by little) from one condition, to a different condition, but without any sudden changes or discontinuities.
+
+
+
+The difference between a continuum, and something with very different changes that can be measured, is important for all continuum theories.
+
+
+
+Continuum may also refer to:
+
+
+
+
+
+Revenge (album)
+
+
+
+Revenge is a studio album by the American hard rock/heavy metal band Kiss. It was released on May 14, 1992.
+
+
+
+
+
+Continuum (theory)
+
+
+
+A continuum is when a change happens over time or an area without being interrupted.
+
+
+
+Space-time is when space and time are said to be part of the same continuum instead of two different continuums.
+
+
+
+A dialect continuum is a group of language dialects that change over an area. In a dialect continuum, two dialects are more different when they are farther away from each other.
+
+
