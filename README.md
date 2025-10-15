@@ -264,8 +264,11 @@ Please read corresponding [wiki page](https://github.com/maxmakovskiy/dai_practi
 
 
 ## Acknowledgement
+
 This project is inspired by and heavily relies on the ideas presented in [bm25s](https://github.com/xhluca/bm25s).     
 Given that it would be fair to said that it is some kind of adaption of the project mentioned above in Java.
 Although a lot of things have not been respected for the sake of simplicity.
+<br/>
 
+Another external project that is being used in this project is [Kaggle dataset : Plain text Wikipedia (SimpleEnglish)](https://www.kaggle.com/datasets/ffatty/plain-text-wikipedia-simpleenglish). This is a dataset that contains some wikipedia articles in plain text. We use it as an example to build index and search through, since it contains a lot of information from different domains.
 
