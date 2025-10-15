@@ -188,8 +188,6 @@ $$
 
 # Roadmap - Current Limitations & Planned Improvements 
 
-[profiler image with problem places]
-
 - **Include files in subfolders**
 
 [Limitation] Doesn't read subfolders
