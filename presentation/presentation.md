@@ -175,7 +175,7 @@ $$
 
 ---
 
-# Application
+# Use Cases
 
 - Personal Document Library
 - Email Archive Search
