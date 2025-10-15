@@ -21,23 +21,73 @@ Variant of BM25 used in this project is original one and was invented by [Stephe
 
 ---
 
+# How to install ?
+
+For the moment only building fro source is supported.
+For that:
+
+- Make sure that you have installed : Git, JDK (v21.0+) and Maven
+
+- Clone repository wit
+
+```bash
+git clone https://github.com/maxmakovskiy/dai_practicalwork1_liao_makovskyi_wu.git
+```
+
+- Run build command for maven from root folder of the project:
+
+```bash
+mvn package
+```
+it will build jar file for you
+
+- Done ! For the explanation about the usage please refer yourself to [usage](#usage) and [supported commands](#supported-commands)
+
+
+---
+
 
 ## Usage
 
 1. To build index file from collection of documents:
 ````
 $ java -jar target/bm25.jar build \
-    -I=index.txt src/main/resources/documents
+    -I=index.txt path/to/documents
 ````
 
 2. To search with yours index file
 ````
 $ java -jar target/bm25.jar search \
-    index.txt Which animal is the human best friend? 
+    -K=3 index.txt Which animal is the human best friend? 
 ````
 
 ---
 
+
+## Supported commands
+
+Currently there are only 2 supported commands with sytax presented in [usage](#usage):
+
+1. Build command has next parameters:
+
+- optional parameter `-I` (`--index`) to specify file to be used to write index into
+- positional parameter`path/to/documents` to specify folder that has all the files of interest.
+
+2. Search command has next parameters:
+
+- optional parameter `-K` (`--topK`) to specify top K results to be returned
+- positional parameter `path/to/indexfile.txt` that represents path to index file that we want to use for search.
+- positional parameter `[query]` every other word that comes after `path/to/indexfile.txt` is treated as part of query
+
+---
+
+
+## Limitations
+
+- For the time being, only English works properly
+
+
+---
 
 ## Formula
 
@@ -139,16 +189,23 @@ file : file1.txt => score = 0.00
 
 ````
 ch.heigvd/
-├── presentation/               // Presentation related stuff
-├── bm25/                       // BM25 search engine
-│   ├── utils/                  // different utils used along the way
-│   │   ├── RankingResult.java  // (document index, score) pair in ranking results
-│   │   ├── Stopword.java       // inessential words
-│   ├── BM25.java               // BM25 algorithm
-├── commands/                   // picocli commands
-│   ├── Build.java              // building index
-│   ├── Search.java             // searching with index
-├── Main.java                   // entry point
+├── resources/                     // documents for running demo
+│   ├── simple/                    // little collection of docs
+│   ├── complex/                   // big collection of docs
+├── presentation/                  // Presentation related stuff
+├── bm25/                          // BM25 search engine
+│   ├── exceptions/                // custom exceptions
+│   │   ├── IndexException.java    // exception for Index parsing
+│   ├── utils/                     // different utils used along the way
+│   │   ├── Index.java             // index abstraction
+│   │   ├── DSparseMatrixLIL.java  // sparse matrix with LIL storage
+│   │   ├── RankingResult.java     // (document index, score) pair in ranking results
+│   │   ├── Stopword.java          // inessential words
+│   ├── BM25.java                  // BM25 algorithm
+├── commands/                      // picocli commands
+│   ├── Build.java                 // building index
+│   ├── Search.java                // searching with index
+├── Main.java                      // entry point
 ````
 ---
 
@@ -160,9 +217,17 @@ ch.heigvd/
 
 ---
 
+## Authors
+
+- [FeliciaCoding](https://github.com/FeliciaCoding)
+- [maxmakovskiy](https://github.com/maxmakovskiy) 
+- [AlterSpectre](https://github.com/AlterSpectre) 
+
+---
+
 
 ## Acknowledgement
-This project heavily relies on the ideas presented in [bm25s](https://github.com/xhluca/bm25s).     
+This project is inspired by and heavily relies on the ideas presented in [bm25s](https://github.com/xhluca/bm25s).     
 Given that it would be fair to said that it is some kind of adaption of the project mentioned above in Java.
 Although a lot of things have not been respected for the sake of simplicity.
 
