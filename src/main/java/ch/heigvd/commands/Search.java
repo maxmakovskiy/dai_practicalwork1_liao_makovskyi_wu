@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 @Command(
         name = "search",
+        description = "- search through your document using index file",
         mixinStandardHelpOptions = true
 )
 public class Search implements Runnable {
