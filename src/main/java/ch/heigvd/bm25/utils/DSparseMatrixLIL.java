@@ -1,11 +1,16 @@
 package ch.heigvd.bm25.utils;
 
-// https://docs.oracle.com/javase/8/docs/technotes/guides/collections/overview.html
+// ref : https://docs.oracle.com/javase/8/docs/technotes/guides/collections/overview.html
 import java.util.ArrayList;
 import java.util.Arrays; // Arrays.aslist(arr)
 import java.lang.String; // StringBuilder
 
-// ref: https://matteding.github.io/2019/04/25/sparse-matrices/
+
+/**
+ * Sparse matrix in List-of-Lists (LIL) format
+ * @see <a href="https://matteding.github.io/2019/04/25/sparse-matrices/">
+ *      Sparse matrices (LIL) – intro</a>
+ */
 public class DSparseMatrixLIL {
 
     private int nRows; // DocID
@@ -14,8 +19,17 @@ public class DSparseMatrixLIL {
     private ArrayList<ArrayList<Double>>  scores;
 
 
-    // empty matrix c-tor
+    /**
+     * Create an empty {@code nRows} x {@code nCols} sparse matrix
+     * @param nRows number of rows (documents)
+     * @param nCols number of columns (terms)
+     * @throws IllegalArgumentException if {@code nRows < 0} or {@code nCols < 0}
+     */
     public DSparseMatrixLIL(int nRows, int nCols){
+
+        if (nRows < 0 || nCols < 0) {
+            throw new IllegalArgumentException("nRows and nCols must be non-negative.");
+        }
 
         this.nRows = nRows;
         this.nCols = nCols;
