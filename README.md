@@ -72,7 +72,7 @@ mvn clean package
 ```
 The build produces a runnable JAR file in the `target` directory.<br>
 
-**Installaltion complete** You are ready to use the search engine.
+**Installation complete** You are ready to use the search engine.
 
 ---
 
@@ -81,14 +81,14 @@ The build produces a runnable JAR file in the `target` directory.<br>
 
 ### 1. Build an index
 
-Create a searchable index file from a directory of documents:
+Create index file from a collection of documents:
 ````
-$ java -jar target/bm25.jar build \
+$ java -jar target/practical_work_1-1.0-SNAPSHOT.jar build \
     -I=[Index file name] path/to/documents
 ````
 **Example :**
 ````
-$ java -jar target/bm25.jar build \
+$ java -jar target/practical_work_1-1.0-SNAPSHOT.jar build \
     -I=index.txt path/to/documents
 ````
 **What happens:**
@@ -99,14 +99,14 @@ $ java -jar target/bm25.jar build \
 
 ### 2. Search the index
 
-Query your indexed documents nad retrieve the most relevant results: 
+Search through your documents using index file:
 ````
-$ java -jar target/bm25.jar search \
+$ java -jar target/practical_work_1-1.0-SNAPSHOT.jar search \
     -K=3 [index file created by build command] [search word or phrase] 
 ````
 **Example :**
 ````
-$ java -jar target/bm25.jar search \
+$ java -jar target/practical_work_1-1.0-SNAPSHOT.jar search \
     -K=3 index.txt Which animal is the human best friend? 
 ````
 
@@ -119,19 +119,18 @@ file : file3.txt => score = 0.46
 file : file1.txt => score = 0.00
 ```
 
-
 ---
 
 
 ## Commands
 
-Currently there are only 2 supported commands with syntax presented in [usage](#usage):
+Currently, there are only 2 supported commands with syntax presented in [usage](#usage):
 
 ### `build` - Create Search Index
 
 **Syntax:**
 ```bash
-java -jar target/bm25.jar build [OPTIONS] <documents_directory>
+java -jar target/practical_work_1-1.0-SNAPSHOT.jar build [OPTIONS] <documents_directory>
 ```
 
 **Parameters:**
@@ -147,7 +146,7 @@ java -jar target/bm25.jar build [OPTIONS] <documents_directory>
 
 **Syntax:**
 ```bash
-java -jar target/bm25.jar search [OPTIONS]  
+java -jar target/practical_work_1-1.0-SNAPSHOT.jar search [OPTIONS]  
 ```
 
 | Parameter | Type | Required | Default | Description |
