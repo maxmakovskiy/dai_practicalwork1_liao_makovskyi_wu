@@ -57,13 +57,13 @@ From wikipedia:
 
 #### Step1 : Build index
 ```bash
-$ java -jar target/bm25.jar build \
+$ java -jar target/practical_work_1-1.0-SNAPSHOT.jar build \
     -I=index.txt src/main/resources/documents
 ```
 
 #### Step2 : Search using it
 ```bash
-$ java -jar target/bm25.jar search \
+$ java -jar target/practical_work_1-1.0-SNAPSHOT.jar search \
     index.txt Which animal is the human best friend?
 ```
 
