@@ -188,6 +188,9 @@ $$
 
 # Roadmap - Current Limitations & Planned Improvements 
 
+- **Unit testing**
+
+
 - **Include files in subfolders**
 
 [Limitation] Doesn't read subfolders
@@ -216,7 +219,6 @@ file2.txt score=1.26 [matched: dog, human, friend] "...dog is the human's best f
   [Limitation] plain-text LIL with string tokens
 
 
-- **Unit testing**
 
 
 
