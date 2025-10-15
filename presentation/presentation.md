@@ -7,7 +7,15 @@ backgroundColor: #fff
 
 <!-- ![bg left:40% 80%](https://marp.app/assets/marp.svg) -->
 
-# Some entry title here with logo
+<div align="center">
+  <img src="../bm25_logo.jpg" alt="Best Matching 25-th iteration" width="300">
+
+  # BM25 Search Engine
+
+  ## Fast and lightweight BM25-based search engine implemented in JAVA
+</div>
+
+
 
 
 ---
@@ -154,7 +162,7 @@ $$
 
 # How it works ? (search 2) 
 
-2. Iterater over document-term matrix and accumulate corresponding tokens.
+2. Iterate over document-term matrix and accumulate corresponding tokens.
 
 | docIdx | best | friend | anim | human | Result |
 |--------|------|--------|------|-------|--------|
@@ -178,7 +186,7 @@ $$
 ---
 
 
-# Roadmap - Current Limitations & Planed Improvements 
+# Roadmap - Current Limitations & Planned Improvements 
 
 [profiler image with problem places]
 
@@ -192,7 +200,7 @@ build -I index.txt documents --recursive
 
 - **Custom stopwords + turn off stemming**
 
-[Limitation] stopwords List is hard code  
+[Limitation] stopwords List is hard-coded  
 
 ```
     build -I index.txt documents --stopwords my_words.txt --stem-off
