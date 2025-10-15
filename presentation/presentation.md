@@ -162,17 +162,54 @@ $$
 | 1      | 0.42 | 0.42   | 0.00 | 0.42  | 1.26   |
 | 2      | 0.00 | 0.00   | 0.46 | 0.00  | 0.46   |
 
+
+
+
+---
+
+# Application
+
+- Personal Document Library
+- Email Archive Search
+- Company Knowledge Base
+- Real Estate Listings
+- Customer Support Ticket System
+
 ---
 
 
-# Is there room for improvements ?
+# Roadmap - Current Limitations & Planed Improvements 
 
 [profiler image with problem places]
 
-- token ids + sparse matrix with compressed sparse column (CSC) storage
-- unit testing
+- **Include files in subfolders**
 
----
+[Limitation] Doesn't read subfolders
+
+```
+build -I index.txt documents --recursive
+```
+
+- **Custom stopwords + turn off stemming**
+
+[Limitation] stopwords List is hard code  
+
+```
+    build -I index.txt documents --stopwords my_words.txt --stem-off
+```
+- **Friendlier search results**
+
+[Limitation] Doesn't Show what’s inside the index.
+
+```
+file2.txt score=1.26 [matched: dog, human, friend] "...dog is the human's best friend..."
+```
+
+- **Compressed sparse column (CSC) storage**
+  [Limitation] plain-text LIL with string tokens
+
+- **Unit testing**
+
 
 
 <br>
