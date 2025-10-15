@@ -344,7 +344,9 @@ Please read corresponding [wiki page](https://github.com/maxmakovskiy/dai_practi
 
 - [FeliciaCoding](https://github.com/FeliciaCoding)
 - [maxmakovskiy](https://github.com/maxmakovskiy) 
-- [AlterSpectre](https://github.com/AlterSpectre) 
+- [AlterSpectre](https://github.com/AlterSpectre)
+
+kindly note the project graphic / charts are generated with the help of ChatGPT.
 
 ---
 
