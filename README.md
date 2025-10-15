@@ -6,7 +6,7 @@
 
 ## Description
 
-This project is attempt to recreate famous BM25 in Java.     
+BM25 search engine implemented in Java, with simple CLI to build an index and search over a collection of documents.
 
 From [wikipedia](https://en.wikipedia.org/wiki/Okapi_BM25):      
 > **BM25** is a bag-of-words retrieval function that ranks a set of documents based on the query terms appearing in each document, regardless of their proximity within the document.    
@@ -27,7 +27,7 @@ Variant of BM25 used in this project is original one and was invented by [Stephe
 8. [How it works](#how-it-works)
 9. [Repo structure](#repository-structure)
 10. [Roadmap](#roadmap)
-11. [How to contribute](#how-to-contibute-)
+11. [How to contribute](#how-to-contribute-)
 12. [Dependencies](#dependencies)
 13. [Authors](#authors)
 14. [Acknowledgement](#acknowledgement)
@@ -36,7 +36,8 @@ Variant of BM25 used in this project is original one and was invented by [Stephe
 
 
 ## Requirements
-- JRE 21+ for running jar archive
+- Java Development Kit v21.0+
+- Maven 
 
 ---
 
@@ -249,7 +250,7 @@ ch.heigvd/
 
 ---
 
-## How to contibute ?
+## How to contribute ?
 
 Please read corresponding [wiki page](https://github.com/maxmakovskiy/dai_practicalwork1_liao_makovskyi_wu/wiki/Contributor-Guide)
 
