@@ -212,7 +212,9 @@ file2.txt score=1.26 [matched: dog, human, friend] "...dog is the human's best f
 ```
 
 - **Compressed sparse column (CSC) storage**
+  
   [Limitation] plain-text LIL with string tokens
+
 
 - **Unit testing**
 
