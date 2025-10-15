@@ -45,8 +45,14 @@ public class DSparseMatrixLIL {
 
     }
 
-
-    // Retrieve value at (rowIdx, colIdx). Return 0.0 when there is no value stored
+    /**
+     * Retrieve value at a given matrix position ({@code rowIdx}, {@code colIdx})
+     * @param rowIdx zero-based row index
+     * @param colIdx zero-based column index
+     * @return the stored value. Return {@code 0.0} if not found.
+     * @throws IndexOutOfBoundsException if {@code rowIdx < 0 } or {@code rowIdx >= nRows}
+     *                                      {@code colIdx < 0} or {@code colIdx >= nCols}
+     */
     public double get(int rowIdx, int colIdx) {
 
         if (rowIdx < 0 || rowIdx >= nRows || colIdx < 0 || colIdx >= nCols){
@@ -69,13 +75,29 @@ public class DSparseMatrixLIL {
 
     }
 
+    /**
+     * Set a value at a given matrix position  ({@code rowIdx}, {@code colIdx})
+     *
+     * <p>If an entry at ({@code rowIdx}, {@code colIdx}) already exists, its value
+     * is updated. Otherwise, the column index and value are appended to that row's
+     * lists (note: column indices within a row are not automatically sorted).</p>
+     *
+     * @param rowIdx zero-based row index
+     * @param colIdx zero-based column index
+     * @param value value to store ( cannot be {@code 0.0})
+     * @throws IllegalArgumentException if {@code rowIdx < 0 } or {@code rowIdx >= nRows}
+     *                                      {@code colIdx < 0} or {@code colIdx >= nCols}
+     *                                      or {@code value == 0.0}
+     */
 
     public void set(int rowIdx, int colIdx, double value) {
 
-        if (rowIdx < 0 || rowIdx >= nRows || colIdx < 0 || colIdx >= nCols){
+        if (rowIdx < 0 || rowIdx >= nRows || colIdx < 0 || colIdx >= nCols ){
             throw new IndexOutOfBoundsException(
                     "Cannot set value at rowIdx: " + rowIdx + " and colIdx: " + colIdx
             );
+        } else if (value < 0.0) {
+            throw new IllegalArgumentException("Value must be non-negative.");
         }
 
         ArrayList<Integer> rowIndicesList = indices.get(rowIdx);
@@ -87,7 +109,6 @@ public class DSparseMatrixLIL {
             return;
         }
 
-        // if it does not exist, add new value in the list
         rowIndicesList.add(colIdx);
         rowScoresList.add(value);
 
