@@ -71,10 +71,20 @@ It will build jar archive for you, that you could find later in `target` folder.
 1. To build index file from collection of documents:
 ````
 $ java -jar target/bm25.jar build \
+    -I=[Index file name] path/to/documents
+````
+Example :
+````
+$ java -jar target/bm25.jar build \
     -I=index.txt path/to/documents
 ````
 
 2. To search with yours index file
+````
+$ java -jar target/bm25.jar search \
+    -K=3 [index file created by build command] [search word or phrase] 
+````
+Example :
 ````
 $ java -jar target/bm25.jar search \
     -K=3 index.txt Which animal is the human best friend? 
