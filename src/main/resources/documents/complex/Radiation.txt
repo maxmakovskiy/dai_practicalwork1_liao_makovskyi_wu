@@ -1,0 +1,33 @@
+Radiation
+
+
+
+In physics, radiation is the emission or transmission of energy in the form of waves or particles through space or through a material medium.
+
+
+
+This includes:
+
+
+
+Radiation may also refer to the energy, waves, or particles being radiated. Originally, radiation waves do not contain particles as they are transferred to Earth by the Sun for example.
+
+
+
+Many people are already familiar with electromagnetic radiation (EMR), including light. The electromagnetic spectrum shows the types of radiation according to their wavelength and frequency. Some kinds are:
+
+
+
+Ionizing radiation is radiation that carries enough energy to free electrons from atoms or molecules.
+
+
+
+Only certain types of radiation are harmful to humans. For example, ultraviolet radiation can give people sunburns. X-rays and gamma rays can make a person sick, or even die, depending on the dose they get. Some types of particle radiation can also make people sick and lead to burns. If radiation does not carry high enough levels of energy, though, then these changes will not happen when something is hit by the radiation. This is referred to as non-ionizing radiation, which is not as dangerous.
+
+
+
+One can distinguish between various types of radiation by looking at the source of the radiation, its wavelength (if the radiation is electromagnetic), the amount of energy being carried, any particles involved, etc. Radioactive material is a material which emits radiation. Uranium and plutonium are examples of radioactive materials. The atoms they are made of tend to fall apart and give off different kinds of radiation, like gamma rays and lots of particle radiation.
+
+
+
+Ionizing radiation can kill living things. It can cause genetic mutations, as shown by H.J. Muller. It can destroy cells in the body which divide, and thus indirectly kill a person.
