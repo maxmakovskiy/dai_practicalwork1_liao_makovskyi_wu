@@ -15,15 +15,35 @@ Variant of BM25 used in this project is original one and was invented by [Stephe
 
 ---
 
+## Content
+
+1. [Description](#description)
+2. [Requirements](#requirements)
+3. [Installation](#how-to-install-it-)
+4. [Usage](#usage)
+5. [Commands](#supported-commands)
+6. [Limitations](#limitations)
+7. [Formula](#formula)
+8. [How it works](#how-it-works)
+9. [Repo structure](#repository-structure)
+10. [Roadmap](#roadmap)
+11. [How to contribute](#how-to-contibute-)
+12. [Dependencies](#dependencies)
+13. [Authors](#authors)
+14. [Acknowledgement](#acknowledgement)
+
+---
+
 
 ## Requirements
 - JRE 21+ for running jar archive
 
 ---
 
-# How to install ?
 
-For the moment only building fro source is supported.
+## How to install it ?
+
+For the moment only building from source is supported.
 For that:
 
 - Make sure that you have installed : Git, JDK (v21.0+) and Maven
@@ -39,10 +59,9 @@ git clone https://github.com/maxmakovskiy/dai_practicalwork1_liao_makovskyi_wu.g
 ```bash
 mvn package
 ```
-it will build jar file for you
+It will build jar archive for you, that you could find later in `target` folder.
 
 - Done ! For the explanation about the usage please refer yourself to [usage](#usage) and [supported commands](#supported-commands)
-
 
 ---
 
@@ -209,6 +228,23 @@ ch.heigvd/
 ````
 ---
 
+## Roadmap
+
+1. Set-up unit-testing framework.
+2. Unit-test core: `DSparseMatrixLIL`, `Index` and `BM25`.
+3. Migrate from custom index file format to JSON.
+4. Treat tokens as numbers.
+5. Change sparse matrix storage format from LIned List to Compressed Sparse Column.
+
+
+---
+
+## How to contibute ?
+
+Please read corresponding [wiki page](https://github.com/maxmakovskiy/dai_practicalwork1_liao_makovskyi_wu/wiki/Contributor-Guide)
+
+---
+
 
 ## Dependencies
 
@@ -216,6 +252,7 @@ ch.heigvd/
 - [Apache OpenNLP Tools v2.5.5](https://opennlp.apache.org/) for removing morphological affixes from words, leaving only the word stem
 
 ---
+
 
 ## Authors
 
