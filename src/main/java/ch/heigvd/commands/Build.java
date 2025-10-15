@@ -30,6 +30,15 @@ public class Build implements Runnable {
     )
     String indexFilename = "index.txt";
 
+    @Option(
+            names = {"--fail-silently"},
+            description = "avoid printing all errors that happen during build stage. True by default",
+            negatable = true,
+            defaultValue = "true",
+            fallbackValue = "true"
+    )
+    boolean isFailSilently;
+
     @Override
     public void run() {
         System.out.println("Building index...");
@@ -63,7 +72,11 @@ public class Build implements Runnable {
                     }
 
                 } catch(IOException e) {
-                    System.err.print(e);
+
+                    if (!isFailSilently) {
+                        System.err.print(e);
+                    }
+
                     System.out.println("Impossible to read : " + file.getPath());
                     System.out.println("Skipping ...");
                 }
@@ -91,7 +104,10 @@ public class Build implements Runnable {
 
 
         } catch(IOException e) {
-            System.err.println(e);
+            if (!isFailSilently) {
+                System.err.println(e);
+            }
+
             System.out.println("Impossible to create index file : " + indexFilename);
             System.exit(1);
         }

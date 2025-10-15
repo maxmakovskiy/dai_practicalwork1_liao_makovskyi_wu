@@ -41,6 +41,14 @@ public class Search implements Runnable {
     )
     int topK;
 
+    @Option(
+            names = {"--fail-silently"},
+            description = "avoid printing all errors that happen during search stage. True by default",
+            negatable = true,
+            defaultValue = "true",
+            fallbackValue = "true"
+    )
+    boolean isFailSilently;
 
     @Override
     public void run() {
@@ -59,7 +67,10 @@ public class Search implements Runnable {
             }
 
         } catch(IOException e) {
-            System.err.println(e);
+            if (!isFailSilently) {
+                System.err.println(e);
+            }
+
             System.out.println("Impossible to read index file : " + indexFile.getPath());
             System.exit(1);
         }
@@ -69,7 +80,10 @@ public class Search implements Runnable {
         try {
             index = Index.importIndex(indexBuilder.toString());
         } catch(RuntimeException e) {
-            System.err.println(e);
+            if (!isFailSilently) {
+                System.err.println(e);
+            }
+
             System.out.println("Impossible to restore index from : " + indexFile.getPath());
             System.exit(1);
         }
