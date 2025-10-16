@@ -1,0 +1,93 @@
+TITLE: Primary hyperparathyroidism
+URL: https://en.wikipedia.org/wiki/Primary_hyperparathyroidism
+============================================================
+
+Primary hyperparathyroidism (or PHPT) is a medical condition where the parathyroid gland (or a benign tumor within it) produce excess amounts of parathyroid hormone (PTH). The symptoms of the condition relate to the resulting elevated serum calcium (hypercalcemia), which can cause digestive symptoms, kidney stones, psychiatric abnormalities, and bone disease.
+The diagnosis is initially made on blood tests; an elevated level of calcium together with a raised (or inappropriately high) level of parathyroid hormone are typically found. To identify the source of the excessive hormone secretion, medical imaging may be performed. Parathyroidectomy, the surgical removal of one or more parathyroid glands, may be required to control symptoms.
+
+
+== Signs and symptoms ==
+The signs and symptoms of primary hyperparathyroidism are those of hypercalcemia.  They are classically summarized by "stones, bones, abdominal groans, thrones and psychiatric overtones".
+
+"Stones" refers to kidney stones, nephrocalcinosis, and diabetes insipidus (polyuria and polydipsia). These can ultimately lead to kidney failure.
+"Bones" refers to bone-related complications. The classic bone disease in hyperparathyroidism is osteitis fibrosa cystica, which results in pain and sometimes pathological fractures.  Other bone diseases associated with hyperparathyroidism are osteoporosis, osteomalacia, and arthritis.
+"Abdominal groans" refers to gastrointestinal symptoms of constipation, indigestion, nausea and vomiting.  Hypercalcemia can lead to peptic ulcers and acute pancreatitis. The peptic ulcers can be an effect of increased gastric acid secretion by hypercalcemia.
+"Thrones" refers to polyuria and constipation
+"Psychiatric overtones" refers to effects on the central nervous system.  Symptoms include lethargy, fatigue, depression, memory loss, psychosis, ataxia, delirium, and coma.
+Left ventricular hypertrophy may also be seen.
+Other signs include proximal muscle weakness, itching, and band keratopathy of the eyes.
+When subjected to formal research, symptoms of depression, pain, and gastric dysfunction seem to correlate with mild cases of hypercalcemia.
+
+
+== Causes ==
+The most common cause of primary hyperparathyroidism is a sporadic, single parathyroid adenoma resulting from a clonal mutation (~97%).  Less common are parathyroid hyperplasia (~2.5%), parathyroid carcinoma (malignant tumor), and adenomas in more than one gland (together ~0.5%).Primary hyperparathyroidism is also a feature of several familial endocrine disorders:  Multiple endocrine neoplasia type 1 and type 2A (MEN type 1 and MEN type 2A), and familial hyperparathyroidism.
+Genetic associations include:
+
+In all cases, the disease is idiopathic, but is thought to involve inactivation of tumor suppressor genes (Menin gene in MEN1), or involve gain of function mutations (RET proto-oncogene MEN 2a).
+Recently, it was demonstrated that liquidators of the Chernobyl power plant are faced with a substantial risk of primary hyperparathyroidism, possibly caused by radioactive strontium isotopes.
+
+
+== Diagnosis ==
+
+
+=== Blood tests ===
+Serum calcium levels are usually elevated, and the parathyroid hormone level is abnormally high compared with an expected low level in response to the high calcium. A relatively elevated parathyroid hormone has been estimated to have a sensitivity of 60–80% and a specificity of approximately 90% for primary hyperparathyroidism.
+A more powerful variant of comparing the balance between calcium and parathyroid hormone is to perform a 3-hour calcium infusion. After infusion, a parathyroid hormone level above a cutoff of 14 ng/L has a sensitivity of 100% and a specificity of 93% in detecting primary hyperparathyroidism, with a confidence interval of 80% to 100%.
+Normocalcemic PHPT, the unusual occurrence of PHPT not being associated with elevated serum calcium levels, was first recognized in 2009 by an international panel of experts. By definition these patients have normal serum calcium (though usually in the upper range) and are typically found to have elevated PTH during workup for osteoporosis. In order to diagnose normocalcemic PHPT, ionized calcium levels should be normal, and all secondary causes for secondary hyperparathyroidism (such as vitamin D deficiency and chronic kidney disease) ruled out.
+Urinary cAMP is occasionally measured; it is generally elevated due to activation of Gs proteins when PTH binds to its receptor.
+
+
+=== Imaging ===
+Biochemical confirmation of primary hyperparathyroidism is following by investigations to localize the culprit lesion. Primary hyperparathyroidism is most commonly caused by a solitary parathyroid adenoma or parathyroid hyperplasia. Infrequently, the condition is caused by double or multiple parathyroid adenomas that can be present on more than one parathyroidal gland or even occur elsewhere. Scintigraphic or single-photon emission computed tomography (SPECT) imaging with the radiotracer 99mTc-sestamibi of head, neck and upper thorax is the first-line nuclear imaging modality for localizing parathyroid adenomas, having a sensitivity and specificity of 70–80%. Sensitivity falls down to 30% in case of double/multiple parathyroid adenomas or in case of parathyroid hyperplasia.
+
+In cases where 99mTc-sestamibi scintigraphy or SPECT delivers inconclusive results, other imaging modalities and tracers can be applied. For detection of multiple parathyroid adenomas, positron emission tomography (PET) using the radiopharmaceutical 68Ga-Trivehexin has demonstrated a higher detection rate (94.1%) than 99mTc-sestamibi imaging (58.8%).
+Ultrasonography is also a useful test in localizing suspicious parathyroid lesions.
+
+
+== Treatment ==
+Treatment is usually surgical removal of the gland(s) containing adenomas, but medication may also be required.
+
+
+=== Surgery ===
+The surgical removal of one or more of the parathyroid glands is known as a parathyroidectomy; this operation was first performed in 1925. The symptoms of the disease, listed above, are indications for surgery. Surgery reduces all cause mortality as well as resolving symptoms. However, cardiovascular mortality is not significantly reduced.
+The 2002 NIH Workshop on Asymptomatic Primary Hyperparathyroidism developed criteria for surgical intervention . The criteria were revised at the Third International Workshop on the Management of Asymptomatic Primary Hyperparathyroidism . These criteria were chosen on the basis of clinical experience and observational and clinical trial data as to which patients are more likely to have end-organ effects of primary hyperparathyroidism (nephrolithiasis, skeletal involvement), disease progression if surgery is deferred, and the most benefit from surgery. The panel emphasized the need for parathyroidectomy to be performed by surgeons who are highly experienced and skilled in the operation. The Third International Workshop guidelines concluded that surgery is indicated in asymptomatic patients who meet any one of the following conditions:
+
+Serum calcium concentration of 1.0 mg/dL (0.25 mmol/L) or more above the upper limit of normal
+Creatinine clearance that is reduced to <60 mL/min
+Bone density at the hip, lumbar spine, or distal radius that is more than 2.5 standard deviations below peak bone mass (T score <-2.5) and/or previous fragility fracture
+Age less than 50 years
+Operative intervention can be delayed in patients over 50 years of age who are asymptomatic or minimally symptomatic and who have serum calcium concentrations <1.0 mg/dL (0.2 mmol/L) above the upper limit of normal, and in patients who are medically unfit for surgery
+More recently, three randomized controlled trials have studied the role of surgery in patients with asymptomatic hyperparathyroidism. The largest study reported that surgery resulted in an increase in bone mass, but no improvement in quality of life after one to two years among patients in the following groups:
+
+Untreated, asymptomatic primary hyperparathyroidism
+Serum calcium between 2.60 and 2.85 mmol/liter (10.4–11.4 mg/dL)
+Age between 50 and 80 yr
+No medications interfering with Ca metabolism
+No hyperparathyroid bone disease
+No previous operation in the neck
+Creatinine level < 130 μmol/liter (<1.47 mg/dL)
+Two other trials reported improvements in bone density and some improvement in quality of life with surgery.
+
+
+=== Medications ===
+Medications are used when surgery is not indicated or for poor surgical candidates. Calcimimetics are used to reduce the amount of parathyroid hormone released by the parathyroid glands and subsequent hypercalcemia. Other medications used for PHPT includes treatments for osteoporosis such as estrogen replacement therapy, bisphosphonates or denosumab and for treatment hypercalciuria to reduce the risk for kidney stones.
+
+
+== Epidemiology ==
+Primary hyperparathyroidism affects approximately 1 per 1,000 people (0.1%), while there are 25–30 new cases per 100,000 people per year in the United States. The prevalence of primary hyperparathyroidism has been estimated to be 3 in 1000 in the general population and as high as 21 in 1000 in postmenopausal women.
+Primary hyperparathyroidism is associated with increased all-cause mortality.
+
+
+== Children ==
+In contrast with primary hyperparathyroidism in adults, primary hyperparathyroidism in children is considered a rare endocrinopathy. Pediatric primary hyperparathyroidism can be distinguished by its more severe manifestations, in contrast to the less intense manifestations in adult primary hyperparathyroidism. Multiple endocrine neoplasia is more likely to be associated with childhood and adolescent primary hyperparathyroidism. The fundamental  skeletal radiologic manifestation include diffuse osteopenia, pathologic fractures and the coexistence of resorption and sclerosis at numerous sites. Skeletal lesions can be specifically bilateral, symmetric and multifocal, exhibiting different types of bone resorption. Pathologic fractures of the femoral neck and spine can potentially initiate serious complications. Because pediatric primary hyperparathyroidism is frequently associated with pathologic fractures it can be misdiagnosed as osteogenesis imperfecta. Pediatric patients with primary hyperparathyroidism are best remedied by parathyroidectomy. Early diagnosis of pediatric primary hyperparathyroidism is all-important to minimize disease complications and start off timely and relevant treatment.
+
+
+== See also ==
+Secondary hyperparathyroidism
+Tertiary hyperparathyroidism
+
+
+== References ==
+
+
+== External links ==

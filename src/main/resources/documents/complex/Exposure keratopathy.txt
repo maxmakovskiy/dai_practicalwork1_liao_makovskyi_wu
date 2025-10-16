@@ -1,0 +1,58 @@
+TITLE: Exposure keratopathy
+URL: https://en.wikipedia.org/wiki/Exposure_keratopathy
+============================================================
+
+Exposure keratopathy (also known as exposure keratitis) is medical condition affecting the cornea of eyes. It can lead to corneal ulceration and permanent loss of vision due to corneal opacity.
+Normally, the corneal surface is kept moist by blinking. During sleep, it is protected by the eyelids. Increased exposure of the cornea to air, due to incomplete or inadequate eyelid closure, causes increased tear evaporation from the corneal surface. Increased tear evaporation leads to instability of the tear film and dryness of the corneal surface, resulting in corneal epithelial damage. Both tear film and corneal epithelium play significant role in corneal protection. Dryness and epithelial damage allow microorganisms to penetrate the cornea, leading to keratitis.
+
+
+== Signs and symptoms ==
+Symptoms are similar to dry eye. Patients may complain redness, irritation, ocular discomfort, burning, and foreign body sensation. Punctate epithelial defects, epithelial break down and stromal melting may be seen in corneal examination. Corneal ulceration may develop due to bacterial invasion.
+
+
+=== Complications ===
+The main complication of exposure keratopathy is permanent vision loss due to corneal opacification. Stromal melting may occasionally lead to corneal perforation.
+
+
+== Causes ==
+Exposure keratopathy may occur due to mechanical eyelid abnormalities or neuro-paralytic corneal anesthesia. It may occur secondary to ocular surgeries like blepharoplasty, ptosis surgery etc. also.
+
+
+=== Lagophthalmos ===
+
+Lagophthalmos, the inability to close the eyelids completely is the main cause of exposure keratopathy. Common cause of lagophthalmos is facial nerve (CN VII) palsy. Facial nerve function may affect in several conditions like cerebrovascular accident, head trauma, brain tumors, Bell's palsy etc. Physiological inability to close the eyelids during sleep (nocturnal lagophthalmos) may also cause exposure keratopathy.
+
+
+=== Mechanical causes ===
+Chemical or thermal burns to eyelids or conjunctiva, ocular cicatricial pemphigoid, or symblepharon may cause incomplete or inadequate eyelid closure.
+
+
+=== Exophthalmos ===
+
+Exophthalmos  is the unilateral or bilateral bulging of the eye anteriorly out of the orbit causing increased exposure of cornea. It may be seen in many conditions like Graves' ophthalmopathy, Orbital cellulitis, Orbital pseudotumor etc.
+
+
+=== Surgical ===
+A weak bell phenomenon may result in exposure keratopathy after ptosis surgery. Postoperative lagophthalmos following blepharoplasty is another common cause of secondary exposure keratopathy.
+
+
+== Diagnosis ==
+Fluorescein staining may be used to detect for epithelial defects, corneal infection or perforation of the cornea. Tear break-up time and ocular protection index assessment can be done to reveal dry eye. Exophthalmometry can be used to measure degree of exophthalmos.
+
+
+== Prevention ==
+If increased corneal exposure is detected, several preventive measures can be done to prevent keratitis. Aritificial eye drops and eye ointments may be used to keep the eyes moist. Since frequent use of eye drops with preservatives can promote inflammation, it is better to choose preservative free artificial tear drops and lubricating eye drops. Bandage silicone hydrogel or scleral contact lens may be used to protect cornea. But, risk of infection is more  with bandage contact lens use. Moisture goggles may also be used to protect cornea. Temporary or permanent tarsorrhaphy may be indicated to treat lagophthalmos. Gold weights can be inserted into the upper eyelid to treat fasial nerve palsy.
+
+
+== Treatment ==
+Treatment of the cause of the exposure is to be done first. For example, in proptosis due to thyroid eye disease,  regulation of thyroid hormone levels may be advised. Symblepharon can be treated surgically. If necessary, management of proptosis may be done by orbital decompression. Eyelid taping during sleep may alleviate mild cases of exposure keratopathy.
+If corneal ulcer is detected, it may be treated medically with antibiotics. If corneal perforation has occurred, immediate treatment measures should be done to restore the integrity of perforated cornea. Tissue adhesive glues, covering with conjunctival flap, bandage soft contact lens or therapeutic keratoplasty may be indicated to treat perforated corneal ulcer.
+
+
+== See also ==
+Keratitis
+Dry eye syndrome
+Lagophthalmos
+
+
+== References ==
