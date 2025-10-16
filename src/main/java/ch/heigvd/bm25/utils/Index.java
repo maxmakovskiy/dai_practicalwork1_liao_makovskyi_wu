@@ -35,7 +35,7 @@ public class Index {
         if (!tableStringIndex.get(0).equals("docNames")) {
             throw new IndexException("ill formated string : no docNames field");
         }
-        String[] docNames = tableStringIndex.get(1).split(" ");
+        String[] docNames = tableStringIndex.get(1).split("\\|");
 
         if (!tableStringIndex.get(2).equals("numOfDocs")) {
             throw new IndexException("ill formated string : no numOfDocs field");
@@ -112,7 +112,7 @@ public class Index {
         StringBuilder result = new StringBuilder();
 
         result.append("docNames\n");
-        result.append(String.join(" ", documentNames));
+        result.append(String.join("|", documentNames));
 
         result.append("\nnumOfDocs\n");
         result.append(this.numOfDocs);
