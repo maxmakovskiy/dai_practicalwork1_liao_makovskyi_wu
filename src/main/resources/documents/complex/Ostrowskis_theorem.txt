@@ -1,0 +1,2977 @@
+TITLE: Ostrowski's theorem
+URL: https://en.wikipedia.org/wiki/Ostrowski%27s_theorem
+============================================================
+
+In number theory, Ostrowski's theorem, due to Alexander Ostrowski (1916), states that every non-trivial absolute value on the rational numbers 
+  
+    
+      
+        
+          Q
+        
+      
+    
+    {\displaystyle \mathbb {Q} }
+  
+ is equivalent to either the usual real absolute value or a p-adic absolute value.
+
+
+== Definitions ==
+An absolute value on the rational numbers is a function 
+  
+    
+      
+        
+          |
+        
+        ⋅
+        
+          
+            |
+          
+          
+            ∗
+          
+        
+        :
+        
+          Q
+        
+        →
+        
+          R
+        
+      
+    
+    {\displaystyle |\cdot |_{*}:\mathbb {Q} \to \mathbb {R} }
+  
+ satisfying for all 
+  
+    
+      
+        x
+        ,
+        y
+      
+    
+    {\displaystyle x,y}
+  
+ that 
+  
+    
+      
+        
+          |
+        
+        x
+        
+          
+            |
+          
+          
+            ∗
+          
+        
+        ≥
+        0
+      
+    
+    {\displaystyle |x|_{*}\geq 0}
+  
+, 
+  
+    
+      
+        
+          |
+        
+        x
+        y
+        
+          
+            |
+          
+          
+            ∗
+          
+        
+        =
+        
+          |
+        
+        x
+        
+          
+            |
+          
+          
+            ∗
+          
+        
+        
+          |
+        
+        y
+        
+          
+            |
+          
+          
+            ∗
+          
+        
+      
+    
+    {\displaystyle |xy|_{*}=|x|_{*}|y|_{*}}
+  
+, 
+  
+    
+      
+        
+          |
+        
+        x
+        +
+        y
+        
+          
+            |
+          
+          
+            ∗
+          
+        
+        ≤
+        
+          |
+        
+        x
+        
+          
+            |
+          
+          
+            ∗
+          
+        
+        +
+        
+          |
+        
+        y
+        
+          
+            |
+          
+          
+            ∗
+          
+        
+      
+    
+    {\displaystyle |x+y|_{*}\leq |x|_{*}+|y|_{*}}
+  
+, and 
+  
+    
+      
+        
+          |
+        
+        x
+        
+          
+            |
+          
+          
+            ∗
+          
+        
+        =
+        0
+      
+    
+    {\displaystyle |x|_{*}=0}
+  
+ only if 
+  
+    
+      
+        x
+        =
+        0
+      
+    
+    {\displaystyle x=0}
+  
+.
+Two absolute values 
+  
+    
+      
+        
+          |
+        
+        ⋅
+        
+          |
+        
+      
+    
+    {\displaystyle |\cdot |}
+  
+ and 
+  
+    
+      
+        
+          |
+        
+        ⋅
+        
+          
+            |
+          
+          
+            ∗
+          
+        
+      
+    
+    {\displaystyle |\cdot |_{*}}
+  
+ on the rationals are defined to be equivalent if they induce the same topology; this can be shown to be equivalent to the existence of a positive real number 
+  
+    
+      
+        λ
+        ∈
+        (
+        0
+        ,
+        ∞
+        )
+      
+    
+    {\displaystyle \lambda \in (0,\infty )}
+  
+ such that
+
+  
+    
+      
+        ∀
+        x
+        ∈
+        K
+        :
+        
+        
+          |
+        
+        x
+        
+          
+            |
+          
+          
+            ∗
+          
+        
+        =
+        
+          |
+        
+        x
+        
+          
+            |
+          
+          
+            λ
+          
+        
+        .
+      
+    
+    {\displaystyle \forall x\in K:\quad |x|_{*}=|x|^{\lambda }.}
+  
+
+(Note: In general, if 
+  
+    
+      
+        
+          |
+        
+        x
+        
+          |
+        
+      
+    
+    {\displaystyle |x|}
+  
+ is an absolute value, 
+  
+    
+      
+        
+          |
+        
+        x
+        
+          
+            |
+          
+          
+            λ
+          
+        
+      
+    
+    {\displaystyle |x|^{\lambda }}
+  
+ is not necessarily an absolute value anymore; however if two absolute values are equivalent, then each is a positive power of the other.) The trivial absolute value on any field K is defined to be
+
+  
+    
+      
+        
+          |
+        
+        x
+        
+          
+            |
+          
+          
+            0
+          
+        
+        :=
+        
+          
+            {
+            
+              
+                
+                  0
+                
+                
+                  x
+                  =
+                  0
+                  ,
+                
+              
+              
+                
+                  1
+                
+                
+                  x
+                  ≠
+                  0.
+                
+              
+            
+            
+          
+        
+      
+    
+    {\displaystyle |x|_{0}:={\begin{cases}0&x=0,\\1&x\neq 0.\end{cases}}}
+  
+
+The real absolute value on the rationals 
+  
+    
+      
+        
+          Q
+        
+      
+    
+    {\displaystyle \mathbb {Q} }
+  
+ is the standard absolute value on the reals, defined to be
+
+  
+    
+      
+        
+          |
+        
+        x
+        
+          
+            |
+          
+          
+            ∞
+          
+        
+        :=
+        
+          
+            {
+            
+              
+                
+                  x
+                
+                
+                  x
+                  ≥
+                  0
+                  ,
+                
+              
+              
+                
+                  −
+                  x
+                
+                
+                  x
+                  <
+                  0.
+                
+              
+            
+            
+          
+        
+      
+    
+    {\displaystyle |x|_{\infty }:={\begin{cases}x&x\geq 0,\\-x&x<0.\end{cases}}}
+  
+
+This is sometimes written with a subscript 1 instead of infinity.
+For a prime number p, the p-adic absolute value on 
+  
+    
+      
+        
+          Q
+        
+      
+    
+    {\displaystyle \mathbb {Q} }
+  
+ is defined as follows: any non-zero rational x can be written uniquely as 
+  
+    
+      
+        x
+        =
+        
+          p
+          
+            n
+          
+        
+        
+          
+            
+              a
+              b
+            
+          
+        
+      
+    
+    {\displaystyle x=p^{n}{\tfrac {a}{b}}}
+  
+, where a and b are coprime integers not divisible by p, and n is an integer; so we define
+
+  
+    
+      
+        
+          |
+        
+        x
+        
+          
+            |
+          
+          
+            p
+          
+        
+        :=
+        
+          
+            {
+            
+              
+                
+                  0
+                
+                
+                  x
+                  =
+                  0
+                  ,
+                
+              
+              
+                
+                  
+                    p
+                    
+                      −
+                      n
+                    
+                  
+                
+                
+                  x
+                  ≠
+                  0.
+                
+              
+            
+            
+          
+        
+      
+    
+    {\displaystyle |x|_{p}:={\begin{cases}0&x=0,\\p^{-n}&x\neq 0.\end{cases}}}
+  
+
+
+== Theorem statement ==
+Let 
+  
+    
+      
+        
+          |
+        
+        ⋅
+        
+          
+            |
+          
+          
+            ∗
+          
+        
+        :
+        
+          Q
+        
+        →
+        
+          R
+        
+      
+    
+    {\displaystyle |\cdot |_{*}:\mathbb {Q} \to \mathbb {R} }
+  
+ be any absolute value on the rational numbers. Then either 
+  
+    
+      
+        
+          |
+        
+        ⋅
+        
+          
+            |
+          
+          
+            ∗
+          
+        
+        =
+        
+          |
+        
+        ⋅
+        
+          
+            |
+          
+          
+            0
+          
+        
+      
+    
+    {\displaystyle |\cdot |_{*}=|\cdot |_{0}}
+  
+, or 
+  
+    
+      
+        
+          |
+        
+        ⋅
+        
+          
+            |
+          
+          
+            ∗
+          
+        
+      
+    
+    {\displaystyle |\cdot |_{*}}
+  
+ is equivalent to 
+  
+    
+      
+        
+          |
+        
+        ⋅
+        
+          |
+        
+      
+    
+    {\displaystyle |\cdot |}
+  
+, or 
+  
+    
+      
+        
+          |
+        
+        ⋅
+        
+          
+            |
+          
+          
+            ∗
+          
+        
+      
+    
+    {\displaystyle |\cdot |_{*}}
+  
+ is equivalent to 
+  
+    
+      
+        
+          |
+        
+        ⋅
+        
+          
+            |
+          
+          
+            p
+          
+        
+      
+    
+    {\displaystyle |\cdot |_{p}}
+  
+.
+
+
+== Proof ==
+The following proof follows the one of Theorem 10.1 in Schikhof (2007).
+Let 
+  
+    
+      
+        
+          |
+        
+        ⋅
+        
+          
+            |
+          
+          
+            ∗
+          
+        
+      
+    
+    {\displaystyle |\cdot |_{*}}
+  
+ be an absolute value on the rationals. We start the proof by showing that it is entirely determined by the values it takes on prime numbers.
+From the fact that 
+  
+    
+      
+        1
+        ×
+        1
+        =
+        1
+      
+    
+    {\displaystyle 1\times 1=1}
+  
+ and the multiplicativity property of the absolute value, we infer that 
+  
+    
+      
+        
+          |
+        
+        1
+        
+          
+            |
+          
+          
+            ∗
+          
+          
+            2
+          
+        
+        =
+        
+          |
+        
+        1
+        
+          
+            |
+          
+          
+            ∗
+          
+        
+      
+    
+    {\displaystyle |1|_{*}^{2}=|1|_{*}}
+  
+. In particular, 
+  
+    
+      
+        
+          |
+        
+        1
+        
+          
+            |
+          
+          
+            ∗
+          
+        
+      
+    
+    {\displaystyle |1|_{*}}
+  
+ has to be 0 or 1 and since 
+  
+    
+      
+        1
+        ≠
+        0
+      
+    
+    {\displaystyle 1\neq 0}
+  
+, one must have 
+  
+    
+      
+        
+          |
+        
+        1
+        
+          
+            |
+          
+          
+            ∗
+          
+        
+        =
+        1
+      
+    
+    {\displaystyle |1|_{*}=1}
+  
+. A similar argument shows that 
+  
+    
+      
+        
+          |
+        
+        −
+        1
+        
+          
+            |
+          
+          
+            ∗
+          
+        
+        =
+        1
+      
+    
+    {\displaystyle |-1|_{*}=1}
+  
+. 
+For all positive integer n, the multiplicativity property entails 
+  
+    
+      
+        
+          |
+        
+        −
+        n
+        
+          
+            |
+          
+          
+            ∗
+          
+        
+        =
+        
+          |
+        
+        −
+        1
+        
+          
+            |
+          
+          
+            ∗
+          
+        
+        ×
+        
+          |
+        
+        n
+        
+          
+            |
+          
+          
+            ∗
+          
+        
+        =
+        
+          |
+        
+        n
+        
+          
+            |
+          
+          
+            ∗
+          
+        
+      
+    
+    {\displaystyle |-n|_{*}=|-1|_{*}\times |n|_{*}=|n|_{*}}
+  
+. In other words, the absolute value of a negative integer coincides with that of its opposite.
+Let n be a positive integer. From the fact that 
+  
+    
+      
+        
+          n
+          
+            −
+            1
+          
+        
+        ×
+        n
+        =
+        1
+      
+    
+    {\displaystyle n^{-1}\times n=1}
+  
+ and the multiplicativity property, we conclude that 
+  
+    
+      
+        
+          |
+        
+        
+          n
+          
+            −
+            1
+          
+        
+        
+          
+            |
+          
+          
+            ∗
+          
+        
+        =
+        
+          |
+        
+        n
+        
+          
+            |
+          
+          
+            ∗
+          
+          
+            −
+            1
+          
+        
+      
+    
+    {\displaystyle |n^{-1}|_{*}=|n|_{*}^{-1}}
+  
+.
+Let now r be a positive rational. There exist two coprime positive integers p and q such that 
+  
+    
+      
+        r
+        =
+        p
+        
+          q
+          
+            −
+            1
+          
+        
+      
+    
+    {\displaystyle r=pq^{-1}}
+  
+. The properties above show that 
+  
+    
+      
+        
+          |
+        
+        r
+        
+          
+            |
+          
+          
+            ∗
+          
+        
+        =
+        
+          |
+        
+        p
+        
+          
+            |
+          
+          
+            ∗
+          
+        
+        
+          |
+        
+        
+          q
+          
+            −
+            1
+          
+        
+        
+          
+            |
+          
+          
+            ∗
+          
+        
+        =
+        
+          |
+        
+        p
+        
+          
+            |
+          
+          
+            ∗
+          
+        
+        
+          |
+        
+        q
+        
+          
+            |
+          
+          
+            ∗
+          
+          
+            −
+            1
+          
+        
+      
+    
+    {\displaystyle |r|_{*}=|p|_{*}|q^{-1}|_{*}=|p|_{*}|q|_{*}^{-1}}
+  
+. Altogether, the absolute value of a positive rational is entirely determined from that of its numerator and denominator.
+Finally, let 
+  
+    
+      
+        
+          P
+        
+      
+    
+    {\displaystyle \mathbb {P} }
+  
+ be the set of prime numbers. For all positive integer n, we can write
+
+  
+    
+      
+        n
+        =
+        
+          ∏
+          
+            p
+            ∈
+            
+              P
+            
+          
+        
+        
+          p
+          
+            
+              v
+              
+                p
+              
+            
+            (
+            n
+            )
+          
+        
+        ,
+      
+    
+    {\displaystyle n=\prod _{p\in \mathbb {P} }p^{v_{p}(n)},}
+  
+
+where 
+  
+    
+      
+        
+          v
+          
+            p
+          
+        
+        (
+        n
+        )
+      
+    
+    {\displaystyle v_{p}(n)}
+  
+ is the p-adic valuation of n. The multiplicativity property enables one to compute the absolute value of n from that of the prime numbers using the following relationship
+
+  
+    
+      
+        
+          |
+        
+        n
+        
+          
+            |
+          
+          
+            ∗
+          
+        
+        =
+        
+          
+            |
+            
+              
+                ∏
+                
+                  p
+                  ∈
+                  
+                    P
+                  
+                
+              
+              
+                p
+                
+                  
+                    v
+                    
+                      p
+                    
+                  
+                  (
+                  n
+                  )
+                
+              
+            
+            |
+          
+          
+            ∗
+          
+        
+        =
+        
+          ∏
+          
+            p
+            ∈
+            
+              P
+            
+          
+        
+        
+          |
+        
+        p
+        
+          
+            |
+          
+          
+            ∗
+          
+          
+            
+              v
+              
+                p
+              
+            
+            (
+            n
+            )
+          
+        
+        .
+      
+    
+    {\displaystyle |n|_{*}=\left|\prod _{p\in \mathbb {P} }p^{v_{p}(n)}\right|_{*}=\prod _{p\in \mathbb {P} }|p|_{*}^{v_{p}(n)}.}
+  
+
+We continue the proof by separating two cases:
+
+There exists a positive integer n such that 
+  
+    
+      
+        
+          |
+        
+        n
+        
+          
+            |
+          
+          
+            ∗
+          
+        
+        >
+        1
+      
+    
+    {\displaystyle |n|_{*}>1}
+  
+; or
+For all integer n, one has 
+  
+    
+      
+        
+          |
+        
+        n
+        
+          
+            |
+          
+          
+            ∗
+          
+        
+        ≤
+        1
+      
+    
+    {\displaystyle |n|_{*}\leq 1}
+  
+.
+
+
+=== First case ===
+Suppose that there exists a positive integer n such that 
+  
+    
+      
+        
+          |
+        
+        n
+        
+          
+            |
+          
+          
+            ∗
+          
+        
+        >
+        1.
+      
+    
+    {\displaystyle |n|_{*}>1.}
+  
+ Let k be a non-negative integer and b be a positive integer greater than 
+  
+    
+      
+        1
+      
+    
+    {\displaystyle 1}
+  
+. We express 
+  
+    
+      
+        
+          n
+          
+            k
+          
+        
+      
+    
+    {\displaystyle n^{k}}
+  
+ in base b: there exist a positive integer m and integers 
+  
+    
+      
+        (
+        
+          c
+          
+            i
+          
+        
+        
+          )
+          
+            0
+            ≤
+            i
+            <
+            m
+          
+        
+      
+    
+    {\displaystyle (c_{i})_{0\leq i<m}}
+  
+ such that for all i, 
+  
+    
+      
+        0
+        ≤
+        
+          c
+          
+            i
+          
+        
+        <
+        b
+      
+    
+    {\displaystyle 0\leq c_{i}<b}
+  
+ and 
+  
+    
+      
+        
+          n
+          
+            k
+          
+        
+        =
+        
+          ∑
+          
+            i
+            <
+            m
+          
+        
+        
+          c
+          
+            i
+          
+        
+        
+          b
+          
+            i
+          
+        
+      
+    
+    {\displaystyle n^{k}=\sum _{i<m}c_{i}b^{i}}
+  
+. In particular, 
+  
+    
+      
+        
+          n
+          
+            k
+          
+        
+        ≥
+        
+          b
+          
+            m
+            −
+            1
+          
+        
+      
+    
+    {\displaystyle n^{k}\geq b^{m-1}}
+  
+ so 
+  
+    
+      
+        m
+        ≤
+        1
+        +
+        k
+        
+          log
+          
+            b
+          
+        
+        ⁡
+        n
+      
+    
+    {\displaystyle m\leq 1+k\log _{b}n}
+  
+.
+Each term 
+  
+    
+      
+        
+          |
+        
+        
+          c
+          
+            i
+          
+        
+        
+          b
+          
+            i
+          
+        
+        
+          
+            |
+          
+          
+            ∗
+          
+        
+      
+    
+    {\displaystyle |c_{i}b^{i}|_{*}}
+  
+ is at most 
+  
+    
+      
+        (
+        b
+        −
+        1
+        )
+        
+          |
+        
+        b
+        
+          
+            |
+          
+          
+            ∗
+          
+          
+            i
+          
+        
+      
+    
+    {\displaystyle (b-1)|b|_{*}^{i}}
+  
+. (By the multiplicative property, 
+  
+    
+      
+        
+          |
+        
+        
+          c
+          
+            i
+          
+        
+        
+          b
+          
+            i
+          
+        
+        
+          
+            |
+          
+          
+            ∗
+          
+        
+        =
+        
+          |
+        
+        
+          c
+          
+            i
+          
+        
+        
+          
+            |
+          
+          
+            ∗
+          
+        
+        
+          |
+        
+        b
+        
+          
+            |
+          
+          
+            ∗
+          
+          
+            i
+          
+        
+      
+    
+    {\displaystyle |c_{i}b^{i}|_{*}=|c_{i}|_{*}|b|_{*}^{i}}
+  
+, then using the fact that 
+  
+    
+      
+        
+          c
+          
+            i
+          
+        
+      
+    
+    {\displaystyle c_{i}}
+  
+ is a digit, write 
+  
+    
+      
+        
+          c
+          
+            i
+          
+        
+        =
+        1
+        +
+        1
+        +
+        ⋯
+        +
+        1
+      
+    
+    {\displaystyle c_{i}=1+1+\cdots +1}
+  
+ so by the triangle inequality, 
+  
+    
+      
+        
+          |
+        
+        
+          c
+          
+            i
+          
+        
+        
+          |
+        
+        ≤
+        
+          |
+        
+        1
+        
+          |
+        
+        +
+        
+          |
+        
+        1
+        
+          |
+        
+        +
+        ⋯
+        +
+        
+          |
+        
+        1
+        
+          |
+        
+        =
+        
+          c
+          
+            i
+          
+        
+        ≤
+        b
+        −
+        1
+      
+    
+    {\displaystyle |c_{i}|\leq |1|+|1|+\cdots +|1|=c_{i}\leq b-1}
+  
+.) Besides, 
+  
+    
+      
+        
+          |
+        
+        b
+        
+          
+            |
+          
+          
+            ∗
+          
+          
+            i
+          
+        
+      
+    
+    {\displaystyle |b|_{*}^{i}}
+  
+ is at most 
+  
+    
+      
+        max
+        {
+        1
+        ,
+        
+          |
+        
+        b
+        
+          
+            |
+          
+          
+            ∗
+          
+          
+            m
+            −
+            1
+          
+        
+        }
+      
+    
+    {\displaystyle \max\{1,|b|_{*}^{m-1}\}}
+  
+. By the triangle inequality and the above bound on m, it follows:
+
+  
+    
+      
+        
+          
+            
+              
+                
+                  |
+                
+                n
+                
+                  
+                    |
+                  
+                  
+                    ∗
+                  
+                  
+                    k
+                  
+                
+              
+              
+                
+                ≤
+                m
+                
+                  max
+                  
+                    i
+                    <
+                    m
+                  
+                
+                {
+                
+                  |
+                
+                
+                  c
+                  
+                    i
+                  
+                
+                
+                  b
+                  
+                    i
+                  
+                
+                
+                  
+                    |
+                  
+                  
+                    ∗
+                  
+                
+                }
+              
+            
+            
+              
+              
+                
+                ≤
+                m
+                (
+                b
+                −
+                1
+                )
+                max
+                {
+                1
+                ,
+                
+                  |
+                
+                b
+                
+                  
+                    |
+                  
+                  
+                    ∗
+                  
+                  
+                    m
+                    −
+                    1
+                  
+                
+                }
+              
+            
+            
+              
+              
+                
+                ≤
+                (
+                1
+                +
+                k
+                
+                  log
+                  
+                    b
+                  
+                
+                ⁡
+                n
+                )
+                (
+                b
+                −
+                1
+                )
+                max
+                {
+                1
+                ,
+                
+                  |
+                
+                b
+                
+                  
+                    |
+                  
+                  
+                    ∗
+                  
+                  
+                    k
+                    
+                      log
+                      
+                        b
+                      
+                    
+                    ⁡
+                    n
+                  
+                
+                }
+                .
+              
+            
+          
+        
+      
+    
+    {\displaystyle {\begin{aligned}|n|_{*}^{k}&\leq m\max _{i<m}\{|c_{i}b^{i}|_{*}\}\\&\leq m(b-1)\max\{1,|b|_{*}^{m-1}\}\\&\leq (1+k\log _{b}n)(b-1)\max\{1,|b|_{*}^{k\log _{b}n}\}.\end{aligned}}}
+  
+
+Therefore, raising both sides to the power 
+  
+    
+      
+        1
+        
+          /
+        
+        k
+      
+    
+    {\displaystyle 1/k}
+  
+, we obtain
+
+  
+    
+      
+        
+          |
+        
+        n
+        
+          
+            |
+          
+          
+            ∗
+          
+        
+        ≤
+        
+          
+            (
+            
+              (
+              1
+              +
+              k
+              
+                log
+                
+                  b
+                
+              
+              ⁡
+              n
+              )
+              (
+              b
+              −
+              1
+              )
+            
+            )
+          
+          
+            1
+            
+              /
+            
+            k
+          
+        
+        max
+        {
+        1
+        ,
+        
+          |
+        
+        b
+        
+          
+            |
+          
+          
+            ∗
+          
+          
+            
+              log
+              
+                b
+              
+            
+            ⁡
+            n
+          
+        
+        }
+        .
+      
+    
+    {\displaystyle |n|_{*}\leq \left((1+k\log _{b}n)(b-1)\right)^{1/k}\max\{1,|b|_{*}^{\log _{b}n}\}.}
+  
+
+Finally, taking the limit as k tends to infinity shows that
+
+  
+    
+      
+        
+          |
+        
+        n
+        
+          
+            |
+          
+          
+            ∗
+          
+        
+        ≤
+        max
+        {
+        1
+        ,
+        
+          |
+        
+        b
+        
+          
+            |
+          
+          
+            ∗
+          
+          
+            
+              log
+              
+                b
+              
+            
+            ⁡
+            n
+          
+        
+        }
+        .
+      
+    
+    {\displaystyle |n|_{*}\leq \max\{1,|b|_{*}^{\log _{b}n}\}.}
+  
+
+Together with the condition 
+  
+    
+      
+        
+          |
+        
+        n
+        
+          
+            |
+          
+          
+            ∗
+          
+        
+        >
+        1
+        ,
+      
+    
+    {\displaystyle |n|_{*}>1,}
+  
+ the above argument leads to 
+  
+    
+      
+        
+          |
+        
+        b
+        
+          
+            |
+          
+          
+            ∗
+          
+        
+        >
+        1
+      
+    
+    {\displaystyle |b|_{*}>1}
+  
+ regardless of the choice of b (otherwise 
+  
+    
+      
+        
+          |
+        
+        b
+        
+          
+            |
+          
+          
+            ∗
+          
+          
+            
+              log
+              
+                b
+              
+            
+            ⁡
+            n
+          
+        
+        ≤
+        1
+      
+    
+    {\displaystyle |b|_{*}^{\log _{b}n}\leq 1}
+  
+ implies 
+  
+    
+      
+        
+          |
+        
+        n
+        
+          
+            |
+          
+          
+            ∗
+          
+        
+        ≤
+        1
+      
+    
+    {\displaystyle |n|_{*}\leq 1}
+  
+). As a result, all integers greater than one have an absolute value strictly greater than one. Thus generalizing the above, for any choice of integers n and b greater than or equal to 2, we get
+
+  
+    
+      
+        
+          |
+        
+        n
+        
+          
+            |
+          
+          
+            ∗
+          
+        
+        ≤
+        
+          |
+        
+        b
+        
+          
+            |
+          
+          
+            ∗
+          
+          
+            
+              log
+              
+                b
+              
+            
+            ⁡
+            n
+          
+        
+        ,
+      
+    
+    {\displaystyle |n|_{*}\leq |b|_{*}^{\log _{b}n},}
+  
+
+i.e.
+
+  
+    
+      
+        
+          log
+          
+            n
+          
+        
+        ⁡
+        
+          |
+        
+        n
+        
+          
+            |
+          
+          
+            ∗
+          
+        
+        ≤
+        
+          log
+          
+            b
+          
+        
+        ⁡
+        
+          |
+        
+        b
+        
+          
+            |
+          
+          
+            ∗
+          
+        
+        .
+      
+    
+    {\displaystyle \log _{n}|n|_{*}\leq \log _{b}|b|_{*}.}
+  
+
+By symmetry, this inequality is an equality. In particular, for all 
+  
+    
+      
+        n
+        ≥
+        2
+      
+    
+    {\displaystyle n\geq 2}
+  
+, 
+  
+    
+      
+        
+          log
+          
+            n
+          
+        
+        ⁡
+        
+          |
+        
+        n
+        
+          
+            |
+          
+          
+            ∗
+          
+        
+        =
+        
+          log
+          
+            2
+          
+        
+        ⁡
+        
+          |
+        
+        2
+        
+          
+            |
+          
+          
+            ∗
+          
+        
+        =
+        λ
+      
+    
+    {\displaystyle \log _{n}|n|_{*}=\log _{2}|2|_{*}=\lambda }
+  
+, i.e. 
+  
+    
+      
+        
+          |
+        
+        n
+        
+          
+            |
+          
+          
+            ∗
+          
+        
+        =
+        
+          n
+          
+            λ
+          
+        
+        =
+        
+          |
+        
+        n
+        
+          
+            |
+          
+          
+            ∞
+          
+          
+            λ
+          
+        
+      
+    
+    {\displaystyle |n|_{*}=n^{\lambda }=|n|_{\infty }^{\lambda }}
+  
+. Because the triangle inequality implies that for all positive integers n we have 
+  
+    
+      
+        
+          |
+        
+        n
+        
+          
+            |
+          
+          
+            ∗
+          
+        
+        ≤
+        n
+      
+    
+    {\displaystyle |n|_{*}\leq n}
+  
+, in this case we obtain more precisely that 
+  
+    
+      
+        0
+        <
+        λ
+        ≤
+        1
+      
+    
+    {\displaystyle 0<\lambda \leq 1}
+  
+.
+As per the above result on the determination of an absolute value by its values on the prime numbers, we easily see that 
+  
+    
+      
+        
+          |
+        
+        r
+        
+          
+            |
+          
+          
+            ∗
+          
+        
+        =
+        
+          |
+        
+        r
+        
+          
+            |
+          
+          
+            ∞
+          
+          
+            λ
+          
+        
+      
+    
+    {\displaystyle |r|_{*}=|r|_{\infty }^{\lambda }}
+  
+ for all rational r, thus demonstrating equivalence to the real absolute value.
+
+
+=== Second case ===
+Suppose that for all integer n, one has 
+  
+    
+      
+        
+          |
+        
+        n
+        
+          
+            |
+          
+          
+            ∗
+          
+        
+        ≤
+        1
+      
+    
+    {\displaystyle |n|_{*}\leq 1}
+  
+. As our absolute value is non-trivial, there must exist a positive integer n for which 
+  
+    
+      
+        
+          |
+        
+        n
+        
+          
+            |
+          
+          
+            ∗
+          
+        
+        <
+        1.
+      
+    
+    {\displaystyle |n|_{*}<1.}
+  
+ Decomposing 
+  
+    
+      
+        
+          |
+        
+        n
+        
+          
+            |
+          
+          
+            ∗
+          
+        
+      
+    
+    {\displaystyle |n|_{*}}
+  
+ on the prime numbers shows that there exists 
+  
+    
+      
+        p
+        ∈
+        
+          P
+        
+      
+    
+    {\displaystyle p\in \mathbb {P} }
+  
+ such that 
+  
+    
+      
+        
+          |
+        
+        p
+        
+          
+            |
+          
+          
+            ∗
+          
+        
+        <
+        1
+      
+    
+    {\displaystyle |p|_{*}<1}
+  
+. We claim that in fact this is so for one prime number only.
+Suppose by way of contradiction that p and q are two distinct primes with absolute value strictly less than 1. Let k be a positive integer such that 
+  
+    
+      
+        
+          |
+        
+        p
+        
+          
+            |
+          
+          
+            ∗
+          
+          
+            k
+          
+        
+      
+    
+    {\displaystyle |p|_{*}^{k}}
+  
+ and 
+  
+    
+      
+        
+          |
+        
+        q
+        
+          
+            |
+          
+          
+            ∗
+          
+          
+            k
+          
+        
+      
+    
+    {\displaystyle |q|_{*}^{k}}
+  
+ are smaller than 
+  
+    
+      
+        1
+        
+          /
+        
+        2
+      
+    
+    {\displaystyle 1/2}
+  
+. By Bézout's identity, since 
+  
+    
+      
+        
+          p
+          
+            k
+          
+        
+      
+    
+    {\displaystyle p^{k}}
+  
+ and 
+  
+    
+      
+        
+          q
+          
+            k
+          
+        
+      
+    
+    {\displaystyle q^{k}}
+  
+ are coprime, there exist two integers a and b such that 
+  
+    
+      
+        a
+        
+          p
+          
+            k
+          
+        
+        +
+        b
+        
+          q
+          
+            k
+          
+        
+        =
+        1.
+      
+    
+    {\displaystyle ap^{k}+bq^{k}=1.}
+  
+ This yields a contradiction, as
+
+  
+    
+      
+        1
+        =
+        
+          |
+        
+        1
+        
+          
+            |
+          
+          
+            ∗
+          
+        
+        ≤
+        
+          |
+        
+        a
+        
+          
+            |
+          
+          
+            ∗
+          
+        
+        
+          |
+        
+        p
+        
+          
+            |
+          
+          
+            ∗
+          
+          
+            k
+          
+        
+        +
+        
+          |
+        
+        b
+        
+          
+            |
+          
+          
+            ∗
+          
+        
+        
+          |
+        
+        q
+        
+          
+            |
+          
+          
+            ∗
+          
+          
+            k
+          
+        
+        <
+        
+          
+            
+              
+                |
+              
+              a
+              
+                
+                  |
+                
+                
+                  ∗
+                
+              
+              +
+              
+                |
+              
+              b
+              
+                
+                  |
+                
+                
+                  ∗
+                
+              
+            
+            2
+          
+        
+        ≤
+        1.
+      
+    
+    {\displaystyle 1=|1|_{*}\leq |a|_{*}|p|_{*}^{k}+|b|_{*}|q|_{*}^{k}<{\frac {|a|_{*}+|b|_{*}}{2}}\leq 1.}
+  
+
+This means that there exists a unique prime p such that 
+  
+    
+      
+        
+          |
+        
+        p
+        
+          
+            |
+          
+          
+            ∗
+          
+        
+        <
+        1
+      
+    
+    {\displaystyle |p|_{*}<1}
+  
+ and that for all other primes q, one has 
+  
+    
+      
+        
+          |
+        
+        q
+        
+          
+            |
+          
+          
+            ∗
+          
+        
+        =
+        1
+      
+    
+    {\displaystyle |q|_{*}=1}
+  
+ (from the hypothesis of this second case). Let 
+  
+    
+      
+        λ
+        =
+        −
+        
+          log
+          
+            p
+          
+        
+        ⁡
+        
+          |
+        
+        p
+        
+          
+            |
+          
+          
+            ∗
+          
+        
+      
+    
+    {\displaystyle \lambda =-\log _{p}|p|_{*}}
+  
+. From 
+  
+    
+      
+        
+          |
+        
+        p
+        
+          
+            |
+          
+          
+            ∗
+          
+        
+        <
+        1
+      
+    
+    {\displaystyle |p|_{*}<1}
+  
+, we infer that 
+  
+    
+      
+        0
+        <
+        λ
+        <
+        ∞
+      
+    
+    {\displaystyle 0<\lambda <\infty }
+  
+. (And indeed in this case, all positive 
+  
+    
+      
+        λ
+      
+    
+    {\displaystyle \lambda }
+  
+ give absolute values equivalent to the p-adic one.)
+We finally verify that 
+  
+    
+      
+        
+          |
+        
+        p
+        
+          
+            |
+          
+          
+            p
+          
+          
+            λ
+          
+        
+        =
+        
+          p
+          
+            −
+            λ
+          
+        
+        =
+        
+          |
+        
+        p
+        
+          
+            |
+          
+          
+            ∗
+          
+        
+      
+    
+    {\displaystyle |p|_{p}^{\lambda }=p^{-\lambda }=|p|_{*}}
+  
+ and that for all other primes q, 
+  
+    
+      
+        
+          |
+        
+        q
+        
+          
+            |
+          
+          
+            p
+          
+          
+            λ
+          
+        
+        =
+        1
+        =
+        
+          |
+        
+        q
+        
+          
+            |
+          
+          
+            ∗
+          
+        
+      
+    
+    {\displaystyle |q|_{p}^{\lambda }=1=|q|_{*}}
+  
+. As per the above result on the determination of an absolute value by its values on the prime numbers, we conclude that 
+  
+    
+      
+        
+          |
+        
+        r
+        
+          
+            |
+          
+          
+            ∗
+          
+        
+        =
+        
+          |
+        
+        r
+        
+          
+            |
+          
+          
+            p
+          
+          
+            λ
+          
+        
+      
+    
+    {\displaystyle |r|_{*}=|r|_{p}^{\lambda }}
+  
+ for all rational r, implying that this absolute value is equivalent to the p-adic one. 
+  
+    
+      
+        ◼
+      
+    
+    {\displaystyle \blacksquare }
+  
+
+
+== Another Ostrowski's theorem ==
+Another theorem states that any field, complete with respect to an Archimedean absolute value, is (algebraically and topologically) isomorphic to either the real numbers or the complex numbers. This is sometimes also referred to as Ostrowski's theorem.
+
+
+== See also ==
+Valuation (algebra)
+
+
+== References ==
+
+Cassels, J. W. S. (1986). Local Fields. London Mathematical Society Student Texts. Vol. 3. Cambridge University Press. ISBN 0-521-31525-5. Zbl 0595.12006.
+Janusz, Gerald J. (1996). Algebraic Number Fields (2nd ed.). American Mathematical Society. ISBN 0-8218-0429-4.
+Jacobson, Nathan (1989). Basic algebra II (2nd ed.). W H Freeman. ISBN 0-7167-1933-9.
+Schikhof, W. H. (2007). Ultrametric Calculus (2nd ed.). Cambridge University Press. ISBN 978-0-521-03287-2.
+Ostrowski, Alexander (1916). "Über einige Lösungen der Funktionalgleichung φ(x)·φ(y)=φ(xy)". Acta Mathematica. 41 (1) (2nd ed.): 271–284. doi:10.1007/BF02422947. ISSN 0001-5962.
