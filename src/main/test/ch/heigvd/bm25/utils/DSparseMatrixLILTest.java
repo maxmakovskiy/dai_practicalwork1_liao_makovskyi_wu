@@ -1,10 +1,9 @@
 package ch.heigvd.bm25.utils;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class DSparseMatrixLILTest {
@@ -98,6 +97,35 @@ public class DSparseMatrixLILTest {
         String res = matrix.toString();
 
         assertNotEquals(0.0, res.length());
+    }
+
+    @Test
+    void matrixToJsonAndBack() throws JsonProcessingException {
+        DSparseMatrixLIL srcMatrix = new DSparseMatrixLIL(4, 4);
+        int[] rowIndexes = new int[] {
+                0, 0, 0, 1, 1, 2, 3
+        };
+        int[] columnIndexes = new int[] {
+                0, 1, 3, 1, 0, 2, 3
+        };
+        double[] data = new double[] {
+                1.0, 1.1, 1.3, 2.0, 2.1, 3.0, 4.0
+        };
+
+        for (int i = 0; i < rowIndexes.length; i++) {
+            srcMatrix.set(rowIndexes[i], columnIndexes[i], data[i]);
+        }
+
+        String json = srcMatrix.toJSON();
+        assertFalse(json.isEmpty());
+
+        DSparseMatrixLIL dstMatrix = DSparseMatrixLIL.fromJson(json);
+
+        for (int i = 0; i < rowIndexes.length; i++) {
+            double res = dstMatrix.get(rowIndexes[i], columnIndexes[i]);
+            assertEquals(data[i], res);
+        }
+
     }
 
 
