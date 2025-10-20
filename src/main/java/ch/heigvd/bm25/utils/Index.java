@@ -3,8 +3,13 @@ package ch.heigvd.bm25.utils;
 import ch.heigvd.bm25.exceptions.IndexException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.core.util.DefaultIndenter;
+import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.databind.util.RawValue;
 
@@ -154,12 +159,20 @@ public class Index {
      * */
     public String toJSON() throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
+        // Printing every array's element from new line
+        // can be done by following : https://stackoverflow.com/a/40044685
+//        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+
+        DefaultPrettyPrinter prettyPrinter = new DefaultPrettyPrinter();
+        prettyPrinter.indentArraysWith(DefaultIndenter.SYSTEM_LINEFEED_INSTANCE);
+
         ObjectNode root = mapper.createObjectNode();
 
         root.putPOJO("documentNames", documentNames);
         root.putPOJO("vocabulary", vocabulary);
         root.putRawValue("matrix", new RawValue(matrix.toJSON()));
 
+//        return mapper.writer(prettyPrinter).writeValueAsString(root);
         return mapper.writeValueAsString(root);
     }
 

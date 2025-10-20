@@ -4,6 +4,7 @@ import ch.heigvd.bm25.BM25;
 import ch.heigvd.bm25.utils.Index;
 import ch.heigvd.bm25.utils.RankingResult;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
@@ -78,8 +79,8 @@ public class Search implements Runnable {
         // Build index from string
         Index index = null;
         try {
-            index = Index.importIndex(indexBuilder.toString());
-        } catch(RuntimeException e) {
+            index = Index.fromJSON(indexBuilder.toString());
+        } catch(JsonProcessingException e) {
             if (!isFailSilently) {
                 System.err.println(e);
             }
