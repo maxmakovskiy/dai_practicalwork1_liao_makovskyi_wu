@@ -1,6 +1,13 @@
 package ch.heigvd.bm25.utils;
 
 import ch.heigvd.bm25.exceptions.IndexException;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.fasterxml.jackson.databind.util.RawValue;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -126,4 +133,76 @@ public class Index {
 
         return result.toString();
     }
+
+    /**
+     * Produces json string from current instance of Index
+     * <p><strong>Example of output layout</strong>:</p>
+     * <pre>{@code
+     * {
+     *   "documentNames": ["file1.txt","file2.txt"],
+     *   "vocabulary": ["like","best","plai","can"],
+     *   "matrix": {
+     *      "nRows": 2,
+     *      "nCols": 4,
+     *      "indices":[[0,1,3],[1,2]],
+     *      "data":[[1.0,1.1,1.3],[2.0,2.1]]
+     *   }
+     * }
+     * }</pre>
+     * @throws JsonProcessingException if json generation goes wrong
+     * @return json string
+     * */
+    public String toJSON() throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        ObjectNode root = mapper.createObjectNode();
+
+        root.putPOJO("documentNames", documentNames);
+        root.putPOJO("vocabulary", vocabulary);
+        root.putRawValue("matrix", new RawValue(matrix.toJSON()));
+
+        return mapper.writeValueAsString(root);
+    }
+
+    /**
+     * Creates an instance of Index from json string
+     * <p><strong>Example of expected layout</strong>:</p>
+     * <pre>{@code
+     * {
+     *   "documentNames": ["file1.txt","file2.txt"],
+     *   "vocabulary": ["like","best","plai","can"],
+     *   "matrix": {
+     *      "nRows": 2,
+     *      "nCols": 4,
+     *      "indices":[[0,1,3],[1,2]],
+     *      "data":[[1.0,1.1,1.3],[2.0,2.1]]
+     *   }
+     * }
+     * }</pre>
+     * @throws JsonProcessingException if json parsing goes wrong
+     * @return instance of Index
+     * */
+    public static Index fromJSON(String json) throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        JsonNode root = mapper.readTree(json);
+
+        ArrayList<String> docNames = mapper.treeToValue(
+                root.get("documentNames"),
+                new TypeReference<ArrayList<String>>() { }
+        );
+        ArrayList<String> vocab = mapper.treeToValue(
+                root.get("vocabulary"),
+                new TypeReference<ArrayList<String>>() { }
+        );
+
+        String matrixJsonStr =  root.get("matrix").toString();
+        DSparseMatrixLIL matrix = DSparseMatrixLIL.fromJSON(matrixJsonStr);
+
+        Index index = new Index(vocab.size(), docNames.size(), vocab, docNames);
+        index.matrix = matrix;
+
+        return index;
+    }
+
+
+
 }

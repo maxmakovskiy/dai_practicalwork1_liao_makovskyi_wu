@@ -119,7 +119,7 @@ public class DSparseMatrixLILTest {
         String json = srcMatrix.toJSON();
         assertFalse(json.isEmpty());
 
-        DSparseMatrixLIL dstMatrix = DSparseMatrixLIL.fromJson(json);
+        DSparseMatrixLIL dstMatrix = DSparseMatrixLIL.fromJSON(json);
 
         for (int i = 0; i < rowIndexes.length; i++) {
             double res = dstMatrix.get(rowIndexes[i], columnIndexes[i]);

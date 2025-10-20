@@ -396,7 +396,7 @@ public class DSparseMatrixLIL {
      * @return an instance of DSparseMatrixLIL
      * @throws JsonProcessingException if json parsing goes wrong
      * */
-    public static DSparseMatrixLIL fromJson(String json) throws JsonProcessingException {
+    public static DSparseMatrixLIL fromJSON(String json) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
         JsonNode root = mapper.readTree(json);
 

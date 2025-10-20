@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import ch.heigvd.bm25.exceptions.IndexException;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -133,7 +134,47 @@ public class IndexTest {
         assertFalse(res.isEmpty());
 
         assertEquals(indexStrExpected, res);
+    }
 
+    @Test
+    void indexToJsonAndBack() throws JsonProcessingException {
+        DSparseMatrixLIL matrix = new DSparseMatrixLIL(2, 4);
+        int[] rowIndexes = new int[] {
+                0, 0, 0, 1, 1
+        };
+        int[] columnIndexes = new int[] {
+                0, 1, 3, 1, 2
+        };
+        double[] data = new double[] {
+                1.0, 1.1, 1.3, 2.0, 2.1
+        };
+
+        for (int i = 0; i < rowIndexes.length; i++) {
+            matrix.set(rowIndexes[i], columnIndexes[i], data[i]);
+        }
+
+        ArrayList<String> vocab = new ArrayList<>(
+                List.of("like", "best", "plai", "can")
+        );
+        ArrayList<String> docNames = new ArrayList<>(
+                List.of("file1.txt", "file2.txt")
+        );
+
+        Index srcIndex = new Index(
+                vocab.size(), docNames.size(),
+                vocab, docNames
+        );
+
+        srcIndex.matrix = matrix;
+
+        String json = srcIndex.toJSON();
+        assertFalse(json.isEmpty());
+
+        Index dstIndex = Index.fromJSON(json);
+
+        assertArrayEquals(vocab.toArray(), dstIndex.getVocabulary().toArray());
+        assertEquals(docNames.get(0), dstIndex.getDocumentName(0));
+        assertEquals(docNames.get(1), dstIndex.getDocumentName(1));
     }
 
 }
