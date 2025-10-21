@@ -7,12 +7,13 @@ import ch.heigvd.bm25.utils.Index;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import opennlp.tools.stemmer.PorterStemmer;
 
 
 /*
-* This class represents search engine built on top of BM25 algorithm
-* */
+ * This class represents search engine built on top of BM25 algorithm
+ * */
 public class BM25 {
     private final double K1 = 1.2;
     private final double B = 0.75;
@@ -20,32 +21,35 @@ public class BM25 {
 
     /**
      * An empty constructor for BM25
-     * */
+     */
     public BM25() {
         this.index = null;
     }
 
     /**
      * Constructor that could restore state of BM25 from index
+     *
      * @see Index
-     * */
+     */
     public BM25(Index index) {
         this.index = index;
     }
 
     /**
      * Returns index
+     *
      * @see Index
-     * */
+     */
     public Index getIndex() {
         return this.index;
     }
 
     /**
      * Tokenizes a line of text while ignoring inessential words (ex: a/the/is/etc)
+     *
      * @param text line of text to tokenize
      * @return ArrayList of tokens
-     * */
+     */
     public ArrayList<String> tokenize(String text) {
         // ref : https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html#sum
         // ChatGPT's hint:
@@ -70,9 +74,10 @@ public class BM25 {
 
     /**
      * Tokenizes collection of documents
+     *
      * @param corpus collection of documents to tokenize
      * @return ArrayList of tokenized documents where each document is ArrayList itself
-     * */
+     */
     public ArrayList<ArrayList<String>> tokenize(ArrayList<String> corpus) {
         ArrayList<ArrayList<String>> res = new ArrayList<>();
 
@@ -87,15 +92,16 @@ public class BM25 {
     /**
      * Takes all tokens of given corpus and builds index that latter will be used
      * to rank relevant documents with respect to query
+     *
      * @param corpusTokens collection of documents that were tokenized
-     * */
+     */
     public void buildIndex(ArrayList<ArrayList<String>> corpusTokens, ArrayList<String> documentNames) {
         // build vocabulary
         ArrayList<String> vocab = buildVocabulary(corpusTokens);
 
         // create new index
         this.index = new Index(vocab.size(), corpusTokens.size(),
-            vocab, documentNames);
+                vocab, documentNames);
 
         // compute matrix of scores so-called Index
         computeScoresMatrix(corpusTokens, vocab);
@@ -103,13 +109,14 @@ public class BM25 {
 
     /**
      * Ranks relevant documents with respect to query
+     *
      * @param queryTokens user's query that has been already tokenized
-     * @param k number of first most relevant documents
+     * @param k           number of first most relevant documents
      * @return ArrayList of RankingResult that have been found with use of Index
      * with respect to user's query
      * @see RankingResult
      * @see Index
-     * */
+     */
     public ArrayList<RankingResult> retrieveTopK(ArrayList<String> queryTokens, int k) {
         ArrayList<RankingResult> res = new ArrayList<>();
 
@@ -118,7 +125,7 @@ public class BM25 {
 
             for (int tokenIdx = 0; tokenIdx < this.index.getVocabSize(); tokenIdx++) {
                 if (queryTokens.contains(this.index.getVocabulary().get(tokenIdx))) {
-                    docScore += this.index.matrix.get(docIdx, tokenIdx);
+                    docScore += this.index.getMatrix().get(docIdx, tokenIdx);
                 }
             }
 
@@ -140,9 +147,10 @@ public class BM25 {
 
     /**
      * Collects all the uniques words from the corpus
+     *
      * @param corpusTokens collection of documents that were tokenized
      * @return ArrayList of unique words over all corpus so-called vocabulary
-     * */
+     */
     private ArrayList<String> buildVocabulary(ArrayList<ArrayList<String>> corpusTokens) {
         ArrayList<String> allTokens = new ArrayList<>();
 
@@ -160,12 +168,13 @@ public class BM25 {
      * Calculates score for each token inside each document and
      * latter builds matrix of scores NxM where N is number of documents
      * and M is number of tokens in the vocabulary
+     *
      * @param corpusTokens collection of documents that were tokenized
-     * @param vocabulary collection of unique words over all documents inside the corpus
-     * */
+     * @param vocabulary   collection of unique words over all documents inside the corpus
+     */
     private void computeScoresMatrix(
-        ArrayList<ArrayList<String>> corpusTokens,
-        ArrayList<String> vocabulary
+            ArrayList<ArrayList<String>> corpusTokens,
+            ArrayList<String> vocabulary
     ) {
         // Compute avg doc len and number of docs
         double avgDocLen = computeAvgDocLength(corpusTokens);
@@ -188,9 +197,10 @@ public class BM25 {
 
     /**
      * Calculates average length of document inside corpus
+     *
      * @param corpusTokens collection of documents that were tokenized
      * @return average document length inside the corpus
-     * */
+     */
     private double computeAvgDocLength(ArrayList<ArrayList<String>> corpusTokens) {
         double result = 0.0;
 
@@ -203,13 +213,14 @@ public class BM25 {
 
     /**
      * For each token in the vocabulary calculates number of document containing it
+     *
      * @param corpusTokens collection of documents that were tokenized
-     * @param vocabulary collection of unique words over all documents inside the corpus
+     * @param vocabulary   collection of unique words over all documents inside the corpus
      * @return dictionary of (token, number of documents containing it) pairs
-     * */
+     */
     private HashMap<String, Integer> calculateDocumentFrequencies(
-        ArrayList<ArrayList<String>> corpusTokens,
-        ArrayList<String> vocabulary
+            ArrayList<ArrayList<String>> corpusTokens,
+            ArrayList<String> vocabulary
     ) {
         HashMap<String, Integer> docFrequencies = new HashMap<>();
         HashSet<String> vocabSet = new HashSet<>(vocabulary);
@@ -236,26 +247,28 @@ public class BM25 {
 
     /**
      * Calculates inverse document frequency score for individual token
+     *
      * @param dfForToken document frequency for token of interest
-     * @param numOfDocs number of documents in the corpus
+     * @param numOfDocs  number of documents in the corpus
      * @return idf score
-     * */
+     */
     private double idfScore(int dfForToken, int numOfDocs) {
         return Math.log(
-                ((numOfDocs - dfForToken + 0.5)  / (dfForToken + 0.5)) + 1.0
+                ((numOfDocs - dfForToken + 0.5) / (dfForToken + 0.5)) + 1.0
         );
     }
 
 
     /**
      * Calculates inverse document frequencies for each document in vocabulary
-     * @param docFreqs dictionary of (token, number of times it appears of in each document) pairs
+     *
+     * @param docFreqs  dictionary of (token, number of times it appears of in each document) pairs
      * @param numOfDocs number of documents in the corpus
      * @return dictionary of (token, inverse document frequency) pairs
-     * */
+     */
     private HashMap<String, Double> calculateInverseDocumentFrequencies(
-        HashMap<String, Integer> docFreqs,
-        int numOfDocs
+            HashMap<String, Integer> docFreqs,
+            int numOfDocs
     ) {
         HashMap<String, Double> idf = new HashMap<>();
 
@@ -275,33 +288,35 @@ public class BM25 {
     /**
      * Computes term frequency component of the BM25 score using Robertson variant of formula
      * <a href="https://cs.uwaterloo.ca/~jimmylin/publications/Kamphuis_etal_ECIR2020_preprint.pdf">taken from here</a>
-     * @param termFreq
-     * @param docLen length of a document
+     *
+     * @param termFreq         number of times given token appears in the current document
+     * @param docLen           length of a document
      * @param averageDocLength average document length inside the corpus
-     * @param k1 parameter responsible for normalizing influence of term frequency component
-     * @param b document-length normalisation parameter,
-     *         in other words how much document length influences final score
-     * @see  #calculateTermFrequencies
-     * */
-    private double termFreqScore (
-        double termFreq,
-        int docLen,
-        double averageDocLength,
-        double k1,
-        double b
+     * @param k1               parameter responsible for normalizing influence of term frequency component
+     * @param b                document-length normalisation parameter,
+     *                         in other words how much document length influences final score
+     * @see #calculateTermFrequencies
+     */
+    private double termFreqScore(
+            double termFreq,
+            int docLen,
+            double averageDocLength,
+            double k1,
+            double b
     ) {
-        return termFreq / ( k1 * ( 1.0 - b + b * (double)docLen / averageDocLength ) + termFreq );
+        return termFreq / (k1 * (1.0 - b + b * (double) docLen / averageDocLength) + termFreq);
     }
 
     /**
      * Fills index with scores while using precomputed statistics
-     * @param corpusTokens collection of documents that were tokenized
-     * @param idf dictionary that stores inverse document frequency score for each token in vocabulary
-     * @param vocabulary collection of unique words over all documents inside the corpus
-     * @param numOfDocs number of documents in the corpus
+     *
+     * @param corpusTokens     collection of documents that were tokenized
+     * @param idf              dictionary that stores inverse document frequency score for each token in vocabulary
+     * @param vocabulary       collection of unique words over all documents inside the corpus
+     * @param numOfDocs        number of documents in the corpus
      * @param averageDocLength average document length inside the corpus
      * @see Index
-     * */
+     */
     private void computeScores(
             ArrayList<ArrayList<String>> corpusTokens,
             HashMap<String, Double> idf,
@@ -333,7 +348,7 @@ public class BM25 {
                 double tokenIdf = idf.get(vocabulary.get(tokenIdx));
 
                 if (score > 0.0) {
-                    this.index.matrix.set(docIdx, tokenIdx, score * tokenIdf);
+                    this.index.getMatrix().set(docIdx, tokenIdx, score * tokenIdf);
                 }
 
             }
@@ -341,17 +356,18 @@ public class BM25 {
     }
 
     /**
-     * Calculates how much time each token from vocabulary appears in given document
-     * @param document collection of tokens corresponding to the document
+     * Calculates number of times each token from vocabulary appears in given document
+     *
+     * @param document   collection of tokens corresponding to the document
      * @param vocabulary collection of unique words over all documents inside the corpus
      * @return ArrayList of numbers of documents per token from vocabulary. <br>
      * It has built in the way that
      * {@code result.get(vocabulary.indexOf(token))} gives us
      * number of documents containing token
-     * */
+     */
     private ArrayList<Integer> calculateTermFrequencies(
-        ArrayList<String> document,
-        ArrayList<String> vocabulary
+            ArrayList<String> document,
+            ArrayList<String> vocabulary
     ) {
         HashMap<String, Integer> vocabMap = new HashMap<>();
 

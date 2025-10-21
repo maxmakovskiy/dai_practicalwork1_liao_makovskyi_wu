@@ -85,24 +85,18 @@ public class Build implements Runnable {
             }
         }
 
-
         BM25 bm25 = new BM25();
         ArrayList<ArrayList<String>> corpusTokens = bm25.tokenize(docs);
         bm25.buildIndex(corpusTokens,  docNames);
 
-        
         // ref : https://stackoverflow.com/a/412495
         try (
             FileWriter writer = new FileWriter(new File(targetDir.getParent(), indexFilename));
             BufferedWriter buf = new BufferedWriter(writer);
         ) {
-
-
             // get current index and covert it to string
-            String indexStr = bm25.getIndex().toString();
+            String indexStr = bm25.getIndex().toJSON();
             buf.write(indexStr);
-
-
         } catch(IOException e) {
             if (!isFailSilently) {
                 System.err.println(e);
