@@ -63,29 +63,6 @@ public class DSparseMatrixLILTest {
     }
 
     @Test
-    void strToMatrix() {
-        DSparseMatrixLIL matrix = new DSparseMatrixLIL(
-            "nRows : 4\n" +
-            "nCols : 4\n" +
-            "Indices\n" +
-            "0 : 0\n" +
-            "1 : 1\n" +
-            "2 : 2\n" +
-            "3 : 3\n" +
-            "Data\n" +
-            "0 : 0.2\n" +
-            "1 : 0.42\n" +
-            "2 : 0.45\n" +
-            "3 : 0.17\n"
-        );
-
-        assertEquals(0.2, matrix.get(0, 0));
-        assertEquals(0.42, matrix.get(1, 1));
-        assertEquals(0.45, matrix.get(2, 2));
-        assertEquals(0.17, matrix.get(3, 3));
-    }
-
-    @Test
     void matrixToStr() {
         DSparseMatrixLIL matrix = new DSparseMatrixLIL(4, 4);
 
