@@ -21,7 +21,7 @@ import java.util.ArrayList;
  * and what is not.
  */
 public class Index {
-    public DSparseMatrixLIL matrix;
+    private DSparseMatrixLIL matrix;
     private ArrayList<String> vocabulary;
     private ArrayList<String> documentNames;
     private int numOfDocs;
@@ -35,18 +35,47 @@ public class Index {
      * @param vocab         collection of unique tokens over the corpus
      * @param documentNames names of all documents in the corpus
      *
-     *                      <p><strong>Corpus</strong> is a collection of treated documents</p>
+     * <p><strong>Corpus</strong> is a collection of treated documents</p>
      */
     public Index(
             int vocabSize, int numOfDocs,
             ArrayList<String> vocab, ArrayList<String> documentNames
     ) {
+        this(
+                vocabSize, numOfDocs,
+                vocab, documentNames,
+                new DSparseMatrixLIL(numOfDocs, vocabSize)
+        );
+    }
+
+
+    /**
+     * Constructs Index
+     *
+     * @param vocabSize     number of tokens in vocabulary
+     * @param numOfDocs     number of documents in corpus
+     * @param vocab         collection of unique tokens over the corpus
+     * @param documentNames names of all documents in the corpus
+     * @param scoreMatrix instance of DSparseMatrixLIL containing scores for every token in the corpus
+     *
+     * <p><strong>Corpus</strong> is a collection of treated documents</p>
+     *
+     * @see DSparseMatrixLIL
+     */
+    public Index(
+            int vocabSize,
+            int numOfDocs,
+            ArrayList<String> vocab,
+            ArrayList<String> documentNames,
+            DSparseMatrixLIL scoreMatrix
+    ) {
         this.vocabSize = vocabSize;
         this.numOfDocs = numOfDocs;
         this.vocabulary = vocab;
         this.documentNames = documentNames;
-        this.matrix = new DSparseMatrixLIL(numOfDocs, vocabSize);
+        this.matrix = scoreMatrix;
     }
+
 
     /**
      * @return the number of the represented documents
@@ -200,6 +229,9 @@ public class Index {
         return index;
     }
 
+    /**
+     * @return matrix of scores for corpus
+     * */
     public DSparseMatrixLIL getMatrix() {
         return matrix;
     }

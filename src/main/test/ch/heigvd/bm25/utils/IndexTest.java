@@ -65,10 +65,10 @@ public class IndexTest {
                 vocab.size(), docs.size(), vocab, docs
         );
 
-        index.matrix.set(0, 0, 0.21);
-        index.matrix.set(0, 1, 0.45);
-        index.matrix.set(1, 2, 0.1);
-        index.matrix.set(1, 3, 0.32);
+        index.getMatrix().set(0, 0, 0.21);
+        index.getMatrix().set(0, 1, 0.45);
+        index.getMatrix().set(1, 2, 0.1);
+        index.getMatrix().set(1, 3, 0.32);
 
         String res = index.toString();
 
@@ -103,10 +103,8 @@ public class IndexTest {
 
         Index srcIndex = new Index(
                 vocab.size(), docNames.size(),
-                vocab, docNames
+                vocab, docNames, matrix
         );
-
-        srcIndex.matrix = matrix;
 
         String json = srcIndex.toJSON();
         assertFalse(json.isEmpty());

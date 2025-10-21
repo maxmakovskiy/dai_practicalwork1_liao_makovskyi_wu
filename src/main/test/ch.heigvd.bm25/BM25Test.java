@@ -75,24 +75,24 @@ public class BM25Test {
                 vocab, docNames
         );
 
-        index.matrix.set(0, 0, 0.2192);
-        index.matrix.set(0, 6, 0.4575);
-        index.matrix.set(0, 7, 0.2192);
-        index.matrix.set(0, 9, 0.4575);
-        index.matrix.set(0, 13, 0.4575);
+        index.getMatrix().set(0, 0, 0.2192);
+        index.getMatrix().set(0, 6, 0.4575);
+        index.getMatrix().set(0, 7, 0.2192);
+        index.getMatrix().set(0, 9, 0.4575);
+        index.getMatrix().set(0, 13, 0.4575);
 
-        index.matrix.set(1, 0, 0.2032);
-        index.matrix.set(1, 1, 0.4241);
-        index.matrix.set(1, 2, 0.4241);
-        index.matrix.set(1, 8, 0.4241);
-        index.matrix.set(1, 11, 0.4241);
-        index.matrix.set(1, 12, 0.4241);
+        index.getMatrix().set(1, 0, 0.2032);
+        index.getMatrix().set(1, 1, 0.4241);
+        index.getMatrix().set(1, 2, 0.4241);
+        index.getMatrix().set(1, 8, 0.4241);
+        index.getMatrix().set(1, 11, 0.4241);
+        index.getMatrix().set(1, 12, 0.4241);
 
-        index.matrix.set(2, 3, 0.4575);
-        index.matrix.set(2, 4, 0.4575);
-        index.matrix.set(2, 5, 0.4575);
-        index.matrix.set(2, 7, 0.2192);
-        index.matrix.set(2, 10, 0.4575);
+        index.getMatrix().set(2, 3, 0.4575);
+        index.getMatrix().set(2, 4, 0.4575);
+        index.getMatrix().set(2, 5, 0.4575);
+        index.getMatrix().set(2, 7, 0.2192);
+        index.getMatrix().set(2, 10, 0.4575);
 
         BM25 bm25 = new BM25(index);
 
