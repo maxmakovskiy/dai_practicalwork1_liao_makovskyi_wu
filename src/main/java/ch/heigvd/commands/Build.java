@@ -43,18 +43,17 @@ public class Build implements Runnable {
     public void run() {
         System.out.println("Building index...");
 
-//        collect the names of all the files inside src/main/resources/documents folder
+        // Step 1: collect the names of all the files inside given folder
         File[] files = targetDir.listFiles();
         if (files == null) {
             System.out.println("You have provided an empty folder : " + targetDir.getPath());
             System.exit(0);
         }
 
+        // Step 2: read content of each file and store it along with its name
         ArrayList<String> docNames = new ArrayList<>();
         ArrayList<String> docs = new ArrayList<>();
 
-
-//        Read content of each file and store it in ArrayList along with its name
         for (File file : files) {
             if (file.isFile()) {
                 docNames.add(file.getName());
@@ -62,42 +61,44 @@ public class Build implements Runnable {
                 StringBuilder content = new StringBuilder();
 
                 try (
-                        FileReader reader = new FileReader(file.getPath(), StandardCharsets.UTF_8);
+                        FileReader reader = new FileReader(
+                                file.getPath(), StandardCharsets.UTF_8);
                         BufferedReader buf = new BufferedReader(reader);
                 ) {
-
                     int c;
                     while ((c = buf.read()) != -1) {
-                        content.append((char)c);
+                        content.append((char) c);
                     }
-
-                } catch(IOException e) {
-
+                } catch (IOException e) {
                     if (!isFailSilently) {
                         System.err.print(e);
                     }
 
                     System.out.println("Impossible to read : " + file.getPath());
                     System.out.println("Skipping ...");
+
+                    continue;
                 }
 
                 docs.add(content.toString());
             }
         }
 
+        // Step 3: tokenize docs + build index
         BM25 bm25 = new BM25();
         ArrayList<ArrayList<String>> corpusTokens = bm25.tokenize(docs);
-        bm25.buildIndex(corpusTokens,  docNames);
+        bm25.buildIndex(corpusTokens, docNames);
 
+        // Step 4: save index to the file
         // ref : https://stackoverflow.com/a/412495
         try (
-            FileWriter writer = new FileWriter(new File(targetDir.getParent(), indexFilename));
-            BufferedWriter buf = new BufferedWriter(writer);
+                FileWriter writer = new FileWriter(
+                        new File(targetDir.getParent(), indexFilename));
+                BufferedWriter buf = new BufferedWriter(writer);
         ) {
-            // get current index and covert it to string
             String indexStr = bm25.getIndex().toJSON();
             buf.write(indexStr);
-        } catch(IOException e) {
+        } catch (IOException e) {
             if (!isFailSilently) {
                 System.err.println(e);
             }
@@ -105,8 +106,6 @@ public class Build implements Runnable {
             System.out.println("Impossible to create index file : " + indexFilename);
             System.exit(1);
         }
-
-
 
     }
 
