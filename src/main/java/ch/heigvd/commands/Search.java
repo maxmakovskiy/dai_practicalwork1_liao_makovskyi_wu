@@ -55,18 +55,16 @@ public class Search implements Runnable {
     public void run() {
         String queryFull = String.join(" ", query);
 
-        // We collect content of src/main/resources/index.txt to string
+        // Step 1: read content of index file to string
         StringBuilder indexBuilder = new StringBuilder();
         try (
                 FileReader reader = new FileReader(indexFile, StandardCharsets.UTF_8);
                 BufferedReader buf = new BufferedReader(reader);
         ) {
-
             int c;
             while ((c = buf.read()) != -1) {
                 indexBuilder.append((char)c);
             }
-
         } catch(IOException e) {
             if (!isFailSilently) {
                 System.err.println(e);
@@ -76,7 +74,7 @@ public class Search implements Runnable {
             System.exit(1);
         }
 
-        // Build index from string
+        // Step 2: restore index
         Index index = null;
         try {
             index = Index.fromJSON(indexBuilder.toString());
@@ -89,10 +87,10 @@ public class Search implements Runnable {
             System.exit(1);
         }
 
-        // Then we create new instance of BM25
+        // Step 3: create new instance of BM25
         BM25 bm25 = new BM25(index);
 
-        // In the end we print user query and what is more importantly show the results of bm25.retrieveTopK
+        // Step 4: do the search and show results
         ArrayList<RankingResult> results = bm25.retrieveTopK(
                 bm25.tokenize(queryFull), topK);
 
