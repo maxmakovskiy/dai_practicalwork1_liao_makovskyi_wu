@@ -8,17 +8,13 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.databind.util.RawValue;
-
 import java.util.ArrayList;
 
 /**
- * This class represents Index abstraction.
- * Index is basically everything that we need to know
- * for searching through the given corpus of documents.
- * It consists of: matrix of scores assigned to every token in the corpus,
- * vocabulary which is unique words over the corpus,
- * names of the documents since we need to say what is relevant for the query
- * and what is not.
+ * This class represents Index abstraction. Index is basically everything that we need to know for
+ * searching through the given corpus of documents. It consists of: matrix of scores assigned to
+ * every token in the corpus, vocabulary which is unique words over the corpus, names of the
+ * documents since we need to say what is relevant for the query and what is not.
  */
 public class Index {
     private DSparseMatrixLIL matrix;
@@ -30,36 +26,35 @@ public class Index {
     /**
      * Constructs Index
      *
-     * @param vocabSize     number of tokens in vocabulary
-     * @param numOfDocs     number of documents in corpus
-     * @param vocab         collection of unique tokens over the corpus
+     * @param vocabSize number of tokens in vocabulary
+     * @param numOfDocs number of documents in corpus
+     * @param vocab collection of unique tokens over the corpus
      * @param documentNames names of all documents in the corpus
-     *
-     * <p><strong>Corpus</strong> is a collection of treated documents</p>
+     *     <p><strong>Corpus</strong> is a collection of treated documents
      */
     public Index(
-            int vocabSize, int numOfDocs,
-            ArrayList<String> vocab, ArrayList<String> documentNames
-    ) {
+            int vocabSize,
+            int numOfDocs,
+            ArrayList<String> vocab,
+            ArrayList<String> documentNames) {
         this(
-                vocabSize, numOfDocs,
-                vocab, documentNames,
-                new DSparseMatrixLIL(numOfDocs, vocabSize)
-        );
+                vocabSize,
+                numOfDocs,
+                vocab,
+                documentNames,
+                new DSparseMatrixLIL(numOfDocs, vocabSize));
     }
-
 
     /**
      * Constructs Index
      *
-     * @param vocabSize     number of tokens in vocabulary
-     * @param numOfDocs     number of documents in corpus
-     * @param vocab         collection of unique tokens over the corpus
+     * @param vocabSize number of tokens in vocabulary
+     * @param numOfDocs number of documents in corpus
+     * @param vocab collection of unique tokens over the corpus
      * @param documentNames names of all documents in the corpus
-     * @param scoreMatrix instance of DSparseMatrixLIL containing scores for every token in the corpus
-     *
-     * <p><strong>Corpus</strong> is a collection of treated documents</p>
-     *
+     * @param scoreMatrix instance of DSparseMatrixLIL containing scores for every token in the
+     *     corpus
+     *     <p><strong>Corpus</strong> is a collection of treated documents
      * @see DSparseMatrixLIL
      */
     public Index(
@@ -67,15 +62,13 @@ public class Index {
             int numOfDocs,
             ArrayList<String> vocab,
             ArrayList<String> documentNames,
-            DSparseMatrixLIL scoreMatrix
-    ) {
+            DSparseMatrixLIL scoreMatrix) {
         this.vocabSize = vocabSize;
         this.numOfDocs = numOfDocs;
         this.vocabulary = vocab;
         this.documentNames = documentNames;
         this.matrix = scoreMatrix;
     }
-
 
     /**
      * @return the number of the represented documents
@@ -108,7 +101,9 @@ public class Index {
 
     /**
      * Serializes this instance of Index to a human-readable text format.
-     * <p><strong>Expected output layout</strong> (line numbers are illustrative):</p>
+     *
+     * <p><strong>Expected output layout</strong> (line numbers are illustrative):
+     *
      * <pre>{@code
      * 0:        docNames
      * 1:        fileName0, fileName1, fileName2, ...
@@ -150,7 +145,9 @@ public class Index {
 
     /**
      * Produces json string from current instance of Index
-     * <p><strong>Example of output layout</strong>:</p>
+     *
+     * <p><strong>Example of output layout</strong>:
+     *
      * <pre>{@code
      * {
      *   "documentNames": ["file1.txt","file2.txt"],
@@ -171,7 +168,7 @@ public class Index {
         ObjectMapper mapper = new ObjectMapper();
         // Printing every array's element from new line
         // can be done by following : https://stackoverflow.com/a/40044685
-//        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+        //        mapper.enable(SerializationFeature.INDENT_OUTPUT);
 
         DefaultPrettyPrinter prettyPrinter = new DefaultPrettyPrinter();
         prettyPrinter.indentArraysWith(DefaultIndenter.SYSTEM_LINEFEED_INSTANCE);
@@ -182,13 +179,15 @@ public class Index {
         root.putPOJO("vocabulary", vocabulary);
         root.putRawValue("matrix", new RawValue(matrix.toJSON()));
 
-//        return mapper.writer(prettyPrinter).writeValueAsString(root);
+        //        return mapper.writer(prettyPrinter).writeValueAsString(root);
         return mapper.writeValueAsString(root);
     }
 
     /**
      * Creates an instance of Index from json string
-     * <p><strong>Example of expected layout</strong>:</p>
+     *
+     * <p><strong>Example of expected layout</strong>:
+     *
      * <pre>{@code
      * {
      *   "documentNames": ["file1.txt","file2.txt"],
@@ -209,16 +208,12 @@ public class Index {
         ObjectMapper mapper = new ObjectMapper();
         JsonNode root = mapper.readTree(json);
 
-        ArrayList<String> docNames = mapper.treeToValue(
-                root.get("documentNames"),
-                new TypeReference<ArrayList<String>>() {
-                }
-        );
-        ArrayList<String> vocab = mapper.treeToValue(
-                root.get("vocabulary"),
-                new TypeReference<ArrayList<String>>() {
-                }
-        );
+        ArrayList<String> docNames =
+                mapper.treeToValue(
+                        root.get("documentNames"), new TypeReference<ArrayList<String>>() {});
+        ArrayList<String> vocab =
+                mapper.treeToValue(
+                        root.get("vocabulary"), new TypeReference<ArrayList<String>>() {});
 
         String matrixJsonStr = root.get("matrix").toString();
         DSparseMatrixLIL matrix = DSparseMatrixLIL.fromJSON(matrixJsonStr);
@@ -231,9 +226,8 @@ public class Index {
 
     /**
      * @return matrix of scores for corpus
-     * */
+     */
     public DSparseMatrixLIL getMatrix() {
         return matrix;
     }
-
 }
