@@ -1,19 +1,17 @@
 package ch.heigvd;
 
-import picocli.CommandLine;
-import java.io.File;
-
 import ch.heigvd.commands.Build;
 import ch.heigvd.commands.Search;
-
+import java.io.File;
+import picocli.CommandLine;
 
 @CommandLine.Command(
         description = "Best Match 25-th iteration",
         version = "1.0.0",
         showDefaultValues = true,
         subcommands = {
-                Build.class,
-                Search.class,
+            Build.class,
+            Search.class,
         },
         scope = CommandLine.ScopeType.INHERIT,
         mixinStandardHelpOptions = true)
@@ -26,8 +24,5 @@ public class Main {
                         .getName();
 
         int exitCode = new CommandLine(new Main()).setCommandName(jarFilename).execute(args);
-
     }
 }
-
-

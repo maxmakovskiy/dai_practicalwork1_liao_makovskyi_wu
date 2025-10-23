@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
@@ -45,9 +44,62 @@
         </dependency>
     </dependencies>
 
-    <!-- ref: https://maven.apache.org/plugins/maven-shade-plugin/usage.html -->
     <build>
         <plugins>
+
+            <!-- https://mvnrepository.com/artifact/com.diffplug.spotless/spotless-maven-plugin -->
+            <plugin>
+                <groupId>com.diffplug.spotless</groupId>
+                <artifactId>spotless-maven-plugin</artifactId>
+                <version>3.0.0</version>
+
+                <configuration>
+                    <pom>
+                        <sortPom>
+                            <expandEmptyElements>false</expandEmptyElements>
+                            <sortPlugins>groupId,artifactId</sortPlugins>
+                        </sortPom>
+                    </pom>
+                    <java>
+                        <googleJavaFormat>
+                            <formatJavadoc>true</formatJavadoc>
+                            <reflowLongStrings>true</reflowLongStrings>
+                            <style>AOSP</style>
+                        </googleJavaFormat>
+                        <importOrder/>
+                        <removeUnusedImports/>
+                        <formatAnnotations/>
+                        <endWithNewline/>
+                        <trimTrailingWhitespace/>
+                        <forbidWildcardImports/>
+                    </java>
+                    <formats>
+                        <format>
+                            <!-- define the files to apply to -->
+                            <includes>
+                                <include>.gitattributes</include>
+                                <include>.gitignore</include>
+                                <include>pom.xml</include>
+                            </includes>
+                            <trimTrailingWhitespace/>
+                            <endWithNewline/>
+                            <indent>
+                                <spaces>true</spaces>
+                                <spacesPerTab>4</spacesPerTab>
+                            </indent>
+                        </format>
+                    </formats>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <phase>package</phase>
+                    </execution>
+                </executions>
+            </plugin>
+
             <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-shade-plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -55,18 +107,20 @@
                 <version>3.6.1</version>
                 <executions>
                     <execution>
-                        <phase>package</phase>
                         <goals>
                             <goal>shade</goal>
                         </goals>
+                        <phase>package</phase>
                         <configuration>
                             <transformers>
 
-                                <transformer implementation="org.apache.maven.plugins.shade.resource.DontIncludeResourceTransformer">
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.DontIncludeResourceTransformer">
                                     <resource>MANIFEST.MF</resource>
                                 </transformer>
 
-                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                                     <mainClass>ch.heigvd.Main</mainClass>
                                 </transformer>
 
@@ -75,8 +129,8 @@
                     </execution>
                 </executions>
             </plugin>
+
         </plugins>
     </build>
-
 
 </project>

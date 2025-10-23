@@ -4,22 +4,16 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.core.util.DefaultIndenter;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
-//import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-//import com.fasterxml.jackson.databind.SerializationFeature;
-//import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-
 import java.util.ArrayList;
-import java.lang.String;
-
 
 /**
  * Sparse matrix in List-of-Lists (LIL) format
  *
- * @see <a href="https://matteding.github.io/2019/04/25/sparse-matrices/">
- * Sparse matrices (LIL) – intro</a>
+ * @see <a href="https://matteding.github.io/2019/04/25/sparse-matrices/">Sparse matrices (LIL) –
+ *     intro</a>
  */
 public class DSparseMatrixLIL {
 
@@ -27,7 +21,6 @@ public class DSparseMatrixLIL {
     private int nCols; // WordID
     private ArrayList<ArrayList<Integer>> indices; // column positions
     private ArrayList<ArrayList<Double>> data;
-
 
     /**
      * Create an empty {@code nRows} x {@code nCols} sparse matrix
@@ -53,7 +46,6 @@ public class DSparseMatrixLIL {
             indices.add(new ArrayList<>());
             data.add(new ArrayList<>());
         }
-
     }
 
     /**
@@ -62,16 +54,16 @@ public class DSparseMatrixLIL {
      * @param rowIdx zero-based row index
      * @param colIdx zero-based column index
      * @return the stored value. Return {@code 0.0} if not found.
-     * @throws IndexOutOfBoundsException if {@code rowIdx < 0 } or {@code rowIdx >= nRows}
-     *                                   {@code colIdx < 0} or {@code colIdx >= nCols}
+     * @throws IndexOutOfBoundsException if {@code rowIdx < 0 } or {@code rowIdx >= nRows} {@code
+     *     colIdx < 0} or {@code colIdx >= nCols}
      */
     public double get(int rowIdx, int colIdx) {
 
         if (rowIdx < 0 || rowIdx >= nRows || colIdx < 0 || colIdx >= nCols) {
-            // ref : https://stackoverflow.com/questions/7312767/manually-adding-indexoutofbounds-exception
+            // ref :
+            // https://stackoverflow.com/questions/7312767/manually-adding-indexoutofbounds-exception
             throw new IndexOutOfBoundsException(
-                    "Cannot find indices for rowIdx: " + rowIdx + " and colIdx: " + colIdx
-            );
+                    "Cannot find indices for rowIdx: " + rowIdx + " and colIdx: " + colIdx);
         }
 
         // ref: https://www.geeksforgeeks.org/java/list-get-method-in-java-with-examples/
@@ -84,30 +76,26 @@ public class DSparseMatrixLIL {
         }
 
         return 0.0;
-
     }
 
     /**
-     * Set a value at a given matrix position  ({@code rowIdx}, {@code colIdx})
+     * Set a value at a given matrix position ({@code rowIdx}, {@code colIdx})
      *
-     * <p>If an entry at ({@code rowIdx}, {@code colIdx}) already exists, its value
-     * is updated. Otherwise, the column index and value are appended to that row's
-     * lists (note: column indices within a row are not automatically sorted).</p>
+     * <p>If an entry at ({@code rowIdx}, {@code colIdx}) already exists, its value is updated.
+     * Otherwise, the column index and value are appended to that row's lists (note: column indices
+     * within a row are not automatically sorted).
      *
      * @param rowIdx zero-based row index
      * @param colIdx zero-based column index
-     * @param value  value to store ( cannot be {@code 0.0})
-     * @throws IllegalArgumentException if {@code rowIdx < 0 } or {@code rowIdx >= nRows}
-     *                                  {@code colIdx < 0} or {@code colIdx >= nCols}
-     *                                  or {@code value == 0.0}
+     * @param value value to store ( cannot be {@code 0.0})
+     * @throws IllegalArgumentException if {@code rowIdx < 0 } or {@code rowIdx >= nRows} {@code
+     *     colIdx < 0} or {@code colIdx >= nCols} or {@code value == 0.0}
      */
-
     public void set(int rowIdx, int colIdx, double value) {
 
         if (rowIdx < 0 || rowIdx >= nRows || colIdx < 0 || colIdx >= nCols) {
             throw new IndexOutOfBoundsException(
-                    "Cannot set value at rowIdx: " + rowIdx + " and colIdx: " + colIdx
-            );
+                    "Cannot set value at rowIdx: " + rowIdx + " and colIdx: " + colIdx);
         } else if (value < 0.0) {
             throw new IllegalArgumentException("Value must be non-negative.");
         }
@@ -123,12 +111,12 @@ public class DSparseMatrixLIL {
 
         rowIndicesList.add(colIdx);
         rowScoresList.add(value);
-
     }
 
     /**
      * Parses the number of rows from the first header line of a serialized matrix.
-     * <p>Expects {@code matrixRows.get(0)} to look like: {@code "nRows : <int>"}.</p>
+     *
+     * <p>Expects {@code matrixRows.get(0)} to look like: {@code "nRows : <int>"}.
      *
      * @param matrixRows lines of the serialized matrix; must not be {@code null} or empty
      * @return the parsed row count
@@ -147,7 +135,8 @@ public class DSparseMatrixLIL {
 
     /**
      * Parses the number of columns from the second header line of a serialized matrix.
-     * <p>Expects {@code matrixRows.get(1)} to look like: {@code "nCols : <int>"}.</p>
+     *
+     * <p>Expects {@code matrixRows.get(1)} to look like: {@code "nCols : <int>"}.
      *
      * @param matrixRows matrixRows lines of the serialized matrix; must contain at least two lines
      * @return the parsed column count
@@ -164,11 +153,11 @@ public class DSparseMatrixLIL {
         return Integer.parseInt(nColStrList[1].trim());
     }
 
-
     /**
      * Serializes this sparse matrix to a human-readable text format.
      *
-     * <p><strong>Expected output layout</strong> (line numbers are illustrative):</p>
+     * <p><strong>Expected output layout</strong> (line numbers are illustrative):
+     *
      * <pre>{@code
      * 0:       nRows : <int>
      * 1:       nCols : <int>
@@ -179,8 +168,9 @@ public class DSparseMatrixLIL {
      * }</pre>
      *
      * @return the textual representation of this matrix
-     * @see <a href="https://stackoverflow.com/questions/7775394/java-concatenate-to-build-string-or-format">
-     * Java concatenate to build string</a>
+     * @see <a
+     *     href="https://stackoverflow.com/questions/7775394/java-concatenate-to-build-string-or-format">
+     *     Java concatenate to build string</a>
      */
 
     // ref :
@@ -212,7 +202,8 @@ public class DSparseMatrixLIL {
         sb = sb.append("Data\n");
         for (int i = 0; i < nRows; i++) {
 
-            //  "0 : 0.22927006304670033, 0.47845329415206167, 0.22927006304670033, 0.47845329415206167, 0.47845329415206167 "
+            //  "0 : 0.22927006304670033, 0.47845329415206167, 0.22927006304670033,
+            // 0.47845329415206167, 0.47845329415206167 "
             sb.append(i).append(" : ");
 
             ArrayList<Double> scoresLine = data.get(i);
@@ -232,7 +223,9 @@ public class DSparseMatrixLIL {
 
     /**
      * Produces string containing json node
-     * <p><strong>Example of output layout</strong>:</p>
+     *
+     * <p><strong>Example of output layout</strong>:
+     *
      * <pre>{@code
      * {
      *   "nCols": 4,
@@ -259,7 +252,7 @@ public class DSparseMatrixLIL {
         ObjectMapper mapper = new ObjectMapper();
         // Printing every array's element from new line
         // can be done by following : https://stackoverflow.com/a/40044685
-//        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+        //        mapper.enable(SerializationFeature.INDENT_OUTPUT);
 
         DefaultPrettyPrinter prettyPrinter = new DefaultPrettyPrinter();
         prettyPrinter.indentArraysWith(DefaultIndenter.SYSTEM_LINEFEED_INSTANCE);
@@ -271,13 +264,15 @@ public class DSparseMatrixLIL {
         root.putPOJO("indices", indices);
         root.putPOJO("data", data);
 
-//        return mapper.writer(prettyPrinter).writeValueAsString(root);
+        //        return mapper.writer(prettyPrinter).writeValueAsString(root);
         return mapper.writeValueAsString(root);
     }
 
     /**
      * Creates DSparseMatrixLIL from json string that follow certain format.
-     * <p><strong>Example of expected layout</strong>:</p>
+     *
+     * <p><strong>Example of expected layout</strong>:
+     *
      * <pre>{@code
      * {
      *   "nCols": 4,
@@ -309,21 +304,14 @@ public class DSparseMatrixLIL {
 
         DSparseMatrixLIL matrix = new DSparseMatrixLIL(nRows, nCols);
 
-        matrix.indices = mapper.treeToValue(
-                root.get("indices"),
-                new TypeReference<ArrayList<ArrayList<Integer>>>() {
-                }
-        );
+        matrix.indices =
+                mapper.treeToValue(
+                        root.get("indices"), new TypeReference<ArrayList<ArrayList<Integer>>>() {});
 
-        matrix.data = mapper.treeToValue(
-                root.get("data"),
-                new TypeReference<ArrayList<ArrayList<Double>>>() {
-                }
-        );
+        matrix.data =
+                mapper.treeToValue(
+                        root.get("data"), new TypeReference<ArrayList<ArrayList<Double>>>() {});
 
         return matrix;
     }
-
 }
-
-
