@@ -12,6 +12,9 @@ import java.util.ArrayList;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 @Command(
         name = "build",
@@ -28,17 +31,10 @@ public class Build implements Runnable {
             description = "specify filename for index")
     String indexFilename = "index.txt";
 
-    @Option(
-            names = {"--fail-silently"},
-            description =
-                    "avoid printing all errors that happen during build stage. True by default",
-            negatable = true,
-            defaultValue = "true",
-            fallbackValue = "true")
-    boolean isFailSilently;
-
     @Override
     public void run() {
+        Logger logger = LoggerFactory.getLogger(Build.class);
+
         System.out.println("Building index...");
 
         // Step 1: collect the names of all the files inside given folder
@@ -65,9 +61,7 @@ public class Build implements Runnable {
                         content.append((char) c);
                     }
                 } catch (IOException e) {
-                    if (!isFailSilently) {
-                        System.err.print(e);
-                    }
+                    logger.warn(String.valueOf(e));
 
                     System.out.println("Impossible to read : " + file.getPath());
                     System.out.println("Skipping ...");
@@ -86,14 +80,13 @@ public class Build implements Runnable {
 
         // Step 4: save index to the file
         // ref : https://stackoverflow.com/a/412495
-        try (FileWriter writer = new FileWriter(new File(targetDir.getParent(), indexFilename));
+        File indexFile = new File(targetDir.getParent(), indexFilename);
+        try (FileWriter writer = new FileWriter(indexFile);
                 BufferedWriter buf = new BufferedWriter(writer); ) {
             String indexStr = bm25.getIndex().toJSON();
             buf.write(indexStr);
         } catch (IOException e) {
-            if (!isFailSilently) {
-                System.err.println(e);
-            }
+            logger.error(String.valueOf(e));
 
             System.out.println("Impossible to create index file : " + indexFilename);
             System.exit(1);

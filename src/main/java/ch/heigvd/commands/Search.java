@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Command(
         name = "search",
@@ -32,17 +34,10 @@ public class Search implements Runnable {
             description = "top k-results to show")
     int topK;
 
-    @Option(
-            names = {"--fail-silently"},
-            description =
-                    "avoid printing all errors that happen during search stage. True by default",
-            negatable = true,
-            defaultValue = "true",
-            fallbackValue = "true")
-    boolean isFailSilently;
-
     @Override
     public void run() {
+        Logger logger = LoggerFactory.getLogger(Build.class);
+
         String queryFull = String.join(" ", query);
 
         // Step 1: read content of index file to string
@@ -54,9 +49,7 @@ public class Search implements Runnable {
                 indexBuilder.append((char) c);
             }
         } catch (IOException e) {
-            if (!isFailSilently) {
-                System.err.println(e);
-            }
+            logger.error(String.valueOf(e));
 
             System.out.println("Impossible to read index file : " + indexFile.getPath());
             System.exit(1);
@@ -67,9 +60,7 @@ public class Search implements Runnable {
         try {
             index = Index.fromJSON(indexBuilder.toString());
         } catch (JsonProcessingException e) {
-            if (!isFailSilently) {
-                System.err.println(e);
-            }
+            logger.error(String.valueOf(e));
 
             System.out.println("Impossible to restore index from : " + indexFile.getPath());
             System.exit(1);
