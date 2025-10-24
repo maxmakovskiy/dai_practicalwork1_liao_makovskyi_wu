@@ -93,8 +93,8 @@ public class DSparseMatrixLIL {
      * @param rowIdx zero-based row index
      * @param colIdx zero-based column index
      * @param value value to store ( cannot be {@code 0.0})
-     * @throws IllegalArgumentException if {@code rowIdx < 0 } or {@code rowIdx >= nRows} {@code
-     *     colIdx < 0} or {@code colIdx >= nCols} or {@code value == 0.0}
+     * @throws IndexOutOfBoundsException if {@code rowIdx < 0 } or {@code rowIdx >= nRows} {@code
+     *     colIdx < 0} or {@code colIdx >= nCols}
      */
     public void set(int rowIdx, int colIdx, double value) {
         boolean isRowIndexOutOfRange = rowIdx < 0 || rowIdx >= shape.nRows;
@@ -108,21 +108,22 @@ public class DSparseMatrixLIL {
                             + colIdx
                             + ". Current shape is "
                             + shape);
-        } else if (value < 0.0) {
-            throw new IllegalArgumentException("Value must be non-negative.");
+        }
+
+        if (value == 0) {
+            return;
         }
 
         ArrayList<Integer> rowIndicesList = indices.get(rowIdx);
         ArrayList<Double> rowScoresList = data.get(rowIdx);
 
-        int cIndex = rowIndicesList.indexOf(colIdx);
-        if (cIndex != -1) {
-            rowScoresList.set(cIndex, value);
-            return;
+        int realColumnIndex = rowIndicesList.indexOf(colIdx);
+        if (realColumnIndex != -1) {
+            rowScoresList.set(realColumnIndex, value);
+        } else {
+            rowIndicesList.add(colIdx);
+            rowScoresList.add(value);
         }
-
-        rowIndicesList.add(colIdx);
-        rowScoresList.add(value);
     }
 
     /**
