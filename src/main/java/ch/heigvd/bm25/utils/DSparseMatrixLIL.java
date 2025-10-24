@@ -17,7 +17,8 @@ import java.util.ArrayList;
  */
 public class DSparseMatrixLIL {
 
-    private Shape shape;
+    private int nRows;
+    private int nCols;
     private ArrayList<ArrayList<Integer>> indices;
     private ArrayList<ArrayList<Double>> data;
 
@@ -34,7 +35,8 @@ public class DSparseMatrixLIL {
             throw new IllegalArgumentException("nRows and nCols must be non-negative.");
         }
 
-        this.shape = new Shape(nRows, nCols);
+        this.nRows = nRows;
+        this.nCols = nCols;
 
         this.indices = new ArrayList<>(nRows);
         this.data = new ArrayList<>(nRows);
@@ -57,18 +59,13 @@ public class DSparseMatrixLIL {
      */
     public double get(int rowIdx, int colIdx) {
 
-        boolean isRowIndexOutOfRange = rowIdx < 0 || rowIdx >= shape.nRows;
-        boolean isColIndexOutOfRange = colIdx < 0 || colIdx >= shape.nCols;
+        boolean isRowIndexOutOfRange = rowIdx < 0 || rowIdx >= nRows;
+        boolean isColIndexOutOfRange = colIdx < 0 || colIdx >= nCols;
         if (isRowIndexOutOfRange || isColIndexOutOfRange) {
             // ref :
             // https://stackoverflow.com/questions/7312767/manually-adding-indexoutofbounds-exception
             throw new IndexOutOfBoundsException(
-                    "Cannot find indices for rowIdx: "
-                            + rowIdx
-                            + " and colIdx: "
-                            + colIdx
-                            + ". Current shape is "
-                            + shape);
+                    "Cannot find indices for rowIdx: " + rowIdx + " and colIdx: " + colIdx);
         }
 
         // ref: https://www.geeksforgeeks.org/java/list-get-method-in-java-with-examples/
@@ -97,17 +94,12 @@ public class DSparseMatrixLIL {
      *     colIdx < 0} or {@code colIdx >= nCols}
      */
     public void set(int rowIdx, int colIdx, double value) {
-        boolean isRowIndexOutOfRange = rowIdx < 0 || rowIdx >= shape.nRows;
-        boolean isColIndexOutOfRange = colIdx < 0 || colIdx >= shape.nCols;
+        boolean isRowIndexOutOfRange = rowIdx < 0 || rowIdx >= nRows;
+        boolean isColIndexOutOfRange = colIdx < 0 || colIdx >= nCols;
 
         if (isRowIndexOutOfRange || isColIndexOutOfRange) {
             throw new IndexOutOfBoundsException(
-                    "Cannot set value at rowIdx: "
-                            + rowIdx
-                            + " and colIdx: "
-                            + colIdx
-                            + ". Current shape is "
-                            + shape);
+                    "Cannot set value at rowIdx: " + rowIdx + " and colIdx: " + colIdx);
         }
 
         if (value == 0) {
@@ -148,11 +140,11 @@ public class DSparseMatrixLIL {
     public String toString() {
         StringBuilder sb = new StringBuilder();
 
-        sb.append("nRows : ").append(shape.nRows).append("\n");
-        sb.append("nCols : ").append(shape.nCols).append("\n");
+        sb.append("nRows : ").append(nRows).append("\n");
+        sb.append("nCols : ").append(nCols).append("\n");
 
         sb.append("Indices\n");
-        for (int i = 0; i < shape.nRows; i++) {
+        for (int i = 0; i < nRows; i++) {
 
             //  "0 : 0, 6, 7, 9, 13",
             sb.append(i).append(" : ");
@@ -169,7 +161,7 @@ public class DSparseMatrixLIL {
         }
 
         sb.append("Data\n");
-        for (int i = 0; i < shape.nRows; i++) {
+        for (int i = 0; i < nRows; i++) {
 
             sb.append(i).append(" : ");
 
@@ -225,8 +217,8 @@ public class DSparseMatrixLIL {
 
         ObjectNode root = mapper.createObjectNode();
 
-        root.put("nRows", shape.nRows);
-        root.put("nCols", shape.nCols);
+        root.put("nRows", nRows);
+        root.put("nCols", nCols);
         root.putPOJO("indices", indices);
         root.putPOJO("data", data);
 
@@ -281,21 +273,13 @@ public class DSparseMatrixLIL {
         return matrix;
     }
 
-    public class Shape {
-        int nRows;
-        int nCols;
-
-        public Shape(int nRows, int nCols) {
-            this.nRows = nRows;
-            this.nCols = nCols;
-        }
-
-        public String toString() {
-            return "(" + nRows + ", " + nCols + ")";
-        }
+    /** Gets number of rows in a matrix */
+    public int getNumOfRows() {
+        return nRows;
     }
 
-    public Shape getShape() {
-        return shape;
+    /** Gets number of columns in a matrix */
+    public int getNumOfCols() {
+        return nCols;
     }
 }
