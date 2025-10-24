@@ -22,7 +22,7 @@ public class DSparseMatrixLIL {
     private ArrayList<ArrayList<Double>> data;
 
     /**
-     * Create an empty {@code nRows} x {@code nCols} sparse matrix
+     * Creates an empty {@code nRows} x {@code nCols} sparse matrix
      *
      * @param nRows number of rows (documents)
      * @param nCols number of columns (terms)
@@ -47,7 +47,7 @@ public class DSparseMatrixLIL {
     }
 
     /**
-     * Retrieve value at a given matrix position ({@code rowIdx}, {@code colIdx})
+     * Retrieves value at a given matrix position ({@code rowIdx}, {@code colIdx})
      *
      * @param rowIdx zero-based row index
      * @param colIdx zero-based column index
@@ -84,7 +84,7 @@ public class DSparseMatrixLIL {
     }
 
     /**
-     * Set a value at a given matrix position ({@code rowIdx}, {@code colIdx})
+     * Sets a value at a given matrix position ({@code rowIdx}, {@code colIdx})
      *
      * <p>If an entry at ({@code rowIdx}, {@code colIdx}) already exists, its value is updated.
      * Otherwise, the column index and value are appended to that row's lists (note: column indices
@@ -127,7 +127,7 @@ public class DSparseMatrixLIL {
     }
 
     /**
-     * Serializes this sparse matrix to a human-readable text format.
+     * Converts current instance of sparse matrix to a human-readable text format.
      *
      * <p><strong>Expected output layout</strong> (line numbers are illustrative):
      *
@@ -145,8 +145,6 @@ public class DSparseMatrixLIL {
      *     href="https://stackoverflow.com/questions/7775394/java-concatenate-to-build-string-or-format">
      *     Java concatenate to build string</a>
      */
-
-    // ref :
     public String toString() {
         StringBuilder sb = new StringBuilder();
 
@@ -170,26 +168,23 @@ public class DSparseMatrixLIL {
             sb.append("\n");
         }
 
-        sb = sb.append("Data\n");
+        sb.append("Data\n");
         for (int i = 0; i < shape.nRows; i++) {
 
-            //  "0 : 0.22927006304670033, 0.47845329415206167, 0.22927006304670033,
-            // 0.47845329415206167, 0.47845329415206167 "
             sb.append(i).append(" : ");
 
-            ArrayList<Double> scoresLine = data.get(i);
-            for (int k = 0; k < scoresLine.size(); k++) {
+            ArrayList<Double> dataLine = data.get(i);
+            for (int k = 0; k < dataLine.size(); k++) {
 
-                sb.append(scoresLine.get(k));
-                if (k != scoresLine.size() - 1) {
+                sb.append(dataLine.get(k));
+                if (k != dataLine.size() - 1) {
                     sb.append(", ");
                 }
             }
             sb.append("\n");
         }
 
-        String rst = sb.toString();
-        return rst;
+        return sb.toString();
     }
 
     /**
