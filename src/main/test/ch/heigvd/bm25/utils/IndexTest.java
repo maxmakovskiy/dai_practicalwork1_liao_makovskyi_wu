@@ -22,9 +22,7 @@ public class IndexTest {
             List.of("file1.txt", "file2.txt")
         );
 
-        Index index = new Index(
-            vocab.size(), docs.size(), vocab, docs
-        );
+        Index index = new Index(vocab, docs);
 
         assertEquals(vocab.size(), index.getVocabSize());
         assertArrayEquals(vocab.toArray(), index.getVocabulary().toArray());
@@ -61,9 +59,7 @@ public class IndexTest {
                 List.of("file1.txt", "file2.txt")
         );
 
-        Index index = new Index(
-                vocab.size(), docs.size(), vocab, docs
-        );
+        Index index = new Index(vocab, docs);
 
         index.getMatrix().set(0, 0, 0.21);
         index.getMatrix().set(0, 1, 0.45);
@@ -101,10 +97,7 @@ public class IndexTest {
                 List.of("file1.txt", "file2.txt")
         );
 
-        Index srcIndex = new Index(
-                vocab.size(), docNames.size(),
-                vocab, docNames, matrix
-        );
+        Index srcIndex = new Index(vocab, docNames, matrix);
 
         String json = srcIndex.toJSON();
         assertFalse(json.isEmpty());

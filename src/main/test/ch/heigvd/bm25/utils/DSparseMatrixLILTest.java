@@ -10,7 +10,9 @@ public class DSparseMatrixLILTest {
 
     @Test
     void constructEmptySparseMatrix() {
-        DSparseMatrixLIL matrix = new DSparseMatrixLIL(4, 4);
+        DSparseMatrixLIL matrix = new DSparseMatrixLIL(4, 5);
+        assertEquals(4, matrix.getNumOfRows());
+        assertEquals(5, matrix.getNumOfCols());
         assertEquals(0.0, matrix.get(1, 2));
     }
 
@@ -102,8 +104,6 @@ public class DSparseMatrixLILTest {
             double res = dstMatrix.get(rowIndexes[i], columnIndexes[i]);
             assertEquals(data[i], res);
         }
-
     }
-
 
 }

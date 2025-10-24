@@ -71,7 +71,6 @@ public class BM25Test {
         ));
 
         Index index = new Index(
-                vocab.size(), docNames.size(),
                 vocab, docNames
         );
 

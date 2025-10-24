@@ -17,13 +17,13 @@ import java.util.ArrayList;
  */
 public class DSparseMatrixLIL {
 
-    private int nRows; // DocID
-    private int nCols; // WordID
-    private ArrayList<ArrayList<Integer>> indices; // column positions
+    private int nRows;
+    private int nCols;
+    private ArrayList<ArrayList<Integer>> indices;
     private ArrayList<ArrayList<Double>> data;
 
     /**
-     * Create an empty {@code nRows} x {@code nCols} sparse matrix
+     * Creates an empty {@code nRows} x {@code nCols} sparse matrix
      *
      * @param nRows number of rows (documents)
      * @param nCols number of columns (terms)
@@ -49,7 +49,7 @@ public class DSparseMatrixLIL {
     }
 
     /**
-     * Retrieve value at a given matrix position ({@code rowIdx}, {@code colIdx})
+     * Retrieves value at a given matrix position ({@code rowIdx}, {@code colIdx})
      *
      * @param rowIdx zero-based row index
      * @param colIdx zero-based column index
@@ -59,7 +59,9 @@ public class DSparseMatrixLIL {
      */
     public double get(int rowIdx, int colIdx) {
 
-        if (rowIdx < 0 || rowIdx >= nRows || colIdx < 0 || colIdx >= nCols) {
+        boolean isRowIndexOutOfRange = rowIdx < 0 || rowIdx >= nRows;
+        boolean isColIndexOutOfRange = colIdx < 0 || colIdx >= nCols;
+        if (isRowIndexOutOfRange || isColIndexOutOfRange) {
             // ref :
             // https://stackoverflow.com/questions/7312767/manually-adding-indexoutofbounds-exception
             throw new IndexOutOfBoundsException(
@@ -79,7 +81,7 @@ public class DSparseMatrixLIL {
     }
 
     /**
-     * Set a value at a given matrix position ({@code rowIdx}, {@code colIdx})
+     * Sets a value at a given matrix position ({@code rowIdx}, {@code colIdx})
      *
      * <p>If an entry at ({@code rowIdx}, {@code colIdx}) already exists, its value is updated.
      * Otherwise, the column index and value are appended to that row's lists (note: column indices
@@ -88,73 +90,36 @@ public class DSparseMatrixLIL {
      * @param rowIdx zero-based row index
      * @param colIdx zero-based column index
      * @param value value to store ( cannot be {@code 0.0})
-     * @throws IllegalArgumentException if {@code rowIdx < 0 } or {@code rowIdx >= nRows} {@code
-     *     colIdx < 0} or {@code colIdx >= nCols} or {@code value == 0.0}
+     * @throws IndexOutOfBoundsException if {@code rowIdx < 0 } or {@code rowIdx >= nRows} {@code
+     *     colIdx < 0} or {@code colIdx >= nCols}
      */
     public void set(int rowIdx, int colIdx, double value) {
+        boolean isRowIndexOutOfRange = rowIdx < 0 || rowIdx >= nRows;
+        boolean isColIndexOutOfRange = colIdx < 0 || colIdx >= nCols;
 
-        if (rowIdx < 0 || rowIdx >= nRows || colIdx < 0 || colIdx >= nCols) {
+        if (isRowIndexOutOfRange || isColIndexOutOfRange) {
             throw new IndexOutOfBoundsException(
                     "Cannot set value at rowIdx: " + rowIdx + " and colIdx: " + colIdx);
-        } else if (value < 0.0) {
-            throw new IllegalArgumentException("Value must be non-negative.");
+        }
+
+        if (value == 0) {
+            return;
         }
 
         ArrayList<Integer> rowIndicesList = indices.get(rowIdx);
         ArrayList<Double> rowScoresList = data.get(rowIdx);
 
-        int cIndex = rowIndicesList.indexOf(colIdx);
-        if (cIndex != -1) {
-            rowScoresList.set(cIndex, value);
-            return;
+        int realColumnIndex = rowIndicesList.indexOf(colIdx);
+        if (realColumnIndex != -1) {
+            rowScoresList.set(realColumnIndex, value);
+        } else {
+            rowIndicesList.add(colIdx);
+            rowScoresList.add(value);
         }
-
-        rowIndicesList.add(colIdx);
-        rowScoresList.add(value);
     }
 
     /**
-     * Parses the number of rows from the first header line of a serialized matrix.
-     *
-     * <p>Expects {@code matrixRows.get(0)} to look like: {@code "nRows : <int>"}.
-     *
-     * @param matrixRows lines of the serialized matrix; must not be {@code null} or empty
-     * @return the parsed row count
-     * @throws IndexOutOfBoundsException if {@code matrixRows} is null or empty
-     */
-    private static int parseNRows(ArrayList<String> matrixRows) {
-
-        if (matrixRows == null || matrixRows.isEmpty()) {
-            throw new IndexOutOfBoundsException("Invalid matrix rows!");
-        }
-
-        String nRowStr = matrixRows.get(0);
-        String[] nRowStrList = nRowStr.split(":");
-        return Integer.parseInt(nRowStrList[1].trim());
-    }
-
-    /**
-     * Parses the number of columns from the second header line of a serialized matrix.
-     *
-     * <p>Expects {@code matrixRows.get(1)} to look like: {@code "nCols : <int>"}.
-     *
-     * @param matrixRows matrixRows lines of the serialized matrix; must contain at least two lines
-     * @return the parsed column count
-     * @throws IndexOutOfBoundsException if matrix contains less than 2 lines.
-     */
-    private static int parseNCols(ArrayList<String> matrixRows) {
-
-        if (matrixRows.size() < 2) {
-            throw new IndexOutOfBoundsException("Invalid matrix rows!");
-        }
-
-        String nColStr = matrixRows.get(1);
-        String[] nColStrList = nColStr.split(":");
-        return Integer.parseInt(nColStrList[1].trim());
-    }
-
-    /**
-     * Serializes this sparse matrix to a human-readable text format.
+     * Converts current instance of sparse matrix to a human-readable text format.
      *
      * <p><strong>Expected output layout</strong> (line numbers are illustrative):
      *
@@ -172,14 +137,10 @@ public class DSparseMatrixLIL {
      *     href="https://stackoverflow.com/questions/7775394/java-concatenate-to-build-string-or-format">
      *     Java concatenate to build string</a>
      */
-
-    // ref :
     public String toString() {
         StringBuilder sb = new StringBuilder();
 
-        //  "nRows : 3"
         sb.append("nRows : ").append(nRows).append("\n");
-        //  "nCols : 14"
         sb.append("nCols : ").append(nCols).append("\n");
 
         sb.append("Indices\n");
@@ -199,26 +160,23 @@ public class DSparseMatrixLIL {
             sb.append("\n");
         }
 
-        sb = sb.append("Data\n");
+        sb.append("Data\n");
         for (int i = 0; i < nRows; i++) {
 
-            //  "0 : 0.22927006304670033, 0.47845329415206167, 0.22927006304670033,
-            // 0.47845329415206167, 0.47845329415206167 "
             sb.append(i).append(" : ");
 
-            ArrayList<Double> scoresLine = data.get(i);
-            for (int k = 0; k < scoresLine.size(); k++) {
+            ArrayList<Double> dataLine = data.get(i);
+            for (int k = 0; k < dataLine.size(); k++) {
 
-                sb.append(scoresLine.get(k));
-                if (k != scoresLine.size() - 1) {
+                sb.append(dataLine.get(k));
+                if (k != dataLine.size() - 1) {
                     sb.append(", ");
                 }
             }
             sb.append("\n");
         }
 
-        String rst = sb.toString();
-        return rst;
+        return sb.toString();
     }
 
     /**
@@ -313,5 +271,15 @@ public class DSparseMatrixLIL {
                         root.get("data"), new TypeReference<ArrayList<ArrayList<Double>>>() {});
 
         return matrix;
+    }
+
+    /** Gets number of rows in a matrix */
+    public int getNumOfRows() {
+        return nRows;
+    }
+
+    /** Gets number of columns in a matrix */
+    public int getNumOfCols() {
+        return nCols;
     }
 }

@@ -20,36 +20,21 @@ public class Index {
     private DSparseMatrixLIL matrix;
     private ArrayList<String> vocabulary;
     private ArrayList<String> documentNames;
-    private int numOfDocs;
-    private int vocabSize;
 
     /**
      * Constructs Index
      *
-     * @param vocabSize number of tokens in vocabulary
-     * @param numOfDocs number of documents in corpus
      * @param vocab collection of unique tokens over the corpus
      * @param documentNames names of all documents in the corpus
      *     <p><strong>Corpus</strong> is a collection of treated documents
      */
-    public Index(
-            int vocabSize,
-            int numOfDocs,
-            ArrayList<String> vocab,
-            ArrayList<String> documentNames) {
-        this(
-                vocabSize,
-                numOfDocs,
-                vocab,
-                documentNames,
-                new DSparseMatrixLIL(numOfDocs, vocabSize));
+    public Index(ArrayList<String> vocab, ArrayList<String> documentNames) {
+        this(vocab, documentNames, new DSparseMatrixLIL(documentNames.size(), vocab.size()));
     }
 
     /**
      * Constructs Index
      *
-     * @param vocabSize number of tokens in vocabulary
-     * @param numOfDocs number of documents in corpus
      * @param vocab collection of unique tokens over the corpus
      * @param documentNames names of all documents in the corpus
      * @param scoreMatrix instance of DSparseMatrixLIL containing scores for every token in the
@@ -58,13 +43,9 @@ public class Index {
      * @see DSparseMatrixLIL
      */
     public Index(
-            int vocabSize,
-            int numOfDocs,
             ArrayList<String> vocab,
             ArrayList<String> documentNames,
             DSparseMatrixLIL scoreMatrix) {
-        this.vocabSize = vocabSize;
-        this.numOfDocs = numOfDocs;
         this.vocabulary = vocab;
         this.documentNames = documentNames;
         this.matrix = scoreMatrix;
@@ -74,14 +55,14 @@ public class Index {
      * @return the number of the represented documents
      */
     public int getNumOfDocs() {
-        return numOfDocs;
+        return documentNames.size();
     }
 
     /**
      * @return vocabulary size
      */
     public int getVocabSize() {
-        return vocabSize;
+        return vocabulary.size();
     }
 
     /**
@@ -131,9 +112,9 @@ public class Index {
         result.append(String.join("|", documentNames));
 
         result.append("\nnumOfDocs\n");
-        result.append(this.numOfDocs);
+        result.append(this.documentNames.size());
         result.append("\nvocabSize\n");
-        result.append(this.vocabSize);
+        result.append(this.vocabulary.size());
         result.append("\nvocabulary\n");
 
         result.append(String.join(" ", vocabulary));
@@ -218,7 +199,7 @@ public class Index {
         String matrixJsonStr = root.get("matrix").toString();
         DSparseMatrixLIL matrix = DSparseMatrixLIL.fromJSON(matrixJsonStr);
 
-        Index index = new Index(vocab.size(), docNames.size(), vocab, docNames);
+        Index index = new Index(vocab, docNames);
         index.matrix = matrix;
 
         return index;

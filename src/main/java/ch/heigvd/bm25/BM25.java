@@ -100,7 +100,7 @@ public class BM25 {
         ArrayList<String> vocab = buildVocabulary(corpusTokens);
 
         // create new index
-        this.index = new Index(vocab.size(), corpusTokens.size(), vocab, documentNames);
+        this.index = new Index(vocab, documentNames);
 
         // compute matrix of scores so-called Index
         computeScoresMatrix(corpusTokens, vocab);
