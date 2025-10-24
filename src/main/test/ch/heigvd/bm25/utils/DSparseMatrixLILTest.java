@@ -37,7 +37,7 @@ public class DSparseMatrixLILTest {
         IndexOutOfBoundsException exc = assertThrows(IndexOutOfBoundsException.class,
                 () -> matrix.get(10, 4));
 
-        assertEquals("Cannot find indices for rowIdx: 10 and colIdx: 4", exc.getMessage());
+        assertEquals("Cannot find indices for rowIdx: 10 and colIdx: 4. Current shape is (4, 4)", exc.getMessage());
     }
 
     @Test
@@ -59,7 +59,7 @@ public class DSparseMatrixLILTest {
         IndexOutOfBoundsException exc = assertThrows(IndexOutOfBoundsException.class,
                 () -> matrix.set(1, 10, 4.0));
 
-        assertEquals("Cannot set value at rowIdx: 1 and colIdx: 10", exc.getMessage());
+        assertEquals("Cannot set value at rowIdx: 1 and colIdx: 10. Current shape is (4, 4)", exc.getMessage());
     }
 
     @Test

@@ -17,9 +17,8 @@ import java.util.ArrayList;
  */
 public class DSparseMatrixLIL {
 
-    private int nRows; // DocID
-    private int nCols; // WordID
-    private ArrayList<ArrayList<Integer>> indices; // column positions
+    private Shape shape;
+    private ArrayList<ArrayList<Integer>> indices;
     private ArrayList<ArrayList<Double>> data;
 
     /**
@@ -35,8 +34,7 @@ public class DSparseMatrixLIL {
             throw new IllegalArgumentException("nRows and nCols must be non-negative.");
         }
 
-        this.nRows = nRows;
-        this.nCols = nCols;
+        this.shape = new Shape(nRows, nCols);
 
         this.indices = new ArrayList<>(nRows);
         this.data = new ArrayList<>(nRows);
@@ -59,11 +57,18 @@ public class DSparseMatrixLIL {
      */
     public double get(int rowIdx, int colIdx) {
 
-        if (rowIdx < 0 || rowIdx >= nRows || colIdx < 0 || colIdx >= nCols) {
+        boolean isRowIndexOutOfRange = rowIdx < 0 || rowIdx >= shape.nRows;
+        boolean isColIndexOutOfRange = colIdx < 0 || colIdx >= shape.nCols;
+        if (isRowIndexOutOfRange || isColIndexOutOfRange) {
             // ref :
             // https://stackoverflow.com/questions/7312767/manually-adding-indexoutofbounds-exception
             throw new IndexOutOfBoundsException(
-                    "Cannot find indices for rowIdx: " + rowIdx + " and colIdx: " + colIdx);
+                    "Cannot find indices for rowIdx: "
+                            + rowIdx
+                            + " and colIdx: "
+                            + colIdx
+                            + ". Current shape is "
+                            + shape);
         }
 
         // ref: https://www.geeksforgeeks.org/java/list-get-method-in-java-with-examples/
@@ -92,10 +97,17 @@ public class DSparseMatrixLIL {
      *     colIdx < 0} or {@code colIdx >= nCols} or {@code value == 0.0}
      */
     public void set(int rowIdx, int colIdx, double value) {
+        boolean isRowIndexOutOfRange = rowIdx < 0 || rowIdx >= shape.nRows;
+        boolean isColIndexOutOfRange = colIdx < 0 || colIdx >= shape.nCols;
 
-        if (rowIdx < 0 || rowIdx >= nRows || colIdx < 0 || colIdx >= nCols) {
+        if (isRowIndexOutOfRange || isColIndexOutOfRange) {
             throw new IndexOutOfBoundsException(
-                    "Cannot set value at rowIdx: " + rowIdx + " and colIdx: " + colIdx);
+                    "Cannot set value at rowIdx: "
+                            + rowIdx
+                            + " and colIdx: "
+                            + colIdx
+                            + ". Current shape is "
+                            + shape);
         } else if (value < 0.0) {
             throw new IllegalArgumentException("Value must be non-negative.");
         }
@@ -177,13 +189,11 @@ public class DSparseMatrixLIL {
     public String toString() {
         StringBuilder sb = new StringBuilder();
 
-        //  "nRows : 3"
-        sb.append("nRows : ").append(nRows).append("\n");
-        //  "nCols : 14"
-        sb.append("nCols : ").append(nCols).append("\n");
+        sb.append("nRows : ").append(shape.nRows).append("\n");
+        sb.append("nCols : ").append(shape.nCols).append("\n");
 
         sb.append("Indices\n");
-        for (int i = 0; i < nRows; i++) {
+        for (int i = 0; i < shape.nRows; i++) {
 
             //  "0 : 0, 6, 7, 9, 13",
             sb.append(i).append(" : ");
@@ -200,7 +210,7 @@ public class DSparseMatrixLIL {
         }
 
         sb = sb.append("Data\n");
-        for (int i = 0; i < nRows; i++) {
+        for (int i = 0; i < shape.nRows; i++) {
 
             //  "0 : 0.22927006304670033, 0.47845329415206167, 0.22927006304670033,
             // 0.47845329415206167, 0.47845329415206167 "
@@ -259,8 +269,8 @@ public class DSparseMatrixLIL {
 
         ObjectNode root = mapper.createObjectNode();
 
-        root.put("nRows", nRows);
-        root.put("nCols", nCols);
+        root.put("nRows", shape.nRows);
+        root.put("nCols", shape.nCols);
         root.putPOJO("indices", indices);
         root.putPOJO("data", data);
 
@@ -313,5 +323,23 @@ public class DSparseMatrixLIL {
                         root.get("data"), new TypeReference<ArrayList<ArrayList<Double>>>() {});
 
         return matrix;
+    }
+
+    public class Shape {
+        int nRows;
+        int nCols;
+
+        public Shape(int nRows, int nCols) {
+            this.nRows = nRows;
+            this.nCols = nCols;
+        }
+
+        public String toString() {
+            return "(" + nRows + ", " + nCols + ")";
+        }
+    }
+
+    public Shape getShape() {
+        return shape;
     }
 }
