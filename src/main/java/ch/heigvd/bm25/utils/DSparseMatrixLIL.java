@@ -126,46 +126,6 @@ public class DSparseMatrixLIL {
     }
 
     /**
-     * Parses the number of rows from the first header line of a serialized matrix.
-     *
-     * <p>Expects {@code matrixRows.get(0)} to look like: {@code "nRows : <int>"}.
-     *
-     * @param matrixRows lines of the serialized matrix; must not be {@code null} or empty
-     * @return the parsed row count
-     * @throws IndexOutOfBoundsException if {@code matrixRows} is null or empty
-     */
-    private static int parseNRows(ArrayList<String> matrixRows) {
-
-        if (matrixRows == null || matrixRows.isEmpty()) {
-            throw new IndexOutOfBoundsException("Invalid matrix rows!");
-        }
-
-        String nRowStr = matrixRows.get(0);
-        String[] nRowStrList = nRowStr.split(":");
-        return Integer.parseInt(nRowStrList[1].trim());
-    }
-
-    /**
-     * Parses the number of columns from the second header line of a serialized matrix.
-     *
-     * <p>Expects {@code matrixRows.get(1)} to look like: {@code "nCols : <int>"}.
-     *
-     * @param matrixRows matrixRows lines of the serialized matrix; must contain at least two lines
-     * @return the parsed column count
-     * @throws IndexOutOfBoundsException if matrix contains less than 2 lines.
-     */
-    private static int parseNCols(ArrayList<String> matrixRows) {
-
-        if (matrixRows.size() < 2) {
-            throw new IndexOutOfBoundsException("Invalid matrix rows!");
-        }
-
-        String nColStr = matrixRows.get(1);
-        String[] nColStrList = nColStr.split(":");
-        return Integer.parseInt(nColStrList[1].trim());
-    }
-
-    /**
      * Serializes this sparse matrix to a human-readable text format.
      *
      * <p><strong>Expected output layout</strong> (line numbers are illustrative):
