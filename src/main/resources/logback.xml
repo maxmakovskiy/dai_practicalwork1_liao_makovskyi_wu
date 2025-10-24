@@ -5,8 +5,11 @@
     <import class="ch.qos.logback.classic.encoder.PatternLayoutEncoder"/>
     <import class="ch.qos.logback.core.FileAppender"/>
 
-    <appender name="FILE" class="FileAppender">
-        <file>tse-%d{yyyy-MM-dd-ss}.log</file>
+    <!-- config found at : https://stackoverflow.com/a/45031130 -->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+        <fileNamePattern>${application.home:-.}/logs/log_%d{yyyy-MM-dd-SS}.log</fileNamePattern>
+    </rollingPolicy>
         <encoder class="PatternLayoutEncoder">
             <pattern>%d{HH:mm:ss.SSS} %level [%file:%line] -%kvp- %msg%n</pattern>
         </encoder>
