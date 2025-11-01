@@ -1,0 +1,10 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="App: build index on simple" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="ch.heigvd.Main" />
+    <module name="practical_work_1" />
+    <option name="PROGRAM_PARAMETERS" value="build -I=simple_index.txt src/main/resources/documents/simple" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

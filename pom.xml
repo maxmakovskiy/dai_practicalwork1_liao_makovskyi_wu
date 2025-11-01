@@ -13,7 +13,23 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <repositories>
+        <repository>
+            <id>github</id>
+            <name>GitHub maxmakovskiy Maven Packages</name>
+            <url>https://maven.pkg.github.com/maxmakovskiy/bm25</url>
+        </repository>
+    </repositories>
+
     <dependencies>
+
+        <!-- https://github.com/maxmakovskiy/bm25/packages/2721552 -->
+        <dependency>
+            <groupId>ch.heigvd.dai</groupId>
+            <artifactId>bm25</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/info.picocli/picocli -->
         <dependency>
             <groupId>info.picocli</groupId>
@@ -21,27 +37,6 @@
             <version>4.7.7</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.apache.opennlp/opennlp-tools -->
-        <dependency>
-            <groupId>org.apache.opennlp</groupId>
-            <artifactId>opennlp-tools</artifactId>
-            <version>2.5.5</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>6.0.0</version>
-            <scope>test</scope>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>2.20.0</version>
-        </dependency>
     </dependencies>
 
     <build>

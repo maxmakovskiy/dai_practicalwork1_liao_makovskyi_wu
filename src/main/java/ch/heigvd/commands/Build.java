@@ -1,6 +1,6 @@
 package ch.heigvd.commands;
 
-import ch.heigvd.bm25.BM25;
+import ch.heigvd.dai.bm25.BM25;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
