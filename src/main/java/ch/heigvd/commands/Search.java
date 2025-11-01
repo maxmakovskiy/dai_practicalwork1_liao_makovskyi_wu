@@ -1,8 +1,8 @@
 package ch.heigvd.commands;
 
-import ch.heigvd.bm25.BM25;
-import ch.heigvd.bm25.utils.Index;
-import ch.heigvd.bm25.utils.RankingResult;
+import ch.heigvd.dai.bm25.BM25;
+import ch.heigvd.dai.bm25.utils.Index;
+import ch.heigvd.dai.bm25.utils.RankingResult;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import java.io.BufferedReader;
 import java.io.File;
