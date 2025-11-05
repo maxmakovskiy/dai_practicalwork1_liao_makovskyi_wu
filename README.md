@@ -57,8 +57,8 @@ For now, it is available to build from sourse.
 ### Step 1: Clone the repository
 
 ```bash
-git clone https://github.com/maxmakovskiy/dai_practicalwork1_liao_makovskyi_wu.git
-cd dai_practicalwork1_liao_makovskyi_wu
+git clone https://github.com/maxmakovskiy/know-yours-files.git
+cd know-yours-files
 ```
 
 ### Step 2: Build the project
@@ -330,7 +330,7 @@ ch.heigvd/
 
 ## How to contribute
 
-Please read corresponding [wiki page](https://github.com/maxmakovskiy/dai_practicalwork1_liao_makovskyi_wu/wiki/Contributor-Guide)
+Please read corresponding [wiki page](https://github.com/maxmakovskiy/know-yours-files/wiki/Contributor-Guide)
 
 ---
 
