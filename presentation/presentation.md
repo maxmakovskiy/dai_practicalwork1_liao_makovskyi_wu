@@ -50,13 +50,13 @@ From wikipedia:
 
 #### Step1 : Build index
 ```bash
-$ java -jar target/practical_work_1-1.0-SNAPSHOT.jar build \
+$ java -jar target/know-your-files-1.0-SNAPSHOT.jar build \
     -I=index.txt src/main/resources/documents
 ```
 
 #### Step2 : Search using it
 ```bash
-$ java -jar target/practical_work_1-1.0-SNAPSHOT.jar search \
+$ java -jar target/know-your-files-1.0-SNAPSHOT.jar search \
     index.txt Which animal is the human best friend?
 ```
 

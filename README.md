@@ -57,8 +57,8 @@ For now, it is available to build from sourse.
 ### Step 1: Clone the repository
 
 ```bash
-git clone https://github.com/maxmakovskiy/dai_practicalwork1_liao_makovskyi_wu.git
-cd dai_practicalwork1_liao_makovskyi_wu
+git clone https://github.com/maxmakovskiy/know-your-files.git
+cd know-your-files
 ```
 
 ### Step 2: Build the project
@@ -83,12 +83,12 @@ The build produces a runnable JAR file in the `target` directory.<br>
 
 Create index file from a collection of documents:
 ````
-$ java -jar target/practical_work_1-1.0-SNAPSHOT.jar build \
+$ java -jar target/know-your-files-1.0-SNAPSHOT.jar build \
     -I=[Index file name] path/to/documents
 ````
 **Example :**
 ````
-$ java -jar target/practical_work_1-1.0-SNAPSHOT.jar build \
+$ java -jar target/know-your-files-1.0-SNAPSHOT.jar build \
     -I=index.txt path/to/documents
 ````
 **What happens:**
@@ -101,12 +101,12 @@ $ java -jar target/practical_work_1-1.0-SNAPSHOT.jar build \
 
 Search through your documents using index file:
 ````
-$ java -jar target/practical_work_1-1.0-SNAPSHOT.jar search \
+$ java -jar target/know-your-files-1.0-SNAPSHOT.jar search \
     -K=3 [index file created by build command] [search word or phrase] 
 ````
 **Example :**
 ````
-$ java -jar target/practical_work_1-1.0-SNAPSHOT.jar search \
+$ java -jar target/know-your-files-1.0-SNAPSHOT.jar search \
     -K=3 index.txt Which animal is the human best friend? 
 ````
 
@@ -130,7 +130,7 @@ Currently, there are only 2 supported commands with syntax presented in [usage](
 
 **Syntax:**
 ```bash
-java -jar target/practical_work_1-1.0-SNAPSHOT.jar build [OPTIONS] <documents_directory>
+java -jar target/know-your-files-1.0-SNAPSHOT.jar build [OPTIONS] <documents_directory>
 ```
 
 **Parameters:**
@@ -146,7 +146,7 @@ java -jar target/practical_work_1-1.0-SNAPSHOT.jar build [OPTIONS] <documents_di
 
 **Syntax:**
 ```bash
-java -jar target/practical_work_1-1.0-SNAPSHOT.jar search [OPTIONS]  
+java -jar target/know-your-files-1.0-SNAPSHOT.jar search [OPTIONS]  
 ```
 
 | Parameter | Type | Required | Default | Description |
@@ -330,7 +330,7 @@ ch.heigvd/
 
 ## How to contribute
 
-Please read corresponding [wiki page](https://github.com/maxmakovskiy/dai_practicalwork1_liao_makovskyi_wu/wiki/Contributor-Guide)
+Please read corresponding [wiki page](https://github.com/maxmakovskiy/know-your-files/wiki/Contributor-Guide)
 
 ---
 
