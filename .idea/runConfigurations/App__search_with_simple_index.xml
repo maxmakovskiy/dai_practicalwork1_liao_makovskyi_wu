@@ -1,7 +1,8 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Run the application" type="Application" factoryName="Application">
+  <configuration default="false" name="App: search with simple index" type="Application" factoryName="Application">
     <option name="MAIN_CLASS_NAME" value="ch.heigvd.Main" />
     <module name="practical_work_1" />
+    <option name="PROGRAM_PARAMETERS" value="search src/main/resources/documents/simple_index.txt Which animal is the human best friend?" />
     <method v="2">
       <option name="Make" enabled="true" />
     </method>
